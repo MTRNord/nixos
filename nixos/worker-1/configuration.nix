@@ -60,22 +60,71 @@
     };
   };
 
+  # btrfs boot
+  boot.supportedFilesystems = [ "btrfs" ];
+
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  networking.hostName = "worker-1";
+  networking.networkmanager.enable = true;
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10;
+      editor = false;
+    };
+    efi.canTouchEfiVariables = false;
+  };
+  # TODO: Fix
+  boot.kernelParams = [ "ip=95.217.202.35/26 gk.net.gw=95.217.202.1 gk.net.iface=a8:a1:59:0f:23:1f" ];
+
+  boot.initrd = {
+    nework.enable = true;
+    boot.initrd.preLVMCommands = lib.mkBefore 400 "sleep 1";
+    luks.forceLuksSupportInInitrd = true;
+    network.ssh = {
+      enable = true;
+      # Defaults to 22.
+      port = 2222;
+      # TODO: Stored in plain text on boot partition, so don't reuse your host
+      # keys. Also, make sure to use a boot loader with support for initrd
+      # secrets (e.g. systemd-boot), or this will be exposed in the nix store
+      # to unprivileged users.
+      hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
+      # I'll just authorize all keys authorized post-boot.
+      authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
+    };
+    # Set the shell profile to meet SSH connections with a decryption
+    # prompt that writes to /tmp/continue if successful.
+    network.postCommands =
+      let
+        # TODO: I use a LUKS 2 label. Replace this with your disk device's path.
+        disk = "/dev/disk/by-label/crypt";
+      in
+      ''
+        echo 'cryptsetup open ${disk} root --type luks && echo > /tmp/continue' >> /root/.profile
+        echo 'starting sshd...'
+      '';
+    # Block the boot process until /tmp/continue is written to
+    postDeviceCommands = ''
+      echo 'waiting for root device to be opened...'
+      mkfifo /tmp/continue
+      cat /tmp/continue
+    '';
+  };
+
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     # FIXME: Replace with your username
-    your-username = {
+    marcel = {
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
+      #initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
@@ -92,7 +141,7 @@
     # Forbid root login through SSH.
     permitRootLogin = "no";
     # Use keys only. Remove if you want to SSH using password (not recommended)
-    passwordAuthentication = false;
+    passwordAuthentication = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
