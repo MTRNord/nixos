@@ -60,13 +60,47 @@
     };
   };
 
+  # General stuff
+  time.timeZone = "Europe/Berlin";
+
   # btrfs boot
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
-  networking.hostName = "worker-1";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "worker-1";
+    # networkmanager.enable = true;
+
+    # Open ports in the firewall.
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22 # ssh
+      ];
+      allowedUDPPorts = [ ];
+    };
+  };
+
+  # packages that are not flakes
+  environment.systemPackages = with pkgs; [
+    wget
+    curl
+    htop
+    lsof
+    tree
+    unzip
+    unar
+    git
+    ripgrep
+    clang
+    llvm
+    gcc
+    binutils
+    file
+    go
+    dos2unix
+  ];
 
   boot.loader = {
     systemd-boot = {
@@ -74,7 +108,7 @@
       configurationLimit = 10;
       editor = false;
     };
-    efi.canTouchEfiVariables = false;
+    efi.canTouchEfiVariables = true;
   };
   # TODO: Fix
   boot.kernelParams = [ "ip=95.217.202.35/26 gk.net.gw=95.217.202.1 gk.net.iface=a8:a1:59:0f:23:1f" ];
