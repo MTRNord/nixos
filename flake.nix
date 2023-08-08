@@ -21,14 +21,9 @@
     # nix-colors.url = "github:misterio77/nix-colors";
 
     kubenix.url = "github:hall/kubenix";
-
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, fenix, nixpkgs, home-manager, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -42,8 +37,6 @@
       packages = forAllSystems (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          x86_64-linux.default = fenix.packages.x86_64-linux.stable.toolchain;
-          aarch64-linux.default = fenix.packages.aarch64-linux.stable.toolchain;
         in
         import ./pkgs { inherit pkgs; }
       );
@@ -74,21 +67,8 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/worker-1/configuration.nix
             sops-nix.nixosModules.sops
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [ fenix.overlays.default ];
-              environment.systemPackages = with pkgs; [
-                (fenix.complete.withComponents [
-                  "cargo"
-                  "clippy"
-                  "rust-src"
-                  "rustc"
-                  "rustfmt"
-                ])
-                rust-analyzer-nightly
-              ];
-            })
+            ./nixos/worker-1/configuration.nix
           ];
         };
       };

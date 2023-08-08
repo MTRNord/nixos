@@ -100,6 +100,10 @@
     file
     go
     dos2unix
+    cargo
+    clippy
+    rustc
+    rustfmt
   ];
 
   boot.loader = {
