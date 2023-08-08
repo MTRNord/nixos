@@ -58,6 +58,12 @@
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 60d";
+    };
   };
 
   # General stuff
