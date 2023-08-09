@@ -61,7 +61,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      update = "cd /etc/nixos/nixos && sudo nixos-rebuild switch --flake .#worker-1";
+      update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#worker-1";
     };
     history = {
       size = 10000;
