@@ -137,7 +137,7 @@
       # to unprivileged users.
       hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
       # I'll just authorize all keys authorized post-boot.
-      authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
+      authorizedKeys = config.users.users.marcel.openssh.authorizedKeys.keys;
     };
     # Set the shell profile to meet SSH connections with a decryption
     # prompt that writes to /tmp/continue if successful.
@@ -168,7 +168,7 @@
       #initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "wheel" ];
