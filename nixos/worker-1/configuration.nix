@@ -161,19 +161,19 @@
   sops.secrets.root_initial_password.neededForUsers = true;
   sops.secrets.ssh_host_ed25519_key = {
     mode = "0600";
-    source = "/etc/ssh/ssh_host_ed25519_key";
+    path = "/etc/ssh/ssh_host_ed25519_key";
   };
   sops.secrets.ssh_host_ed25519_key_pub = {
     mode = "0644";
-    source = "/etc/ssh/ssh_host_ed25519_key.pub";
+    path = "/etc/ssh/ssh_host_ed25519_key.pub";
   };
   sops.secrets.ssh_host_rsa_key = {
     mode = "0600";
-    source = "/etc/ssh/ssh_host_rsa_key";
+    path = "/etc/ssh/ssh_host_rsa_key";
   };
   sops.secrets.ssh_host_rsa_key_pub = {
     mode = "0644";
-    source = "/etc/ssh/ssh_host_rsa_key.pub";
+    path = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
