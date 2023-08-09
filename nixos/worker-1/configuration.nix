@@ -158,30 +158,21 @@
   sops.age.generateKey = true;
   sops.defaultSopsFile = builtins.path { path = ./secrets/secrets.yaml; name = "worker-1-secrets"; };
   sops.secrets.marcel_initial_password.neededForUsers = true;
-  sops.secrets.ssh_host_ed25519_key.mode = "0600";
-  sops.secrets.ssh_host_ed25519_key_pub.mode = "0644";
-  sops.secrets.ssh_host_rsa_key.mode = "0600";
-  sops.secrets.ssh_host_rsa_key_pub.mode = "0644";
-
-  environment.etc."ssh/ssh_host_ed25519_key" = {
+  sops.secrets.ssh_host_ed25519_key = {
     mode = "0600";
-    source = config.sops.secrets.ssh_host_ed25519_key.path;
+    source = "/etc/ssh/ssh_host_ed25519_key";
   };
-
-  environment.etc."ssh/ssh_host_ed25519_key.pub" = {
+  sops.secrets.ssh_host_ed25519_key_pub = {
     mode = "0644";
-    source = config.sops.secrets.ssh_host_ed25519_key_pub.path;
+    source = "/etc/ssh/ssh_host_ed25519_key.pub";
   };
-
-
-  environment.etc."ssh/ssh_host_rsa_key" = {
+  sops.secrets.ssh_host_rsa_key = {
     mode = "0600";
-    source = config.sops.secrets.ssh_host_rsa_key.path;
+    source = "/etc/ssh/ssh_host_rsa_key";
   };
-
-  environment.etc."ssh/ssh_host_rsa_key.pub" = {
+  sops.secrets.ssh_host_rsa_key_pub = {
     mode = "0644";
-    source = config.sops.secrets.ssh_host_rsa_key_pub.path;
+    source = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
