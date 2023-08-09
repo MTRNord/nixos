@@ -50,6 +50,9 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
+  home.file.".ssh/allowed_signers".text =
+    "* ${builtins.readFile /home/marcel/.ssh/id_ed25519.pub}";
+
   # Enable home-manager and git
   programs = {
     home-manager.enable = true;
@@ -63,6 +66,14 @@
       enable = true;
       userName = "MTRNord";
       userEmail = "support@nordgedanken.dev";
+
+      extraConfig = {
+        # Sign all commits using ssh key
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+        user.signingkey = "~/.ssh/id_ed25519.pub";
+      };
     };
 
     zsh = {
