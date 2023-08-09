@@ -176,22 +176,27 @@
   };
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    marcel = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      #initialPassword = "correcthorsebatterystaple";
-      isNormalUser = true;
-      passwordFile = config.sops.secrets.marcel_initial_password.path;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
-      ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" ];
-      shell = pkgs.zsh;
+  users = {
+    #mutableUsers = false;
+    users = {
+      marcel = {
+        # TODO: You can set an initial password for your user.
+        # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
+        # Be sure to change it (using passwd) after rebooting!
+        #initialPassword = "correcthorsebatterystaple";
+        isNormalUser = true;
+        passwordFile = config.sops.secrets.marcel_initial_password.path;
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
+        ];
+        # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
+        extraGroups = [ "wheel" ];
+        shell = pkgs.zsh;
+      };
     };
   };
+
+  users.users."root".passwordFile = config.sops.secrets.marcel_initial_password.path;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
