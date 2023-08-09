@@ -65,8 +65,7 @@
     zsh = {
       enable = true;
       shellAliases = {
-        # TODO: Make this specific to the current running host instead
-        update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#worker-1 && home-manager switch --flake .#marcel";
+        update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#$(hostname) && home-manager switch --flake .#marcel";
       };
       history = {
         size = 10000;
