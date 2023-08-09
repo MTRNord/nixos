@@ -213,7 +213,7 @@
     path = "/root/.ssh/id_ed25519.pub";
   };
 
-  sops.secrets.ssh.backup_password = { };
+  sops.secrets.backup_password = { };
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
