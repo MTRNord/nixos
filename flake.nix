@@ -60,6 +60,8 @@
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
+      sops = sops-nix.nixosModules.sops;
+
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
@@ -67,7 +69,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            sops-nix.nixosModules.sops
+            sops
             ./nixos/worker-1/configuration.nix
           ];
         };
@@ -81,6 +83,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main home-manager configuration file <
+            sops
             ./home-manager/home.nix
           ];
         };
