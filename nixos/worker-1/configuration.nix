@@ -189,29 +189,25 @@
     path = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
-  sops.secrets.ssh = { };
-  sops.secrets.ssh.marcel = { };
-  sops.secrets.ssh.root = { };
-
-  sops.secrets.ssh.marcel.id_ed25519 = {
+  sops.secrets."ssh/marcel/id_ed25519" = {
     mode = "0600";
     owner = config.users.users.marcel.name;
     path = "/home/marcel/.ssh/id_ed25519";
   };
 
-  sops.secrets.ssh.marcel.id_ed25519_pub = {
+  sops.secrets."ssh/marcel/id_ed25519_pub" = {
     mode = "0644";
     owner = config.users.users.marcel.name;
     path = "/home/marcel/.ssh/id_ed25519.pub";
   };
 
-  sops.secrets.ssh.root.id_ed25519 = {
+  sops.secrets."ssh/root/id_ed25519" = {
     mode = "0600";
     owner = config.users.users.marcel.name;
     path = "/root/.ssh/id_ed25519";
   };
 
-  sops.secrets.ssh.root.id_ed25519_pub = {
+  sops.secrets."ssh/root/id_ed25519_pub" = {
     mode = "0644";
     owner = config.users.users.marcel.name;
     path = "/root/.ssh/id_ed25519.pub";
