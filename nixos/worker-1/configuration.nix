@@ -9,7 +9,7 @@
 
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-ssd
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -150,6 +150,36 @@
   };
 
 
+  # SOPS
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # This is using an age key that is expected to already be in the filesystem
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey = true;
+  sops.defaultSopsFile = builtins.path { path = ./secrets/secrets.yaml; name = "worker-1-secrets"; };
+  sops.secrets.marcel_initial_password.neededForUsers = true;
+
+  environment.etc."ssh/ssh_host_ed25519_key" = {
+    mode = "0600";
+    source = config.sops.secrets.ssh_host_ed25519_key.path;
+  };
+
+  environment.etc."ssh/ssh_host_ed25519_key.pub" = {
+    mode = "0644";
+    source = config.sops.secrets.ssh_host_ed25519_key_pub.path;
+  };
+
+
+  environment.etc."ssh/ssh_host_rsa_key" = {
+    mode = "0644";
+    source = config.sops.secrets.ssh_host_rsa_key.path;
+  };
+
+  environment.etc."ssh/ssh_host_rsa_key.pub" = {
+    mode = "0644";
+    source = config.sops.secrets.ssh_host_rsa_key_pub.path;
+  };
+
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     marcel = {
@@ -158,6 +188,7 @@
       # Be sure to change it (using passwd) after rebooting!
       #initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
+      passwordFile = config.sops.secrets.marcel_initial_password.path;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
       ];
@@ -182,16 +213,13 @@
   # # Darling Erasure
   # environment.etc = {
   #   nixos.source = "/persist/etc/nixos";
-  #   "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
   #   adjtime.source = "/persist/etc/adjtime";
   #   NIXOS.source = "/persist/etc/NIXOS";
   #   machine-id.source = "/persist/etc/machine-id";
   # };
   # systemd.tmpfiles.rules = [
-  #   "L /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
-  #   "L /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
-  #   "L /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
-  #   "L /kubernetes - - - - /persist/kubernetes"
+  #   "L /etc/secrets/initrd/ssh_host_ed25519_key - - - - /persist/etc/secrets/initrd/ssh_host_ed25519_key"
+  #   "L /etc/secrets/initrd/ssh_host_ed25519_key.pub - - - - /persist/etc/secrets/initrd/ssh_host_ed25519_key.pub"
   # ];
   # security.sudo.extraConfig = ''
   #   # rollback results in sudo lectures after each reboot
