@@ -54,7 +54,7 @@
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/89922472-7774-704b-b38e-8bed3861df52";
+      device = "/dev/disk/by-partuuid/89922472-7774-704b-b38e-8bed3861df52";
       fsType = "vfat";
     };
 
