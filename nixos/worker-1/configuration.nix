@@ -124,7 +124,7 @@
   boot.kernelParams = [ "ip=dhcp" ];
 
   boot.initrd = {
-    nework.enable = true;
+    network.enable = true;
     luks.forceLuksSupportInInitrd = true;
     network.ssh = {
       enable = true;
