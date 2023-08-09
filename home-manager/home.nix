@@ -55,6 +55,9 @@
     home-manager.enable = true;
     k9s.enable = true;
     less.enable = true;
+    ssh = {
+      enable = true;
+    };
 
     git = {
       enable = true;

@@ -189,6 +189,20 @@
     path = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
+  sops.secrets.ssh.id_ed25519 = {
+    mode = "0600";
+    owner = config.users.users.marcel.name;
+    path = "/home/marcel/.ssh/id_ed25519";
+  };
+
+  sops.secrets.ssh.id_ed25519_pub = {
+    mode = "0644";
+    owner = config.users.users.marcel.name;
+    path = "/home/marcel/.ssh/id_ed25519.pub";
+  };
+
+  sops.secrets.ssh.backup_password = { };
+
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
     #mutableUsers = false;
@@ -207,6 +221,27 @@
   };
 
   users.users."root".passwordFile = config.sops.secrets.root_initial_password.path;
+
+  # Restic Backup
+  services.restic.backups = {
+    storagebox = {
+      passwordFile = config.sops.secrets.backup_password.path;
+      paths = [
+        "/persist"
+      ];
+      repository = "sftp://u362507@u362507.your-storagebox.de:22//backups/worker-1";
+      timerConfig = {
+        OnCalendar = "00:05";
+        RandomizedDelaySec = "5h";
+      };
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+      ];
+      initialize = true;
+    };
+  };
 
   # Darling Erasure
   environment.etc = {
