@@ -112,6 +112,7 @@
     rustfmt
     home-manager
     zsh
+    restic
   ];
 
   # Ensure /etc/shells is setup for zsh
