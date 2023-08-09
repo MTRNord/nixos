@@ -189,6 +189,7 @@
     path = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
+  sops.secrets.ssh = { };
   sops.secrets.ssh.marcel = { };
   sops.secrets.ssh.root = { };
 
