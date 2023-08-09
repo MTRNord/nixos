@@ -158,6 +158,7 @@
   sops.age.generateKey = true;
   sops.defaultSopsFile = builtins.path { path = ./secrets/secrets.yaml; name = "worker-1-secrets"; };
   sops.secrets.marcel_initial_password.neededForUsers = true;
+  sops.secrets.root_initial_password.neededForUsers = true;
   sops.secrets.ssh_host_ed25519_key = {
     mode = "0600";
     source = "/etc/ssh/ssh_host_ed25519_key";
@@ -196,7 +197,7 @@
     };
   };
 
-  users.users."root".passwordFile = config.sops.secrets.marcel_initial_password.path;
+  users.users."root".passwordFile = config.sops.secrets.root_initial_password.path;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
