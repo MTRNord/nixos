@@ -58,6 +58,23 @@
     userEmail = "support@nordgedanken.dev";
   };
 
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      update = "cd /etc/nixos/nixos && sudo nixos-rebuild switch --flake .#worker-1";
+    };
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "thefuck" ];
+      theme = "robbyrussell";
+    };
+  };
+
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
