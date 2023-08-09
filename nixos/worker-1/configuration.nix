@@ -110,6 +110,7 @@
     clippy
     rustc
     rustfmt
+    home-manager
   ];
 
   boot.loader = {
