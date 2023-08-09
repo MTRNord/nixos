@@ -121,7 +121,7 @@
     efi.canTouchEfiVariables = true;
   };
   # TODO: Fix
-  boot.kernelParams = [ "ip=95.217.202.35/26 gk.net.gw=95.217.202.1 gk.net.iface=a8:a1:59:0f:23:1f" ];
+  boot.kernelParams = [ "ip=dhcp" ];
 
   boot.initrd = {
     nework.enable = true;
@@ -143,8 +143,7 @@
     # prompt that writes to /tmp/continue if successful.
     network.postCommands =
       let
-        # TODO: I use a LUKS 2 label. Replace this with your disk device's path.
-        disk = "/dev/disk/by-label/crypt";
+        disk = "/dev/disk/by-uuid/7116e0c2-b7f5-4960-a283-b4a958213bcd";
       in
       ''
         echo 'cryptsetup open ${disk} root --type luks && echo > /tmp/continue' >> /root/.profile
