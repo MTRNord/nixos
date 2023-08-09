@@ -21,7 +21,7 @@
       options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/7116e0c2-b7f5-4960-a283-b4a958213bcd";
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/56da9aee-dc91-4736-ae22-781e46ccb25e";
 
   fileSystems."/home" =
     {
