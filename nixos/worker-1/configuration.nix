@@ -134,7 +134,7 @@
       # keys. Also, make sure to use a boot loader with support for initrd
       # secrets (e.g. systemd-boot), or this will be exposed in the nix store
       # to unprivileged users.
-      hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
+      hostKeys = [ "/etc/ssh/ssh_host_ed25519_key" ];
       # I'll just authorize all keys authorized post-boot.
       authorizedKeys = config.users.users.marcel.openssh.authorizedKeys.keys;
     };
