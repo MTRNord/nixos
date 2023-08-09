@@ -227,6 +227,7 @@
   };
   systemd.tmpfiles.rules = [
     "L /home/marcel - - - - /persist/home/marcel"
+    "L /var/lib/sops-nix/key.txt - - - - /persist/var/lib/sops-nix/key.txt"
   ];
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot
