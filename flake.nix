@@ -74,9 +74,9 @@
       };
 
       # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
+      # Available through 'home-manager --flake .#your-username'
       homeConfigurations = {
-        "marcel@worker-1" = home-manager.lib.homeManagerConfiguration {
+        "marcel" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [

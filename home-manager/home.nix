@@ -51,29 +51,35 @@
   # home.packages = with pkgs; [ steam ];
 
   # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "MTRNord";
-    userEmail = "support@nordgedanken.dev";
+  programs = {
+    home-manager.enable = true;
+    k9s.enable = true;
+    less.enable = true;
+
+    git = {
+      enable = true;
+      userName = "MTRNord";
+      userEmail = "support@nordgedanken.dev";
+    };
+
+    zsh = {
+      enable = true;
+      shellAliases = {
+        # TODO: Make this specific to the current running host instead
+        update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#worker-1 && home-manager switch --flake .#marcel";
+      };
+      history = {
+        size = 10000;
+        path = "${config.xdg.dataHome}/zsh/history";
+      };
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "thefuck" ];
+        theme = "robbyrussell";
+      };
+    };
   };
 
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      # TODO: Make this specific to the current running host instead
-      update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#worker-1 && home-manager switch --flake .#marcel@worker-1";
-    };
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "thefuck" ];
-      theme = "robbyrussell";
-    };
-  };
 
 
   # Nicely reload system units when changing configs
