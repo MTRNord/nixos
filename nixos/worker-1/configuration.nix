@@ -130,7 +130,9 @@
       enable = true;
       # Defaults to 22.
       port = 2222;
-      # TODO: Stored in plain text on boot partition, so don't reuse your host
+      # The key is generated using `ssh-keygen -t ed25519 -N "" -f /etc/secrets/initrd/ssh_host_ed25519_key`
+      #
+      # Stored in plain text on boot partition, so don't reuse your host
       # keys. Also, make sure to use a boot loader with support for initrd
       # secrets (e.g. systemd-boot), or this will be exposed in the nix store
       # to unprivileged users.
@@ -142,10 +144,10 @@
     # prompt that writes to /tmp/continue if successful.
     network.postCommands =
       let
-        disk = "/dev/disk/by-uuid/7116e0c2-b7f5-4960-a283-b4a958213bcd";
+        disk = "/dev/disk/by-uuid/56da9aee-dc91-4736-ae22-781e46ccb25e";
       in
       ''
-        echo 'cryptsetup open ${disk} root --type luks && echo > /tmp/continue' >> /root/.profile
+        echo 'cryptsetup open ${disk} enc --type luks && echo > /tmp/continue' >> /root/.profile
         echo 'starting sshd...'
       '';
     # Block the boot process until /tmp/continue is written to
