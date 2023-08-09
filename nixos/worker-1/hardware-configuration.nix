@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" "sr_mod" ];
@@ -14,7 +15,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
+    {
+      device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
@@ -22,32 +24,37 @@
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/7116e0c2-b7f5-4960-a283-b4a958213bcd";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
+    {
+      device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
+    {
+      device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
+    {
+      device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
       fsType = "btrfs";
       options = [ "subvol=persist" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
+    {
+      device = "/dev/disk/by-uuid/0bfb59e2-0156-4845-8887-043976a17dca";
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
   fileSystems."/boot" =
-    { device = "/dev/sda1";
+    {
+      device = "/dev/disk/by-uuid/89922472-7774-704b-b38e-8bed3861df52";
       fsType = "vfat";
     };
 
