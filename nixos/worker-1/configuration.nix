@@ -164,7 +164,7 @@
 
   # SOPS
   sops.age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
-  sops.gnupg.sshKeyPaths = [];
+  sops.gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile = "/var/lib/sops-nix/key.txt";
   # This will generate a new key if the key specified above does not exist
@@ -194,10 +194,6 @@
     #mutableUsers = false;
     users = {
       marcel = {
-        # TODO: You can set an initial password for your user.
-        # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-        # Be sure to change it (using passwd) after rebooting!
-        #initialPassword = "correcthorsebatterystaple";
         isNormalUser = true;
         passwordFile = config.sops.secrets.marcel_initial_password.path;
         openssh.authorizedKeys.keys = [
