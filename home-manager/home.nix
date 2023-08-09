@@ -51,7 +51,7 @@
   # home.packages = with pkgs; [ steam ];
 
   home.file.".ssh/allowed_signers".text =
-    "* ${builtins.readFile ~/.ssh/id_ed25519.pub}";
+    "* ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeAYFhGNeDKYsb9qQx6V6OzWTr4M7Gue3Eka2Y3I56b marcel@worker-1";
 
   # Enable home-manager and git
   programs = {
