@@ -175,7 +175,7 @@
 
 
   environment.etc."ssh/ssh_host_rsa_key" = {
-    mode = "0644";
+    mode = "0600";
     source = config.sops.secrets.ssh_host_rsa_key.path;
   };
 
@@ -217,14 +217,17 @@
   # Darling Erasure
   environment.etc = {
     nixos.source = "/persist/etc/nixos";
-    adjtime.source = "/persist/etc/adjtime";
     NIXOS.source = "/persist/etc/NIXOS";
     machine-id.source = "/persist/etc/machine-id";
+    "secrets/initrd/ssh_host_ed25519_key" = {
+      mode = "0600";
+      source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
+    };
+    "secrets/initrd/ssh_host_ed25519_key.pub" = {
+      mode = "0644";
+      source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key.pub";
+    };
   };
-  systemd.tmpfiles.rules = [
-    "L /etc/secrets/initrd/ssh_host_ed25519_key - - - - /persist/etc/secrets/initrd/ssh_host_ed25519_key"
-    "L /etc/secrets/initrd/ssh_host_ed25519_key.pub - - - - /persist/etc/secrets/initrd/ssh_host_ed25519_key.pub"
-  ];
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot
     Defaults lecture = never
