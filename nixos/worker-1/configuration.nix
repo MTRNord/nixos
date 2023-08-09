@@ -228,6 +228,9 @@
       source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key.pub";
     };
   };
+  systemd.tmpfiles.rules = [
+    "L /home/marcel - - - - /persist/home/marcel"
+  ];
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot
     Defaults lecture = never
