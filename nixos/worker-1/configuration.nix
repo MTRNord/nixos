@@ -98,14 +98,11 @@
     unzip
     unar
     git
-    ripgrep
     clang
     llvm
     gcc
     binutils
     file
-    go
-    dos2unix
     cargo
     clippy
     rustc
@@ -113,6 +110,7 @@
     home-manager
     zsh
     restic
+    thefuck
   ];
 
   # Ensure /etc/shells is setup for zsh
