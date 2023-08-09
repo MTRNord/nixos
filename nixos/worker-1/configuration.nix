@@ -114,7 +114,8 @@
     zsh
   ];
 
-  # Ensure /etc/shells is setups
+  # Ensure /etc/shells is setup for zsh
+  programs.zsh.enable = true;
   environment.shells = with pkgs; [ zsh ];
 
   boot.loader = {
