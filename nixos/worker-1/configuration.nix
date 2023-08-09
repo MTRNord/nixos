@@ -189,6 +189,9 @@
     path = "/etc/ssh/ssh_host_rsa_key.pub";
   };
 
+  sops.secrets.ssh.marcel = { };
+  sops.secrets.ssh.root = { };
+
   sops.secrets.ssh.marcel.id_ed25519 = {
     mode = "0600";
     owner = config.users.users.marcel.name;
