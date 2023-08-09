@@ -125,7 +125,6 @@
 
   boot.initrd = {
     nework.enable = true;
-    boot.initrd.preLVMCommands = lib.mkBefore 400 "sleep 1";
     luks.forceLuksSupportInInitrd = true;
     network.ssh = {
       enable = true;
