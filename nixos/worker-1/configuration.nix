@@ -169,7 +169,7 @@
   sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
-  sops.defaultSopsFile = builtins.path { path = ./secrets/secrets.yaml; name = "worker-1-secrets"; };
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.secrets.marcel_initial_password.neededForUsers = true;
   sops.secrets.root_initial_password.neededForUsers = true;
   sops.secrets.ssh_host_ed25519_key = {
