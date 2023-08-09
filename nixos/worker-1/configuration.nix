@@ -111,7 +111,11 @@
     rustc
     rustfmt
     home-manager
+    zsh
   ];
+
+  # Ensure /etc/shells is setups
+  environment.shells = with pkgs; [ zsh ];
 
   boot.loader = {
     systemd-boot = {
@@ -158,6 +162,7 @@
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = [ "wheel" ];
+      shell = pkgs.zsh;
     };
   };
 

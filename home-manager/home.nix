@@ -61,6 +61,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
+      # TODO: Make this specific to the current running host instead
       update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#worker-1 && home-manager switch --flake .#marcel@worker-1";
     };
     history = {
