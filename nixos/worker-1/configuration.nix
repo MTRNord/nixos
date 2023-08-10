@@ -265,6 +265,7 @@
     nordgedanken = { 
       url = "https://git.nordgedanken.dev";
       tokenFile = config.sops.secrets.forgejo_runner_token.path;
+      labels = [];
     };
   };
 
