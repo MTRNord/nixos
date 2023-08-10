@@ -261,11 +261,14 @@
   # forgejo
   virtualisation.podman.enable = true;
 
-  services.gitea-actions-runner.instances = {
-    nordgedanken = { 
-      url = "https://git.nordgedanken.dev";
-      tokenFile = config.sops.secrets.forgejo_runner_token.path;
-      labels = [];
+  services.gitea-actions-runner = {
+    enable = true;
+    instances = {
+      nordgedanken = {
+        url = "https://git.nordgedanken.dev";
+        tokenFile = config.sops.secrets.forgejo_runner_token.path;
+        labels = [ ];
+      };
     };
   };
 
