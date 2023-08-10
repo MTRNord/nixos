@@ -256,6 +256,18 @@
   };
 
   sops.secrets.backup_password = { };
+  sops.secrets.forgejo_runner_token = { };
+
+  # forgejo
+  virtualisation.podman.enable = true;
+
+  services.gitea-actions-runner.instances = {
+    nordgedanken = { 
+      url = "https://git.nordgedanken.dev";
+      tokenFile = config.sops.secrets.forgejo_runner_token.path;
+    };
+  };
+
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
