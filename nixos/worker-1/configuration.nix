@@ -257,26 +257,6 @@
 
   sops.secrets.backup_password = { };
 
-  # forgejo
-  virtualisation.podman.enable = true;
-
-  services.gitea-actions-runner = {
-    instances = {
-      nordgedanken = {
-        enable = true;
-        url = "https://git.nordgedanken.dev";
-        tokenFile = config.sops.secrets.forgejo_runner_token.path;
-        labels = [ ];
-        name = "worker-1";
-      };
-    };
-  };
-
-   systemd.services.gitea-runner-nordgedanken = {
-    serviceConfig.SupplementaryGroups = [ config.users.groups.keys.name ];
-  };
-  sops.secrets.forgejo_runner_token.owner = "gitea-runner";
-
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
@@ -294,6 +274,26 @@
       };
     };
   };
+
+  # forgejo
+  virtualisation.podman.enable = true;
+
+  services.gitea-actions-runner = {
+    instances = {
+      nordgedanken = {
+        enable = true;
+        url = "https://git.nordgedanken.dev";
+        tokenFile = config.sops.secrets.forgejo_runner_token.path;
+        labels = [ ];
+        name = "worker-1";
+      };
+    };
+  };
+
+  systemd.services.gitea-runner-nordgedanken = {
+    serviceConfig.SupplementaryGroups = [ config.users.groups.keys.name ];
+  };
+  sops.secrets.forgejo_runner_token.owner = config.users."gitea-runner".name;
 
   users.users."root".passwordFile = config.sops.secrets.root_initial_password.path;
 
