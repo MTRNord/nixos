@@ -69,6 +69,45 @@
   # General stuff
   time.timeZone = "Europe/Berlin";
 
+  fonts.fontconfig.enable = lib.mkDefault false;
+  environment.variables.BROWSER = "echo";
+  sound.enable = false;
+
+  systemd = {
+    # Given that our systems are headless, emergency mode is useless.
+    # We prefer the system to attempt to continue booting so
+    # that we can hopefully still access it remotely.
+    enableEmergencyMode = false;
+    # For more detail, see:
+    #   https://0pointer.de/blog/projects/watchdog.html
+    watchdog = {
+      # systemd will send a signal to the hardware watchdog at half
+      # the interval defined here, so every 10s.
+      # If the hardware watchdog does not get a signal for 20s,
+      # it will forcefully reboot the system.
+      runtimeTime = "20s";
+      # Forcefully reboot if the final stage of the reboot
+      # hangs without progress for more than 30s.
+      # For more info, see:
+      #   https://utcc.utoronto.ca/~cks/space/blog/linux/SystemdShutdownWatchdog
+      rebootTime = "30s";
+    };
+
+    sleep.extraConfig = ''
+      AllowSuspend=no
+      AllowHibernation=no
+    '';
+  };
+
+  # use TCP BBR has significantly increased throughput and reduced latency for connections
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+
+  # Ensure a clean & sparkling /tmp on fresh boots.
+  boot.tmp.cleanOnBoot = true;
+
   # btrfs boot
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "btrfs" ];
@@ -80,6 +119,8 @@
 
     # Open ports in the firewall.
     firewall = {
+      allowPing = true;
+      logRefusedConnections = false;
       enable = true;
       allowedTCPPorts = [
         22 # ssh
@@ -94,15 +135,7 @@
     curl
     htop
     lsof
-    tree
-    unzip
-    unar
     git
-    clang
-    llvm
-    gcc
-    binutils
-    file
     cargo
     clippy
     rustc
@@ -111,6 +144,8 @@
     zsh
     restic
     thefuck
+    dnsutils
+    jq
   ];
 
   # Ensure /etc/shells is setup for zsh
@@ -162,6 +197,9 @@
       PermitRootLogin = "no";
       # Use keys only. Remove if you want to SSH using password (not recommended)
       PasswordAuthentication = false;
+      X11Forwarding = false;
+      KbdInteractiveAuthentication = false;
+      UseDns = false;
     };
   };
 
