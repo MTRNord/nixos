@@ -130,7 +130,10 @@
   };
 
   # packages that are not flakes
-  environment.systemPackages = with pkgs; [
+  unstable_packages = with pkgs.unstable; [
+    forgejo-actions-runner
+  ];
+  stable_packages = with pkgs; [
     wget
     curl
     htop
@@ -147,6 +150,8 @@
     dnsutils
     jq
   ];
+
+  environment.systemPackages = stable_packages ++ unstable_packages;
 
   # Ensure /etc/shells is setup for zsh
   programs.zsh.enable = true;
