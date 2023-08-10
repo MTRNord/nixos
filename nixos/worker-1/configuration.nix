@@ -129,6 +129,13 @@
     };
   };
 
+  services.fail2ban.enable = true;
+  # needed to ban on IPv4 and IPv6 for all ports
+  services.fail2ban = {
+    extraPackages = [pkgs.ipset];
+    banaction = "iptables-ipset-proto6-allports";
+  };
+
   # packages that are not flakes
   environment.systemPackages = with pkgs; [
     wget
