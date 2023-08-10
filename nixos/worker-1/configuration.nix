@@ -256,7 +256,6 @@
   };
 
   sops.secrets.backup_password = { };
-  sops.secrets.forgejo_runner_token = { };
 
   # forgejo
   virtualisation.podman.enable = true;
@@ -272,6 +271,11 @@
       };
     };
   };
+
+   systemd.services.gitea-runner-nordgedanken = {
+    serviceConfig.SupplementaryGroups = [ config.users.groups.keys.name ];
+  };
+  sops.secrets.forgejo_runner_token.owner = config.users.gitea-runner.name;
 
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
