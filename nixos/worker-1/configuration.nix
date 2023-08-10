@@ -293,7 +293,8 @@
   systemd.services.gitea-runner-nordgedanken = {
     serviceConfig.SupplementaryGroups = [ config.users.groups.keys.name ];
   };
-  sops.secrets.forgejo_runner_token.owner = config.users."gitea-runner".name;
+  sops.secrets.forgejo_runner_token = { };
+  #  sops.secrets.forgejo_runner_token.owner = config.users."gitea-runner".name;
 
   users.users."root".passwordFile = config.sops.secrets.root_initial_password.path;
 
