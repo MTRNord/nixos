@@ -103,6 +103,8 @@
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
+    "net.ipv4.conf.all.forwarding" = true;
+    "net.ipv6.conf.all.forwarding" = true;
   };
 
   # Ensure a clean & sparkling /tmp on fresh boots.
@@ -117,6 +119,9 @@
     hostName = "worker-1";
     # networkmanager.enable = true;
 
+		nameservers = ["8.8.8.8" "8.8.4.4"];
+
+
     # Open ports in the firewall.
     firewall = {
       allowPing = true;
@@ -126,13 +131,26 @@
         22 # ssh
       ];
       allowedUDPPorts = [ ];
+      # TODO: Apply https://git.pixie.town/f0x/nixos/src/commit/ec359768c7fc40215e9a71b278ac7c33d7541277/nodes/aura/configuration.nix
+      # blockedV4 = [
+      #   # https://openai.com/gptbot-ranges.txt
+      #   "20.15.240.64/28"
+      #   "20.15.240.80/28"
+      #   "20.15.240.96/28"
+      #   "20.15.240.176/28"
+      #   "20.15.241.0/28"
+      #   "20.15.242.128/28"
+      #   "20.15.242.144/28"
+      #   "20.15.242.192/28"
+      #   "40.83.2.64/28"
+      # ];
     };
   };
 
   services.fail2ban.enable = true;
   # needed to ban on IPv4 and IPv6 for all ports
   services.fail2ban = {
-    extraPackages = [pkgs.ipset];
+    extraPackages = [ pkgs.ipset ];
     banaction = "iptables-ipset-proto6-allports";
   };
 
@@ -168,7 +186,6 @@
     };
     efi.canTouchEfiVariables = true;
   };
-  # TODO: Fix
   boot.kernelParams = [ "ip=dhcp" ];
 
   boot.initrd = {
@@ -275,7 +292,6 @@
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
         ];
-        # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
       };
