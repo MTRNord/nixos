@@ -41,12 +41,6 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
-
-    localSystem = {
-      #gcc.arch = "skylake";
-      #gcc.tune = "skylake";
-      system = "aarch64-linux";
-    };
   };
 
   nix = {
