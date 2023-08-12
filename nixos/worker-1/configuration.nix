@@ -42,7 +42,7 @@
       allowUnfree = true;
     };
 
-    nixpkgs.localSystem = {
+    localSystem = {
       #gcc.arch = "skylake";
       #gcc.tune = "skylake";
       system = "aarch64-linux";
