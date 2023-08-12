@@ -41,6 +41,12 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
+
+    nixpkgs.localSystem = {
+      #gcc.arch = "skylake";
+      #gcc.tune = "skylake";
+      system = "aarch64-linux";
+    };
   };
 
   nix = {
@@ -57,6 +63,8 @@
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
+      # Sandbox
+      sandbox = true;
     };
 
     gc = {
@@ -64,6 +72,9 @@
       dates = "weekly";
       options = "--delete-older-than 60d";
     };
+
+    # Build locally
+    binaryCaches = [ ];
   };
 
   # General stuff
@@ -72,6 +83,7 @@
   fonts.fontconfig.enable = lib.mkDefault false;
   environment.variables.BROWSER = "echo";
   sound.enable = false;
+  powerManagement.cpuFreqGovernor = "performance";
 
   systemd = {
     # Given that our systems are headless, emergency mode is useless.
