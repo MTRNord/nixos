@@ -59,6 +59,9 @@
       auto-optimise-store = true;
       # Sandbox
       sandbox = true;
+      # Build locally
+      trusted-substituters = [ ];
+      substituters = [ ];
     };
 
     gc = {
@@ -67,8 +70,6 @@
       options = "--delete-older-than 60d";
     };
 
-    # Build locally
-    binaryCaches = [ ];
   };
 
   # General stuff
