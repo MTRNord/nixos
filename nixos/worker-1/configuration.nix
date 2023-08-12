@@ -245,6 +245,7 @@
     dnsutils
     jq
     unstable.forgejo-actions-runner
+    compsize
   ];
 
   # Ensure /etc/shells is setup for zsh
