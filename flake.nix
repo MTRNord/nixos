@@ -21,9 +21,10 @@
     # nix-colors.url = "github:misterio77/nix-colors";
 
     kubenix.url = "github:hall/kubenix";
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, deploy-rs, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -85,5 +86,6 @@
           ];
         };
       };
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }

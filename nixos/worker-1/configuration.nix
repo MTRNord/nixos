@@ -119,7 +119,7 @@
     hostName = "worker-1";
     # networkmanager.enable = true;
 
-		nameservers = ["8.8.8.8" "8.8.4.4"];
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
 
     # Open ports in the firewall.
