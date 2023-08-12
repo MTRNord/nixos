@@ -1,2 +1,0 @@
-- Setup server age via <https://github.com/Mic92/sops-nix> -> Step 3
-- Make reusable stuff reusable (Timezone, users, ...)
