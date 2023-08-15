@@ -513,7 +513,7 @@
 
         [6001]
         type=endpoint
-        context=from-internal
+        context=internal
         disallow=all
         allow=g722
         allow=ulaw
