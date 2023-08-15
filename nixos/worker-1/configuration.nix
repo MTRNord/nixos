@@ -495,6 +495,9 @@
 
         [6001](softphone)
         secret=meow
+
+        [100](softphone)
+        secret=meow2
       '';
 
       "logger.conf" = ''
