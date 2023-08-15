@@ -481,7 +481,71 @@
   # FIXME: Remove at some point. This is a test tbh
   services.asterisk = {
     enable = true;
-    extraConfig = "";
+    confFiles = {
+      "extensions.con" = ''
+        [from-internal]
+        exten = 100,1,Answer()
+        same = n,Wait(1)
+        same = n,Playback(hello-world)
+        same = n,Hangup()
+    
+        [unauthorized]
+      '';
+
+      "sip.conf" = ''
+        [general]
+        allowguest=no              ; Require authentication
+        context=unauthorized       ; Send unauthorized users to /dev/null
+        srvlookup=no               ; Don't do DNS lookup
+        udpbindaddr=0.0.0.0        ; Listen on all interfaces
+
+        [6001](!)
+        type=friend                ; Match on username first, IP second
+        context=from-internal      ; Send to from-internal context in
+                                   ; extensions.conf file
+        host=dynamic               ; Device will register with asterisk
+        secret=meow
+        disallow=all               ; Manually specify codecs to allow
+        allow=g722
+        allow=ulaw
+        allow=alaw
+      '';
+
+      "logger.conf" = ''
+        [general]
+
+        [logfiles]
+        ; Add debug output to log
+        syslog.local0 => notice,warning,error,debug
+      '';
+
+      "pjsip.conf" = ''
+        [transport-udp]
+        type=transport
+        protocol=udp
+        bind=0.0.0.0
+
+        [6001]
+        type=endpoint
+        context=from-internal
+        disallow=all
+        allow=g722
+        allow=ulaw
+        allow=alaw
+        auth=6001
+        aors=6001
+
+        [6001]
+        type=auth
+        auth_type=userpass
+        password=meow
+        username=6001
+
+        [6001]
+        type=aor
+        max_contacts=1
+      '';
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
