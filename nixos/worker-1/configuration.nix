@@ -465,10 +465,10 @@
     confFiles = {
       "extensions.con" = ''
         [tests]
-        exten = 100,1,Answer()
-        same = n,Wait(1)
-        same = n,Playback(hello-world)
-        same = n,Hangup()
+        exten => 100,1,Answer()
+        same => n,Wait(1)
+        same => n,Playback(hello-world)
+        same => n,Hangup()
 
         [softphones]
         include => tests
