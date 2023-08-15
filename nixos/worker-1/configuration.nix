@@ -502,7 +502,7 @@
 
         [logfiles]
         ; Add debug output to log
-        syslog.local0 => notice,warning,error,debug
+        syslog.local0 => notice,warning,error,debug,verbose(5)
       '';
 
       "pjsip.conf" = ''
