@@ -185,8 +185,10 @@
           5060 # SIP
         ];
         allowedUDPPorts = [
-          # SIP
-          5060
+          5060 # SIP
+        ];
+
+        allowedUDPPortRanges = [
           { from = 10000; to = 20000; }
         ];
 
