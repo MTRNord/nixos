@@ -469,6 +469,9 @@
         same = n,Wait(1)
         same = n,Playback(hello-world)
         same = n,Hangup()
+
+        [internal]
+        include => from-internal
     
         [unauthorized]
       '';
@@ -480,16 +483,18 @@
         srvlookup=no               ; Don't do DNS lookup
         udpbindaddr=0.0.0.0        ; Listen on all interfaces
 
-        [6001](!)
+        [internal](!)
         type=friend                ; Match on username first, IP second
-        context=from-internal      ; Send to from-internal context in
+        context=internal           ; Send to from-internal context in
                                    ; extensions.conf file
         host=dynamic               ; Device will register with asterisk
-        secret=meow
         disallow=all               ; Manually specify codecs to allow
         allow=g722
         allow=ulaw
         allow=alaw
+
+        [6001](internal)
+        secret=meow
       '';
 
       "logger.conf" = ''
