@@ -463,14 +463,14 @@
   services.asterisk = {
     enable = true;
     confFiles = {
-      "extensions.con" = ''
+      "extensions.conf" = ''
         [tests]
         exten => 100,1,Answer()
         same => n,Wait(1)
         same => n,Playback(hello-world)
         same => n,Hangup()
 
-        [softphones]
+        [internals]
         include => tests
     
         [unauthorized]
@@ -483,9 +483,9 @@
         srvlookup=no               ; Don't do DNS lookup
         udpbindaddr=::            ; Listen on all interfaces
 
-        [softphone](!)
+        [internal](!)
         type=friend                ; Match on username first, IP second
-        context=softphones         ; Send to softphones context in
+        context=internals          ; Send to internals context in
                                    ; extensions.conf file
         host=dynamic               ; Device will register with asterisk
         disallow=all               ; Manually specify codecs to allow
@@ -493,7 +493,7 @@
         allow=ulaw
         allow=alaw
 
-        [6001](softphone)
+        [6001](internal)
         secret=meow
       '';
 
@@ -513,7 +513,7 @@
 
         [6001]
         type=endpoint
-        context=softphones
+        context=internals
         disallow=all
         allow=g722
         allow=ulaw
