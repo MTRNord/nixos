@@ -481,7 +481,7 @@
         allowguest=no              ; Require authentication
         context=unauthorized       ; Send unauthorized users to /dev/null
         srvlookup=no               ; Don't do DNS lookup
-        udpbindaddr=0.0.0.0        ; Listen on all interfaces
+        udpbindaddr=::            ; Listen on all interfaces
 
         [softphone](!)
         type=friend                ; Match on username first, IP second
@@ -495,9 +495,6 @@
 
         [6001](softphone)
         secret=meow
-
-        [100](softphone)
-        secret=meow2
       '';
 
       "logger.conf" = ''
