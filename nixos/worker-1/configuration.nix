@@ -529,7 +529,9 @@
 
         [6001]
         type=aor
-        max_contacts=1
+        max_contacts=2
+        remove_existing=yes
+        remove_unavailable=yes
       '';
     };
   };
