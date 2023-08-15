@@ -460,6 +460,8 @@
   '';
 
   # FIXME: Remove at some point. This is a test tbh
+  sops.secrets."asterisk/sip_conf" = { };
+  sops.secrets."asterisk/pjsip_conf" = { };
   services.asterisk = {
     enable = true;
     confFiles = {
@@ -472,30 +474,13 @@
 
         [internals]
         include => tests
+
+        [externals]
     
         [unauthorized]
       '';
 
-      "sip.conf" = ''
-        [general]
-        allowguest=no              ; Require authentication
-        context=unauthorized       ; Send unauthorized users to /dev/null
-        srvlookup=no               ; Don't do DNS lookup
-        udpbindaddr=::            ; Listen on all interfaces
-
-        [internal](!)
-        type=friend                ; Match on username first, IP second
-        context=internals          ; Send to internals context in
-                                   ; extensions.conf file
-        host=dynamic               ; Device will register with asterisk
-        disallow=all               ; Manually specify codecs to allow
-        allow=g722
-        allow=ulaw
-        allow=alaw
-
-        [6001](internal)
-        secret=meow
-      '';
+      "sip.conf" = config.sops.secrets."asterisk/sip_conf";
 
       "logger.conf" = ''
         [general]
@@ -505,34 +490,7 @@
         syslog.local0 => notice,warning,error,debug,verbose(5)
       '';
 
-      "pjsip.conf" = ''
-        [transport-udp]
-        type=transport
-        protocol=udp
-        bind=0.0.0.0
-
-        [6001]
-        type=endpoint
-        context=internals
-        disallow=all
-        allow=g722
-        allow=ulaw
-        allow=alaw
-        auth=6001
-        aors=6001
-
-        [6001]
-        type=auth
-        auth_type=userpass
-        password=meow
-        username=6001
-
-        [6001]
-        type=aor
-        max_contacts=2
-        remove_existing=yes
-        remove_unavailable=yes
-      '';
+      "pjsip.conf" = config.sops.secrets."asterisk/pjsip_conf";
     };
   };
 
