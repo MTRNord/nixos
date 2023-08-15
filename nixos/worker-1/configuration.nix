@@ -128,32 +128,6 @@
 
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
-
-    #   # Open ports in the firewall.
-    #   firewall = {
-    #     allowPing = true;
-    #     logRefusedConnections = false;
-    #     enable = true;
-    #     allowedTCPPorts = [
-    #       22 # ssh
-    #     ];
-    #     allowedUDPPorts = [ ];
-    #     # TODO: Apply https://git.pixie.town/f0x/nixos/src/commit/ec359768c7fc40215e9a71b278ac7c33d7541277/nodes/aura/configuration.nix
-    #     # blockedV4 = [
-    #     #   # https://openai.com/gptbot-ranges.txt
-    #     #   "20.15.240.64/28"
-    #     #   "20.15.240.80/28"
-    #     #   "20.15.240.96/28"
-    #     #   "20.15.240.176/28"
-    #     #   "20.15.241.0/28"
-    #     #   "20.15.242.128/28"
-    #     #   "20.15.242.144/28"
-    #     #   "20.15.242.192/28"
-    #     #   "40.83.2.64/28"
-    #     # ];
-    #   };
-    # };
-
     firewall =
       let
         blockedV4 = [
@@ -208,8 +182,13 @@
         logRefusedConnections = false;
         allowedTCPPorts = [
           22 # ssh
+          5060 # SIP
         ];
-        allowedUDPPorts = [ ];
+        allowedUDPPorts = [
+          # SIP
+          5060
+          { from = 10000; to = 20000; }
+        ];
 
         extraCommands =
           builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -A INPUT -s ${ip} -j DROP") blockedV4) + "\n"
