@@ -475,7 +475,7 @@
         [tests]
         exten => 100,1,Answer()
         same => n,Wait(1)
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world.gsm)
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Hangup()
 
         [epvpn]
@@ -488,7 +488,7 @@
 
         [externals]
         exten => 2903,1,Answer()
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world.gsm)
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,WaitExten(30)
         same => n,Hangup()
 
