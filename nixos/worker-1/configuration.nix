@@ -496,8 +496,7 @@
         same => n,Hangup()
 
         [epvpn]
-        exten => _00XXXX,1,Set(CALLERID(num)=2903)
-        exten => _00XXXXXX,1,Set(CALLERID(num)=2903)
+        exten => _00XXXX.,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
         same => n,BackGround(/var/lib/asterisk/sounds/en/calling)
         same => n,Verbose(0, Going to dial ''${EXTEN:2}@eventphone)
