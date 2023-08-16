@@ -426,7 +426,7 @@
   };
   systemd.tmpfiles.rules = [
     "L /home/marcel - - - - /persist/home/marcel"
-    "L /var/lib/asterisk/sounds - - - - /persist/var/lib/asterisk/sounds"
+    "L /var/lib/asterisk - - - - /persist/var/lib/asterisk"
     "L /var/lib/sops-nix/key.txt - - - - /persist/var/lib/sops-nix/key.txt"
   ];
   security.sudo.extraConfig = ''
