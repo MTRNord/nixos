@@ -208,6 +208,7 @@
     banaction = "iptables-ipset-proto6-allports";
     ignoreIP = [
       "148.251.63.154"
+      "31.17.93.207"
     ];
     jails = {
       asterisk = ''
