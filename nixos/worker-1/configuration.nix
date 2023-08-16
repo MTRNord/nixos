@@ -495,17 +495,19 @@
 
         [externals]
         exten => 2903,1,Answer()
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to wait for exten)
-        ;same => n,Ringing()
+        same => n,Ringing()
         same => n,ReadExten(60)
+        same => n,Verbose(0,''${READEXTENSTATUS})
         same => n,Verbose(0, After wait for exten. Hanging up)
+        same => n,Hangup()
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
         same => n,Ringing()
         same => n,Dial(PJSIP/6001)
-        ;same => n,Hangup()
+        same => n,Hangup()
     
         [unauthorized]
       '';
