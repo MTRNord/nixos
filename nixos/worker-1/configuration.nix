@@ -492,7 +492,7 @@
         same => n,WaitExten(30)
         same => n,Hangup()
 
-        exten => 1,1,Answer()
+        exten => s,1,Answer()
         same => n,Dial(PJSIP/6001)
     
         [unauthorized]
