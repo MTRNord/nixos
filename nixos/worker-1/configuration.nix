@@ -563,7 +563,7 @@
 
       "http.conf" = ''
         [general]
-        enabled = yes
+        enabled = no
         bindaddr = 0.0.0.0
       '';
 
