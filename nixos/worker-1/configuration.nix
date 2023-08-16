@@ -487,12 +487,12 @@
         include => epvpn
 
         [externals]
-        exten => 2903,1,Answer()
+        exten => 2903s,1,Answer()
         same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,WaitExten(30)
         same => n,Hangup()
 
-        exten => s,1,Answer()
+        exten => 1,1,Answer()
         same => n,Dial(PJSIP/6001)
     
         [unauthorized]
