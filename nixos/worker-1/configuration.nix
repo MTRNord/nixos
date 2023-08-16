@@ -559,6 +559,15 @@
         mode=files
         directory=/var/lib/asterisk/sounds/music/
       '';
+
+      "ari.conf" = ''
+        [general]
+        enabled=yes
+        allowed_origins=http://49.13.24.105
+        [matrix]
+        type=user
+        password=peekaboo
+      '';
     };
   };
 
