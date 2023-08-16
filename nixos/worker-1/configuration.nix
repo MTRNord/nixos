@@ -131,6 +131,7 @@
     firewall =
       let
         blockedV4 = [
+          "151.106.38.230" # Sip bruteforce
           "158.101.19.243" # full-text search scraper https://macaw.social/@angilly/109597402157254670
           "207.231.106.226" # fediverse.network / fedi.ninja
           "45.81.20.80" # instances.social
