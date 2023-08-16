@@ -509,6 +509,8 @@
         include => epvpn
         include => tests
 
+        exten => 6001,hint,PJSIP/6001
+
         exten => i,1,Answer()
         same  => n,Playback(/var/lib/asterisk/sounds/en/check-number-dial-again)
         same => n,Hangup()
