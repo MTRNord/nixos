@@ -473,10 +473,10 @@
   '';
 
   # FIXME: Remove at some point. This is a test tbh
-  # sops.secrets."asterisk/sip_conf" = {
-  #   mode = "0777";
-  #   path = "/etc/asterisk/sip.conf";
-  # };
+  sops.secrets."asterisk/sip_conf" = {
+    mode = "0777";
+    path = "/etc/asterisk/sip.conf";
+  };
   sops.secrets."asterisk/pjsip_conf" = {
     mode = "0777";
     path = "/etc/asterisk/pjsip.conf";
@@ -489,8 +489,8 @@
         exten => _00XXXX,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
         same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
-        same => n,Verbose(0, Going to dial ''${EXTEN:4}@eventphone)
-        same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
+        same => n,Verbose(0, Going to dial ''${EXTEN:2}@eventphone)
+        same => n,Dial(PJSIP/''${EXTEN:2}@eventphone)
 
         [internals]
         include => epvpn
