@@ -496,6 +496,7 @@
         same => n,Hangup()
 
         [epvpn]
+        exten => _00XXXX,1,Set(CALLERID(num)=2903)
         exten => _00XXXXXX,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
         same => n,Background(/var/lib/asterisk/sounds/en/calling)
@@ -521,7 +522,7 @@
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
-        same => n,Background(/var/lib/asterisk/sounds/en/calling)
+        same => n,Background(/var/lib/asterisk/sounds/music/waiting)
         same => n,Dial(''${PJSIP_DIAL_CONTACTS(6001)},30)
         same => n,Verbose(0, Failed to call 6001. Hanging up)
         same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
