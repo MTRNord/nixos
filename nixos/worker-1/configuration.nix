@@ -460,8 +460,12 @@
   '';
 
   # FIXME: Remove at some point. This is a test tbh
-  sops.secrets."asterisk/sip_conf" = { };
-  sops.secrets."asterisk/pjsip_conf" = { };
+  sops.secrets."asterisk/sip_conf" = {
+    path = "/etc/asterisk/sip.conf";
+  };
+  sops.secrets."asterisk/pjsip_conf" = {
+    path = "/etc/asterisk/pjsip.conf";
+  };
   services.asterisk = {
     enable = true;
     confFiles = {
@@ -480,8 +484,6 @@
         [unauthorized]
       '';
 
-      "sip.conf" = config.sops.secrets."asterisk/sip_conf";
-
       "logger.conf" = ''
         [general]
 
@@ -489,8 +491,6 @@
         ; Add debug output to log
         syslog.local0 => notice,warning,error,debug,verbose(5)
       '';
-
-      "pjsip.conf" = config.sops.secrets."asterisk/pjsip_conf";
     };
   };
 
