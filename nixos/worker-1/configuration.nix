@@ -208,6 +208,7 @@
     banaction = "iptables-ipset-proto6-allports";
     jails = {
       asterisk = ''
+        enabled = true
         filter = asterisk
         action = iptables-allports[name=ASTERISK, protocol=all]
         maxretry = 4
