@@ -489,7 +489,7 @@
         [tests]
         exten => 100,1,Answer()
         same => n,Wait(1)
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Playback(/var/lib/asterisk/sounds/music/waiting)
         same => n,Hangup()
 
         [epvpn]
