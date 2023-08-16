@@ -483,7 +483,7 @@
     confFiles = {
       "extensions.conf" = ''
         [epvpn]
-        exten => _0199XXXX,1,Ringing()
+        exten => _0199XXXX,1,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Set(CALLERID(num)=2903)
         same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
 
@@ -492,10 +492,10 @@
 
         [externals]
         exten => 2903,1,Answer()
-        ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to wait for exten)
-        same => n,Ringing()
-        same => n,ReadExten(30)
+        ;same => n,Ringing()
+        same => n,ReadExten(60)
         same => n,Verbose(0, After wait for exten. Hanging up)
 
         exten => 1,1,Answer()
