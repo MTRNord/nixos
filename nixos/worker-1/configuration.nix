@@ -187,6 +187,7 @@
         allowedTCPPorts = [
           22 # ssh
           5060 # SIP
+          8088
         ];
         allowedUDPPorts = [
           5060 # SIP
