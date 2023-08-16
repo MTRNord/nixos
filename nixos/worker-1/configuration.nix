@@ -478,10 +478,22 @@
         same => n,Playback(hello-world)
         same => n,Hangup()
 
+        [epvpn]
+        exten => _0199XXXX,1,Set(CALLERID(all)="MTRNord <2903>")
+        same => n,Dial(PJSIP/${EXTEN}@eventphone)
+
         [internals]
         include => tests
+        include => epvpn
 
         [externals]
+        exten => 1234567890,1,Answer()
+        same => n,Playback(hello)
+        same => n,WaitExten(30)
+        same => n,Hangup()
+
+        exten => 1,1,Answer()
+        same => n,Dial(PJSIP/6001)
     
         [unauthorized]
       '';
