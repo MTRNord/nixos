@@ -560,10 +560,17 @@
         directory=/var/lib/asterisk/sounds/music/
       '';
 
+      "http.conf" = ''
+        [general]
+        enabled = yes
+        bindaddr = 0.0.0.0
+      '';
+
       "ari.conf" = ''
         [general]
         enabled=yes
-        allowed_origins=http://49.13.24.105
+        allowed_origins=http://ari.asterisk.org
+
         [matrix]
         type=user
         password=peekaboo
