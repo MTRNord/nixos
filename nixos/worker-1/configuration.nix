@@ -483,7 +483,8 @@
     confFiles = {
       "extensions.conf" = ''
         [epvpn]
-        exten => _0199XXXX,1,Set(CALLERID(all)="MTRNord <2903@hg.eventphone.de>")
+        ;exten => _0199XXXX,1,Set(CALLERID(all)="MTRNord <2903>")
+        exten => _0199XXXX,1,Ringing()
         same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
 
         [internals]
