@@ -542,6 +542,9 @@
         exten => i,1,Answer()
         same  => n,Playback(/var/lib/asterisk/sounds/en/check-number-dial-again)
         same => n,Hangup()
+
+        [webrtc]
+        include => tests        
     
         [unauthorized]
       '';
@@ -563,20 +566,35 @@
 
       "http.conf" = ''
         [general]
-        enabled = no
-        bindaddr = 0.0.0.0
+        enabled = yes
+        bindaddr = 127.0.0.1
+        bindport=8088
       '';
+    };
+  };
 
-      "ari.conf" = ''
-        [general]
-        enabled=yes
-        pretty = yes
-        allowed_origins = localhost:8088,http://ari.asterisk.org
+  # NGINX
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "support@nordgedanken.dev";
+  services.nginx = {
+    enable = true;
+    upstreams = {
+      "asterisk_webrtc_ws:8088" = {
+        servers = {
+          "127.0.0.1" = { };
+        };
+      };
+    };
+    virtualHosts = {
+      "pbx.midnightthoughts.space" = {
+        forceSSL = true;
+        enableACME = true;
 
-        [matrix]
-        type=user
-        password=peekaboo
-      '';
+        locations."/ws" = {
+          proxyPass = "http://asterisk_webrtc_ws/ws";
+          proxyWebsockets = true;
+        };
+      };
     };
   };
 
