@@ -472,23 +472,16 @@
     enable = true;
     confFiles = {
       "extensions.conf" = ''
-        [tests]
-        exten => 100,1,Answer()
-        same => n,Wait(1)
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
-        same => n,Hangup()
-
         [epvpn]
         exten => _0199XXXX,1,Set(CALLERID(all)="MTRNord <2903>")
         same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
 
         [internals]
-        include => tests
         include => epvpn
 
         [externals]
         exten => s,1,Answer()
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,WaitExten(30)
         same => n,Hangup()
 
