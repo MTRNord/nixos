@@ -581,9 +581,9 @@
   services.nginx = {
     enable = true;
     upstreams = {
-      "asterisk_webrtc_ws:8088" = {
+      "asterisk_webrtc_ws" = {
         servers = {
-          "127.0.0.1" = { };
+          "127.0.0.1:8088" = { };
         };
       };
     };
