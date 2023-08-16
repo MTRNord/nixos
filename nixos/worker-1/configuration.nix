@@ -480,7 +480,7 @@
         include => epvpn
 
         [externals]
-        exten => 2903,1,Answer()
+        exten => s,1,Answer()
         ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to wait for exten)
         same => n,Ringing()
