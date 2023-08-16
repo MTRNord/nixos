@@ -503,7 +503,7 @@
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
-        same => n,Ringing()
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Dial(PJSIP/6001)
         same => n,Hangup()
     
