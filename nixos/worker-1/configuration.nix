@@ -131,9 +131,6 @@
     firewall =
       let
         blockedV4 = [
-          "151.106.32.0/20" # Sip bruteforce
-          "92.204.128.0/20" # Sip bruteforce
-          "165.232.78.17" # Sip bruteforce
           "158.101.19.243" # full-text search scraper https://macaw.social/@angilly/109597402157254670
           "207.231.106.226" # fediverse.network / fedi.ninja
           "45.81.20.80" # instances.social
@@ -209,6 +206,15 @@
   services.fail2ban = {
     extraPackages = [ pkgs.ipset ];
     banaction = "iptables-ipset-proto6-allports";
+    jails = {
+      asterisk = ''
+        filter = asterisk
+        action = iptables-allports[name=ASTERISK, protocol=all]
+        maxretry = 4
+        findtime = 21600
+        bantime = 86400
+      '';
+    };
   };
 
   # packages that are not flakes
