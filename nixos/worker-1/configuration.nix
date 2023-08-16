@@ -496,7 +496,7 @@
         same => n,Verbose(0, Going to play hello)
         same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to dial ''${EXTEN:2}@eventphone)
-        same => n,Dial(PJSIP/''${EXTEN:2}@eventphone,30,r)
+        same => n,Dial(PJSIP/''${EXTEN:2}@eventphone,15,r)
 
         [internals]
         include => epvpn
@@ -512,7 +512,7 @@
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
-        same => n,Dial(PJSIP/6001,30,r)
+        same => n,Dial(PJSIP/6001@6001,15,r)
     
         [unauthorized]
       '';
