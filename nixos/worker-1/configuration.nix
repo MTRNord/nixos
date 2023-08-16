@@ -486,8 +486,12 @@
     confFiles = {
       "extensions.conf" = ''
         [epvpn]
-        exten => _0199XXXX,1,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        exten => _0199XXXX,1,Answer()
+        same => n,Verbose(0, Going to play hello)
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Verbose(0, Going to set CALLERID)
         same => n,Set(CALLERID(num)=2903)
+        same => n,Verbose(0, Going to dial ''${EXTEN:4}@eventphone)
         same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
 
         [internals]
