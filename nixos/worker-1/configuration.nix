@@ -486,10 +486,10 @@
     confFiles = {
       "extensions.conf" = ''
         [tests]
-        exten = 100,1,Answer()
-        same = n,Wait(1)
-        same = n,Playback(hello-world)
-        same = n,Hangup()
+        exten => 100,1,Answer()
+        same => n,Wait(1)
+        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Hangup()
 
         [epvpn]
         exten => _00XXXX,1,Set(CALLERID(num)=2903)
