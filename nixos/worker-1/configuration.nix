@@ -188,6 +188,8 @@
           22 # ssh
           5060 # SIP
           8088
+          80
+          443
         ];
         allowedUDPPorts = [
           5060 # SIP
