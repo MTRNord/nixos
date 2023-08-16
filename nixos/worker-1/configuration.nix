@@ -500,7 +500,7 @@
 
         [logfiles]
         ; Add debug output to log
-        syslog.local0 => notice,warning,error,debug,dtmf
+        syslog.local0 => notice,warning,error,debug,dtmf,verbose(5)
       '';
     };
   };
