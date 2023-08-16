@@ -206,6 +206,9 @@
   services.fail2ban = {
     extraPackages = [ pkgs.ipset ];
     banaction = "iptables-ipset-proto6-allports";
+    ignoreIP = [
+      "148.251.63.154"
+    ];
     jails = {
       asterisk = ''
         enabled = true
