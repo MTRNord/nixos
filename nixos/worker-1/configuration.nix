@@ -473,10 +473,10 @@
   '';
 
   # FIXME: Remove at some point. This is a test tbh
-  sops.secrets."asterisk/sip_conf" = {
-    mode = "0777";
-    path = "/etc/asterisk/sip.conf";
-  };
+  # sops.secrets."asterisk/sip_conf" = {
+  #   mode = "0777";
+  #   path = "/etc/asterisk/sip.conf";
+  # };
   sops.secrets."asterisk/pjsip_conf" = {
     mode = "0777";
     path = "/etc/asterisk/pjsip.conf";
@@ -485,6 +485,12 @@
     enable = true;
     confFiles = {
       "extensions.conf" = ''
+        [tests]
+        exten = 100,1,Answer()
+        same = n,Wait(1)
+        same = n,Playback(hello-world)
+        same = n,Hangup()
+
         [epvpn]
         exten => _00XXXX,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
@@ -494,8 +500,7 @@
 
         [internals]
         include => epvpn
-        exten => 6001,1,NoOp()
-        same => n,Verbose(0, Incoming call)
+        include => tests
 
         [externals]
         exten => 2903,1,Answer()
