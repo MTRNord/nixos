@@ -508,7 +508,7 @@
 
         [externals]
         exten => 2903,1,Answer()
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Playback(/var/lib/asterisk/sounds/en/agent-newlocation)
         same => n,Verbose(0, Going to wait for exten)
         same => n,WaitExten(30)
         same => n,Verbose(0, After wait for exten. Hanging up)
@@ -517,7 +517,7 @@
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
         same => n,Playback(/var/lib/asterisk/sounds/en/calling)
-        same => n,Dial(PJSIP/6001@6001,15,r)
+        same => n,Dial(PJSIP/6001,15,r)
         same => n,Verbose(0, Failed to call 6001. Hanging up)
         same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
         same => n,Hangup()
