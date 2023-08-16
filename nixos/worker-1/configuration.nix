@@ -485,11 +485,12 @@
         same => n,Verbose(0, Going to wait for exten)
         same => n,WaitExten(30)
         same => n,Verbose(0, After wait for exten. Hanging up)
-        same => n,Hangup()
 
-        exten => 1,1,Answer()
-        same => n,Verbose(0, Routing to 6001)
-        same => n,Dial(PJSIP/6001)
+        exten => 1,1,Playback(digits/1)
+        ;exten => 1,1,Answer()
+        ;same => n,Verbose(0, Routing to 6001)
+        ;same => n,Dial(PJSIP/6001)
+        ;same => n,Hangup()
     
         [unauthorized]
       '';
@@ -499,7 +500,7 @@
 
         [logfiles]
         ; Add debug output to log
-        syslog.local0 => notice,warning,error,debug,verbose(5),dtmf
+        syslog.local0 => notice,warning,error,debug,dtmf
       '';
     };
   };
