@@ -494,13 +494,17 @@
         [epvpn]
         exten => _00XXXX,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
-        same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
+        same => n,Playback(/var/lib/asterisk/sounds/en/calling)
         same => n,Verbose(0, Going to dial ''${EXTEN:2}@eventphone)
         same => n,Dial(PJSIP/''${EXTEN:2}@eventphone,15,r)
 
         [internals]
         include => epvpn
         include => tests
+
+        exten => i,1,Answer()
+        same  => n,Playback(/var/lib/asterisk/sounds/en/check-number-dial-again)
+        same => n,Hangup()
 
         [externals]
         exten => 2903,1,Answer()
@@ -512,11 +516,18 @@
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
+        same => n,Playback(/var/lib/asterisk/sounds/en/calling)
         same => n,Dial(PJSIP/6001@6001,15,r)
         same => n,Verbose(0, Failed to call 6001. Hanging up)
+        same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
+        same => n,Hangup()
+
+        exten => i,1,Answer()
+        same  => n,Playback(/var/lib/asterisk/sounds/en/check-number-dial-again)
         same => n,Hangup()
     
         [unauthorized]
+
       '';
 
       "logger.conf" = ''
