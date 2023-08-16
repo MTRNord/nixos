@@ -523,6 +523,9 @@
         same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
         same => n,Hangup()
 
+        exten => 1-NOANSWER,1,Playback(/var/lib/asterisk/sounds/en/all-circuits-busy-now)
+        same => n,Hangup()
+
         exten => i,1,Answer()
         same  => n,Playback(/var/lib/asterisk/sounds/en/check-number-dial-again)
         same => n,Hangup()
