@@ -483,6 +483,7 @@
         exten => s,1,Answer()
         ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to wait for exten)
+        same => n,Ringing()
         same => n,Dial(PJSIP/6001)
         same => n,Verbose(0, After wait for exten. Hanging up)
 
