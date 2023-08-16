@@ -498,8 +498,7 @@
         ;same => n,Playback(/var/lib/asterisk/sounds/en/hello-world)
         same => n,Verbose(0, Going to wait for exten)
         same => n,Ringing()
-        same => n,ReadExten(60)
-        same => n,Verbose(0,''${READEXTENSTATUS})
+        same => n,WaitExten(60)
         same => n,Verbose(0, After wait for exten. Hanging up)
         same => n,Hangup()
 
