@@ -211,7 +211,7 @@
         enabled = true
         filter = asterisk
         action = iptables-allports[name=ASTERISK, protocol=all]
-        maxretry = 4
+        maxretry = 2
         findtime = 21600
         bantime = 86400
       '';
