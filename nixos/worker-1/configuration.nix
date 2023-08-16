@@ -486,10 +486,10 @@
         same => n,WaitExten(30)
         same => n,Verbose(0, After wait for exten. Hanging up)
 
-        exten => 1,1,Playback(digits/1)
-        ;exten => 1,1,Answer()
-        ;same => n,Verbose(0, Routing to 6001)
-        ;same => n,Dial(PJSIP/6001)
+        exten => 1,1,Answer()
+        same => n,Verbose(0, Routing to 6001)
+        same => n,Ringing()
+        same => n,Dial(PJSIP/6001)
         ;same => n,Hangup()
     
         [unauthorized]
