@@ -570,7 +570,8 @@
       "ari.conf" = ''
         [general]
         enabled=yes
-        allowed_origins=http://ari.asterisk.org
+        pretty = yes
+        allowed_origins = localhost:8088,http://ari.asterisk.org
 
         [matrix]
         type=user
