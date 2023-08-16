@@ -496,7 +496,7 @@
 
         [logfiles]
         ; Add debug output to log
-        syslog.local0 => notice,warning,error,debug,verbose(5)
+        syslog.local0 => notice,warning,error,debug,verbose(5),dtmf
       '';
     };
   };
