@@ -480,7 +480,7 @@
 
         [epvpn]
         exten => _0199XXXX,1,Set(CALLERID(all)="MTRNord <2903>")
-        same => n,Dial(PJSIP/''${EXTEN}@eventphone)
+        same => n,Dial(PJSIP/''${EXTEN:4}@eventphone)
 
         [internals]
         include => tests
