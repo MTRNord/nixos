@@ -499,7 +499,7 @@
         exten => _00XXXX,1,Set(CALLERID(num)=2903)
         exten => _00XXXXXX,1,Set(CALLERID(num)=2903)
         same => n,Verbose(0, Going to play hello)
-        same => n,Background(/var/lib/asterisk/sounds/en/calling)
+        same => n,BackGround(/var/lib/asterisk/sounds/en/calling)
         same => n,Verbose(0, Going to dial ''${EXTEN:2}@eventphone)
         same => n,Dial(PJSIP/''${EXTEN:2}@eventphone,30,r)
 
@@ -513,7 +513,7 @@
 
         [externals]
         exten => 2903,1,Answer()
-        same => n,Background(/var/lib/asterisk/sounds/en/agent-newlocation)
+        same => n,BackGround(/var/lib/asterisk/sounds/en/agent-newlocation)
         same => n,Verbose(0, Going to wait for exten)
         same => n,WaitExten(30)
         same => n,Verbose(0, After wait for exten. Hanging up)
@@ -522,8 +522,8 @@
 
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
-        same => n,Background(/var/lib/asterisk/sounds/music/waiting)
-        same => n,Dial(''${PJSIP_DIAL_CONTACTS(6001)},30,r)
+        ;same => n,BackGround(/var/lib/asterisk/sounds/music/waiting)
+        same => n,Dial(''${PJSIP_DIAL_CONTACTS(6001)},30,rm)
         same => n,Verbose(0, Failed to call 6001. Hanging up)
         same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
         same => n,Hangup()
@@ -544,6 +544,13 @@
         [logfiles]
         ; Add debug output to log
         syslog.local0 => notice,warning,error,dtmf,debug,verbose
+      '';
+
+      "musiconhold.conf" = ''
+        [general]
+        [default]
+        mode=files
+        directory=/var/lib/asterisk/sounds/music/
       '';
     };
   };
