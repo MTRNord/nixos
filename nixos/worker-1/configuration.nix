@@ -461,9 +461,11 @@
 
   # FIXME: Remove at some point. This is a test tbh
   sops.secrets."asterisk/sip_conf" = {
+    mode = "0777";
     path = "/etc/asterisk/sip.conf";
   };
   sops.secrets."asterisk/pjsip_conf" = {
+    mode = "0777";
     path = "/etc/asterisk/pjsip.conf";
   };
   services.asterisk = {
