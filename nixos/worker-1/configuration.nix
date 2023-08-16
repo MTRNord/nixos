@@ -513,6 +513,8 @@
         exten => 1,1,Answer()
         same => n,Verbose(0, Routing to 6001)
         same => n,Dial(PJSIP/6001@6001,15,r)
+        same => n,Verbose(0, Failed to call 6001. Hanging up)
+        same => n,Hangup()
     
         [unauthorized]
       '';
