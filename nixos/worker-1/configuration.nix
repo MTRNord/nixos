@@ -488,6 +488,7 @@
         same => n,Hangup()
 
         exten => 1,1,Answer()
+        same => n,Verbose(0, Routing to 6001)
         same => n,Dial(PJSIP/6001)
     
         [unauthorized]
