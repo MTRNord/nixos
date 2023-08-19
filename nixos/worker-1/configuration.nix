@@ -511,8 +511,8 @@
         exten => 200,1,Answer()
         same => n,Verbose(0, Going to play hello)
         same => n,BackGround(/var/lib/asterisk/sounds/en/calling)
-        same => n,Verbose(0, Going to dial webrtc_client@webrtc_client)
-        same => n,Dial(PJSIP/webrtc_client@webrtc_client,30,r)
+        same => n,Verbose(0, Going to dial ''${PJSIP_DIAL_CONTACTS(webrtc_client@webrtc_client))
+        same => n,Dial(''${PJSIP_DIAL_CONTACTS(webrtc_client@webrtc_client),30,rm)
 
         exten => 6001,hint,PJSIP/6001
 
