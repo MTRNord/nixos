@@ -589,6 +589,12 @@
         enabled = yes
         bindaddr = 127.0.0.1
         bindport=8088
+
+        enablestatic=yes
+        prefix=
+        sessionlimit=100
+        session_inactivity=30000
+        session_keep_alive=15000
       '';
     };
   };
