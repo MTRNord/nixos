@@ -486,6 +486,10 @@
     mode = "0777";
     path = "/etc/asterisk/pjsip.conf";
   };
+  sops.secrets."asterisk/prometheus_conf" = {
+    mode = "0777";
+    path = "/etc/asterisk/prometheus.conf";
+  };
   services.asterisk = {
     enable = true;
     confFiles = {
