@@ -614,6 +614,9 @@
           proxyPass = "http://asterisk_webrtc_ws/ws";
           proxyWebsockets = true;
         };
+        locations."/metrics" = {
+          proxyPass = "http://asterisk_webrtc_ws/metrics";
+        };
       };
     };
   };
