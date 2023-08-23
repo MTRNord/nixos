@@ -452,10 +452,10 @@
       "/var/lib/tailscale"
       "/var/lib/asterisk"
       "/var/lib/headscale"
+      "/etc/nixos"
     ];
     files = [
       "/etc/machine-id"
-      "/etc/nixos"
       "/etc/NIXOS"
       "/etc/secrets/initrd/ssh_host_ed25519_key"
       "/etc/secrets/initrd/ssh_host_ed25519_key.pub"
