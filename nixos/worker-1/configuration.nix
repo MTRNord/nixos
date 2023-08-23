@@ -432,15 +432,18 @@
       enable = true;
       address = "0.0.0.0";
       port = 8080;
-      serverUrl = "https://headscale.midnightthoughts.space";
-      dns = {
-        baseDomain = "headscale.midnightthoughts.space";
-        magicDns = true;
+
+      dns_config = {
+        base_domain = "headscale.midnightthoughts.space";
+        magic_dns = true;
         nameservers = [
           "8.8.8.8"
         ];
       };
-      settings = { logtail.enabled = false; };
+      settings = {
+        logtail.enabled = false;
+        server_url = "https://headscale.midnightthoughts.space";
+      };
     };
   };
 
