@@ -433,16 +433,17 @@
       address = "0.0.0.0";
       port = 8080;
 
-      dns_config = {
-        base_domain = "headscale.midnightthoughts.space";
-        magic_dns = true;
-        nameservers = [
-          "8.8.8.8"
-        ];
-      };
       settings = {
         logtail.enabled = false;
         server_url = "https://headscale.midnightthoughts.space";
+
+        dns_config = {
+          base_domain = "headscale.midnightthoughts.space";
+          magic_dns = true;
+          nameservers = [
+            "8.8.8.8"
+          ];
+        };
       };
     };
   };
