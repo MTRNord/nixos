@@ -11,6 +11,8 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
 
+    inputs.impermanence.nixosModules.impermanence
+
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
 
@@ -128,6 +130,7 @@
 
   networking = {
     hostName = "worker-1";
+    enableIPv6 = true;
     # networkmanager.enable = true;
 
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
@@ -181,6 +184,8 @@
         ];
       in
       {
+        checkReversePath = "loose";
+        trustedInterfaces = [ "tailscale0" ];
         enable = true;
         allowPing = true;
         logRefusedConnections = false;
@@ -193,6 +198,7 @@
         ];
         allowedUDPPorts = [
           5060 # SIP
+          config.services.tailscale.port
         ];
 
         allowedUDPPortRanges = [
@@ -248,6 +254,7 @@
     jq
     unstable.forgejo-actions-runner
     compsize
+    config.services.headscale.package
   ];
 
   # Ensure /etc/shells is setup for zsh
@@ -418,25 +425,69 @@
     };
   };
 
-  # Darling Erasure
-  environment.etc = {
-    nixos.source = "/persist/etc/nixos";
-    NIXOS.source = "/persist/etc/NIXOS";
-    machine-id.source = "/persist/etc/machine-id";
-    "secrets/initrd/ssh_host_ed25519_key" = {
-      mode = "0600";
-      source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
+
+  services = {
+    tailscale.enable = true;
+    headscale = {
+      enable = true;
+      address = "0.0.0.0";
+      port = 8080;
+      serverUrl = "https://headscale.midnightthoughts.space";
+      dns = {
+        baseDomain = "headscale.midnightthoughts.space";
+        magicDns = true;
+        nameservers = [
+          "8.8.8.8"
+        ];
+      };
+      settings = { logtail.enabled = false; };
     };
-    "secrets/initrd/ssh_host_ed25519_key.pub" = {
-      mode = "0644";
-      source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key.pub";
+
+    nginx.virtualHosts."headscale.midnightthoughts.space" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass =
+          "http://localhost:${toString config.services.headscale.port}";
+        proxyWebsockets = true;
+      };
     };
   };
-  systemd.tmpfiles.rules = [
-    "L /home/marcel - - - - /persist/home/marcel"
-    "L /var/lib/asterisk - - - - /persist/var/lib/asterisk"
-    "L /var/lib/sops-nix/key.txt - - - - /persist/var/lib/sops-nix/key.txt"
-  ];
+
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/tailscale"
+      "/var/lib/asterisk"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/etc/nixos"
+      "/etc/NIXOS"
+      "/etc/secrets/initrd/ssh_host_ed25519_key"
+      "/etc/secrets/initrd/ssh_host_ed25519_key.pub"
+      "/var/lib/sops-nix/key.txt"
+    ];
+  };
+
+  # Darling Erasure
+  # environment.etc = {
+  #   nixos.source = "/persist/etc/nixos";
+  #   NIXOS.source = "/persist/etc/NIXOS";
+  #   machine-id.source = "/persist/etc/machine-id";
+  #   "secrets/initrd/ssh_host_ed25519_key" = {
+  #     mode = "0600";
+  #     source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
+  #   };
+  #   "secrets/initrd/ssh_host_ed25519_key.pub" = {
+  #     mode = "0644";
+  #     source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key.pub";
+  #   };
+  # };
+  # systemd.tmpfiles.rules = [
+  #   "L /home/marcel - - - - /persist/home/marcel"
+  #   "L /var/lib/asterisk - - - - /persist/var/lib/asterisk"
+  #   "L /var/lib/sops-nix/key.txt - - - - /persist/var/lib/sops-nix/key.txt"
+  # ];
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot
     Defaults lecture = never
