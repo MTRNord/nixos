@@ -451,6 +451,7 @@
     directories = [
       "/var/lib/tailscale"
       "/var/lib/asterisk"
+      "/var/lib/headscale"
     ];
     files = [
       "/etc/machine-id"
