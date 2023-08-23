@@ -442,16 +442,6 @@
       };
       settings = { logtail.enabled = false; };
     };
-
-    nginx.virtualHosts."headscale.midnightthoughts.space" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass =
-          "http://localhost:${toString config.services.headscale.port}";
-        proxyWebsockets = true;
-      };
-    };
   };
 
   environment.persistence."/persist" = {
@@ -673,6 +663,15 @@
         };
         locations."/metrics" = {
           proxyPass = "http://asterisk_webrtc_ws/metrics";
+        };
+      };
+      "headscale.midnightthoughts.space" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass =
+            "http://localhost:${toString config.services.headscale.port}";
+          proxyWebsockets = true;
         };
       };
     };
