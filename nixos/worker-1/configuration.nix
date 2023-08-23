@@ -255,6 +255,7 @@
     unstable.forgejo-actions-runner
     compsize
     config.services.headscale.package
+    patroni
   ];
 
   # Ensure /etc/shells is setup for zsh
@@ -426,6 +427,10 @@
   };
 
 
+  sops.secrets."patroni/replication_username" = { };
+  sops.secrets."patroni/replication_superuser_password" = { };
+  sops.secrets."patroni/replication_superuser_username" = { };
+  sops.secrets."patroni/replication_superuser_password" = { };
   services = {
     tailscale.enable = true;
     headscale = {
@@ -446,14 +451,47 @@
         };
       };
     };
+
+    postgresql = {
+      enableJIT = true;
+      enable = false;
+      enableTCPIP = true;
+      settings = {
+        listen_addresses = "100.64.0.1";
+      };
+    };
+
+    patroni = {
+      enable = true;
+      nodeIp = "100.64.0.1";
+      name = "worker-1";
+
+      settings = {
+        postgresql.listen = "100.64.0.1";
+      };
+
+      otherNodesIps = [
+        "100.64.0.3"
+      ];
+
+      environmentFiles = {
+        PATRONI_REPLICATION_USERNAME = config.sops.secrets."patroni/replication_username".path;
+        PATRONI_REPLICATION_PASSWORD = config.sops.secrets."patroni/replication_password".path;
+        PATRONI_SUPERUSER_USERNAME = config.sops.secrets."patroni/replication_superuser_username".path;
+        PATRONI_SUPERUSER_PASSWORD = config.sops.secrets."patroni/replication_superuser_password".path;
+      };
+    };
   };
 
+  # Darling Erasure
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/tailscale"
       "/var/lib/asterisk"
       "/var/lib/headscale"
       "/etc/nixos"
+      "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
+      "/var/lib/patroni"
     ];
     files = [
       "/etc/machine-id"
@@ -463,26 +501,6 @@
       "/var/lib/sops-nix/key.txt"
     ];
   };
-
-  # Darling Erasure
-  # environment.etc = {
-  #   nixos.source = "/persist/etc/nixos";
-  #   NIXOS.source = "/persist/etc/NIXOS";
-  #   machine-id.source = "/persist/etc/machine-id";
-  #   "secrets/initrd/ssh_host_ed25519_key" = {
-  #     mode = "0600";
-  #     source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
-  #   };
-  #   "secrets/initrd/ssh_host_ed25519_key.pub" = {
-  #     mode = "0644";
-  #     source = "/persist/etc/secrets/initrd/ssh_host_ed25519_key.pub";
-  #   };
-  # };
-  # systemd.tmpfiles.rules = [
-  #   "L /home/marcel - - - - /persist/home/marcel"
-  #   "L /var/lib/asterisk - - - - /persist/var/lib/asterisk"
-  #   "L /var/lib/sops-nix/key.txt - - - - /persist/var/lib/sops-nix/key.txt"
-  # ];
   security.sudo.extraConfig = ''
     # rollback results in sudo lectures after each reboot
     Defaults lecture = never
