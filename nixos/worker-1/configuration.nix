@@ -45,6 +45,7 @@
 
       asterisk = {
         withOpus = true;
+
       };
     };
   };
@@ -628,8 +629,6 @@
         apps=dial,park
         events=ALL
       '';
-      "cdr_custom.conf" = "";
-      "cel_custom.conf" = "";
       "cdr.conf" = ''
         [general]
         enable = yes
