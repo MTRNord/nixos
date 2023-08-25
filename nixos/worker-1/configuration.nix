@@ -429,7 +429,7 @@
 
 
   sops.secrets."patroni/replication_username" = { };
-  sops.secrets."patroni/replication_superuser_password" = { };
+  sops.secrets."patroni/replication_password" = { };
   sops.secrets."patroni/replication_superuser_username" = { };
   sops.secrets."patroni/replication_superuser_password" = { };
   services = {
