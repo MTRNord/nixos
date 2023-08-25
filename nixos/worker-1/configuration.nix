@@ -481,6 +481,7 @@
       nodeIp = "100.64.0.1";
       name = "worker-1";
       scope = "cluster-1";
+      postgresqlPackage = pkgs.postgresql_14;
 
       settings = {
         postgresql.listen = "100.64.0.1";
@@ -520,7 +521,7 @@
       "/var/lib/asterisk"
       "/var/lib/headscale"
       "/etc/nixos"
-      # "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
+      "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
       "/var/lib/patroni"
       "/var/lib/etcd"
     ];
