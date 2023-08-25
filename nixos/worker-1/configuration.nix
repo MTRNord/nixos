@@ -429,19 +429,19 @@
 
 
   sops.secrets."patroni/replication_username" = {
-    user = "patroni";
+    owner = "patroni";
     group = "patroni";
   };
   sops.secrets."patroni/replication_password" = {
-    user = "patroni";
+    owner = "patroni";
     group = "patroni";
   };
   sops.secrets."patroni/replication_superuser_username" = {
-    user = "patroni";
+    owner = "patroni";
     group = "patroni";
   };
   sops.secrets."patroni/replication_superuser_password" = {
-    user = "patroni";
+    owner = "patroni";
     group = "patroni";
   };
   services = {
