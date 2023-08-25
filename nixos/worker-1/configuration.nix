@@ -464,6 +464,9 @@
     etcd = {
       enable = true;
       initialClusterState = "existing";
+      extraConf = {
+        "UNSUPPORTED_ARCH" = "arm64";
+      };
     };
     patroni = {
       enable = false;
