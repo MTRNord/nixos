@@ -510,6 +510,8 @@
     };
   };
 
+  systemd.services.etcd.serviceConfig.ExecStart = "${pkgs.etcd_3_4}/bin/etcd";
+
   # Darling Erasure
   environment.persistence."/persist" = {
     directories = [
