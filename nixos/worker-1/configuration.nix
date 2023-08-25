@@ -463,7 +463,6 @@
 
     etcd = {
       enable = true;
-      initialClusterState = "existing";
       listenClientUrls = [ "http://100.64.0.1:2379" ];
       listenPeerUrls = [ "http://100.64.0.1:2380" ];
       initialCluster = [
