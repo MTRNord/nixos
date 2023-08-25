@@ -22,7 +22,7 @@
         substituteInPlace menuselect.makeopts --replace 'codec_opus_open_source ' ""
         substituteInPlace menuselect.makeopts --replace 'format_ogg_opus_open_source ' ""
       '';
-      buildInputs = old.buildInputs ++ [ postgresql ];
+      buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
     });
   };
 
