@@ -611,6 +611,10 @@
     mode = "0777";
     path = "/etc/asterisk/prometheus.conf";
   };
+  sops.secrets."asterisk/cel_pgsql_conf" = {
+    mode = "0777";
+    path = "/etc/asterisk/cel_pgsql.conf";
+  };
   services.asterisk = {
     enable = true;
     confFiles = {
