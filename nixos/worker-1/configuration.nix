@@ -473,7 +473,7 @@
       ];
       extraConf = {
         "UNSUPPORTED_ARCH" = "arm64";
-        "ENABLE_V2" = true;
+        "ENABLE_V2" = "true";
       };
     };
     patroni = {
