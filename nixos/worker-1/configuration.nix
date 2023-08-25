@@ -473,6 +473,18 @@
 
       settings = {
         postgresql.listen = "100.64.0.1";
+        etcd = {
+          hosts = [
+            "100.64.0.3:2379"
+            "100.64.0.1:2379"
+          ];
+        };
+        tags = {
+          nofailover = false;
+          noloadbalancer = false;
+          clonefrom = false;
+          nosync = false;
+        };
       };
 
       otherNodesIps = [
