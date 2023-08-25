@@ -529,6 +529,14 @@
     };
   };
 
+  # Ensure postgres can create a lockfile where it expects
+  system.activationScripts = {
+    postgresqlMkdir = {
+      text = "mkdir -p /run/postgresql && chmod o+w /run/postgresql";
+      deps = [ ];
+    };
+  };
+
   systemd.services.etcd.serviceConfig.ExecStart = lib.mkForce "${pkgs.etcd_3_4}/bin/etcd";
 
   # Darling Erasure
