@@ -17,8 +17,8 @@
         make menuselect.makeopts
         substituteInPlace menuselect.makeopts --replace 'codec_opus_open_source ' ""
         substituteInPlace menuselect.makeopts --replace 'format_ogg_opus_open_source ' ""
-        ./menuselect/menuselect --enable-category CDR
-        ./menuselect/menuselect --enable-category CEL
+        ./menuselect/menuselect --enable-category MENUSELECT_CDR menuselect.makeopts
+        ./menuselect/menuselect --enable-category MENUSELECT_CEL menuselect.makeopts
       '';
     });
   };
