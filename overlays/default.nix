@@ -11,6 +11,19 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    asterisk = prev.asterisk.overrideAttrs (old: {
+      preBuild = ''
+        cat third-party/pjproject/source/pjlib-util/src/pjlib-util/scanner.c
+        make menuselect.makeopts
+        ${lib.optionalString (externals ? "addons/mp3") ''
+          substituteInPlace menuselect.makeopts --replace 'format_mp3 ' ""
+        ''}
+        ${lib.optionalString withOpus ''
+          substituteInPlace menuselect.makeopts --replace 'codec_opus_open_source ' ""
+          substituteInPlace menuselect.makeopts --replace 'format_ogg_opus_open_source ' ""
+        ''}
+      '';
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
