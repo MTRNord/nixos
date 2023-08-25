@@ -256,6 +256,7 @@
     compsize
     config.services.headscale.package
     patroni
+    etcd_3_4
   ];
 
   # Ensure /etc/shells is setup for zsh
