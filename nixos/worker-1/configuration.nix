@@ -518,6 +518,7 @@
       "/etc/nixos"
       # "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
       "/var/lib/patroni"
+      "/var/lib/etcd"
     ];
     files = [
       "/etc/machine-id"
