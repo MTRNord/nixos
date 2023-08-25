@@ -473,10 +473,11 @@
       ];
       extraConf = {
         "UNSUPPORTED_ARCH" = "arm64";
+        "ENABLE_V2" = true;
       };
     };
     patroni = {
-      enable = false;
+      enable = true;
       nodeIp = "100.64.0.1";
       name = "worker-1";
       scope = "cluster-1";
