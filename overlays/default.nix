@@ -13,10 +13,12 @@
     # });
     asterisk = prev.asterisk.overrideAttrs (old: {
       preBuild = ''
-        cat third-party/pjproject/source/pjlib-util/src/pjlib-util/scanner.c
+        #cat third-party/pjproject/source/pjlib-util/src/pjlib-util/scanner.c
         make menuselect.makeopts
+        cat menuselect.makeopts
         ./menuselect/menuselect --enable cdr_pgsql menuselect.makeopts
         ./menuselect/menuselect --enable cel_pgsql menuselect.makeopts
+        cat menuselect.makeopts
         substituteInPlace menuselect.makeopts --replace 'codec_opus_open_source ' ""
         substituteInPlace menuselect.makeopts --replace 'format_ogg_opus_open_source ' ""
       '';
