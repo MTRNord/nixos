@@ -615,9 +615,23 @@
     mode = "0777";
     path = "/etc/asterisk/cel_pgsql.conf";
   };
+  sops.secrets."asterisk/cdr_pgsql_conf" = {
+    mode = "0777";
+    path = "/etc/asterisk/cdr_pgsql.conf";
+  };
   services.asterisk = {
     enable = true;
     confFiles = {
+      "cel.conf" = ''
+        [general]
+        enable = yes
+        apps=dial,park
+        events=ALL
+      '';
+      "cdr.conf" = ''
+        [general]
+        enable = yes
+      '';
       "extensions.conf" = ''
         [tests]
         exten => 100,1,Answer()
