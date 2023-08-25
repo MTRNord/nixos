@@ -466,7 +466,7 @@
       initialClusterState = "existing";
     };
     patroni = {
-      enable = true;
+      enable = false;
       nodeIp = "100.64.0.1";
       name = "worker-1";
       scope = "cluster-1";
