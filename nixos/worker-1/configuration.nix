@@ -507,7 +507,7 @@
       "/var/lib/asterisk"
       "/var/lib/headscale"
       "/etc/nixos"
-      "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
+      # "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
       "/var/lib/patroni"
     ];
     files = [
