@@ -510,7 +510,7 @@
     };
   };
 
-  systemd.services.etcd.serviceConfig.ExecStart = "${pkgs.etcd_3_4}/bin/etcd";
+  systemd.services.etcd.serviceConfig.ExecStart = lib.mkForce "${pkgs.etcd_3_4}/bin/etcd";
 
   # Darling Erasure
   environment.persistence."/persist" = {
