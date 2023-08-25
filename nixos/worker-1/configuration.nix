@@ -466,7 +466,10 @@
       initialClusterState = "existing";
       listenClientUrls = [ "http://100.64.0.1:2379" ];
       listenPeerUrls = [ "http://100.64.0.1:2380" ];
-      initialCluster = [ "nordgedanken=http://100.64.0.3:2380" ];
+      initialCluster = [
+        "nordgedanken=http://100.64.0.3:2380"
+        "worker-1=http://100.64.0.1:2380"
+      ];
       extraConf = {
         "UNSUPPORTED_ARCH" = "arm64";
       };
