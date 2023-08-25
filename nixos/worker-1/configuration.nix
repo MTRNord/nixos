@@ -510,7 +510,7 @@
         };
         tags = {
           nofailover = false;
-          noloadbalancer = false;
+          noloadbalance = false;
           clonefrom = false;
           nosync = false;
         };
