@@ -484,7 +484,7 @@
       postgresqlPackage = pkgs.postgresql_14;
 
       settings = {
-        postgresql.listen = "100.64.0.1:5432";
+        postgresql.listen = "127.0.0.1,100.64.0.1:5432";
         etcd = {
           hosts = [
             "100.64.0.3:2379"
