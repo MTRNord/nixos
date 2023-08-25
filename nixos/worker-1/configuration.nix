@@ -461,10 +461,15 @@
       };
     };
 
+    etcd = {
+      enable = true;
+      initialClusterState = "existing";
+    };
     patroni = {
       enable = true;
       nodeIp = "100.64.0.1";
       name = "worker-1";
+      scope = "cluster-1";
 
       settings = {
         postgresql.listen = "100.64.0.1";
