@@ -428,10 +428,18 @@
   };
 
 
-  sops.secrets."patroni/replication_username" = { };
-  sops.secrets."patroni/replication_password" = { };
-  sops.secrets."patroni/replication_superuser_username" = { };
-  sops.secrets."patroni/replication_superuser_password" = { };
+  sops.secrets."patroni/replication_username" = {
+    group = "patroni";
+  };
+  sops.secrets."patroni/replication_password" = {
+    group = "patroni";
+  };
+  sops.secrets."patroni/replication_superuser_username" = {
+    group = "patroni";
+  };
+  sops.secrets."patroni/replication_superuser_password" = {
+    group = "patroni";
+  };
   services = {
     tailscale.enable = true;
     headscale = {
