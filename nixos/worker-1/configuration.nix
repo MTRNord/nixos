@@ -544,7 +544,7 @@
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = [ "127.0.0.1" ];
+        allowedIPs = [ "100.64.0.1" ];
         listenAddress = "100.64.0.1:8000";
       };
       frontend = {
