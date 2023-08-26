@@ -186,7 +186,7 @@
 
     wg-quick.interfaces = {
       wg0 = {
-        address = [ "10.100.0.1/24" ];
+        address = [ "10.100.0.1/24" "fe99:13::1/64" ];
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         table = "off";
@@ -543,6 +543,12 @@
           };
         }
 
+        protocol direct {
+          ipv4;
+          ipv6;
+          interface "floating1";
+        }
+
         protocol ospf v2 v4 {
           ipv4 {
             import all;
@@ -550,9 +556,6 @@
           };
           area 0 {
             interface "wg0";
-            interface "floating1" {
-              type nonbroadcast;
-            };
           };
         }
 
@@ -568,9 +571,6 @@
           };
           area 0 {
             interface "wg0";
-            interface "floating1" {
-              type nonbroadcast;
-            };
           };
         }
       '';
