@@ -546,7 +546,7 @@
       frontend = {
         enable = true;
         titleBrand = "Midnightthoughts infra";
-        brand = "Midnightthoughts infra";
+        navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";
         domain = "internal.midnightthoughts.space";
         servers = [
