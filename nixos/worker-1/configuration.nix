@@ -534,12 +534,14 @@
             afi-safis = [
               { }
               {
-                config = { };
-                afis-safe-name = "l3vpn-ipv4-flowspec";
+                config = {
+                  afi-safi-name = "l3vpn-ipv4-flowspec";
+                };
               }
               {
-                config = { };
-                afis-safe-name = "l3vpn-ipv6-flowspec";
+                config = {
+                  afi-safi-name = "l3vpn-ipv6-flowspec";
+                };
               }
             ];
           }
