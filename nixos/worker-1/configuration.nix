@@ -186,7 +186,7 @@
 
     wg-quick.interfaces = {
       wg0 = {
-        ips = [ "10.100.0.1/24" ];
+        address = [ "10.100.0.1/24" ];
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         table = "off";
