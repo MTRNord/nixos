@@ -546,14 +546,14 @@
         protocol kernel {
           ipv4 {
             import all;
-            export where proto = "wg" || proto = "dummy";
+            export all;
           };
         }
 
         protocol kernel {
           ipv6 {
             import all;
-            export where proto = "wg6" || proto = "dummy";
+            export all;
           };
         }
 
