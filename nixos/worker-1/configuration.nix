@@ -498,18 +498,26 @@
       config = ''
         router id 100.64.0.1;
         protocol kernel {
-          scan time 60;
           ipv4 {
-            import none;
+            export all;
           };
         }
 
+        protocol kernel {
+          ipv6 { export all; };
+        }
+
         protocol device {
-          scan time 60;
         }
 
         protocol direct {
+          ipv4;
+          ipv6;
           interface "floating1";
+        }
+
+        protocol static {
+          ipv4;     # Again, IPv4 channel with default options
         }
 
         protocol bgp midnightthoughts {
@@ -521,7 +529,6 @@
             export all;
           };
           graceful restart on;
-          direct;
           neighbor 100.64.0.3 port 180 as 4242423867;
         }
       '';
