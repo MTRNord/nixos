@@ -187,18 +187,21 @@
       wg0 = {
         ips = [ "10.100.0.1/24" ];
         listenPort = 51820;
-      };
-      privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
-      table = "off";
+        privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
+        table = "off";
 
-      peers = [
-        {
-          name = "nordgedanken";
-          publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
-          allowedIPs = [ "0.0.0.0/0" "::/0" ];
-          endpoint = "100.64.0.3:51820";
-        }
-      ];
+        peers = [
+          {
+            publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
+            allowedIPs = [
+              "0.0.0.0/0"
+              "::/0"
+            ];
+            endpoint = "100.64.0.3:51820";
+          }
+        ];
+      };
+
     };
 
     firewall =
