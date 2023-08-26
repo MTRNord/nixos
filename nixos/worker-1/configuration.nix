@@ -131,7 +131,7 @@
 
   systemd.network.enable = true;
   # Broken
-  boot.initrd.systemd.network.wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
   systemd.network = {
     netdevs = {
       floating1 = {
@@ -525,9 +525,10 @@
           source address 100.64.0.1;
           strict bind 1;
           ipv4 {
-            import none;
+            #import none;
             export all;
           };
+          multihop 2;
           graceful restart on;
           neighbor 100.64.0.3 port 180 as 4242423867;
         }
