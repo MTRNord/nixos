@@ -776,6 +776,33 @@
     };
   };
 
+  # HAProxy for Postgres
+  services.haproxy = {
+    enable = true;
+    config = ''
+      global
+        maxconn 100
+
+      defaults
+        log global
+        mode tcp
+        retries 2
+        timeout client 30m
+        timeout connect 4s
+        timeout server 30m
+        timeout check 5s
+
+      listen postgres
+        bind 100.64.0.1:5000
+        bind 127.0.0.1:5000
+        option httpchk
+        http-check expect status 200
+        default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
+        server pgsql1 100.64.0.3:5432 maxconn 100 check port 8008
+        server pgsql2 100.64.0.1:5432 maxconn 100 check port 8008
+    '';
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
