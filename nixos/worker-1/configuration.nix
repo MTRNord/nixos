@@ -265,6 +265,7 @@
           8088
           80
           443
+          51820
         ];
         allowedUDPPorts = [
           5060 # SIP
