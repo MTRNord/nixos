@@ -194,7 +194,7 @@
       peers = {
         nordgedanken = {
           name = "nordgedanken";
-          publicKey = "meow";
+          publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
           endpoint = "100.64.0.3:51820";
         };
@@ -535,7 +535,7 @@
 
         protocol kernel {
           ipv4 {
-            export where proto = "tun" || proto = "dummy";
+            export where proto = "wg" || proto = "dummy";
           };
         }
 
@@ -554,7 +554,7 @@
 
         protocol kernel {
           ipv6 {
-            export where proto = "tun" || proto = "dummy";
+            export where proto = "wg6" || proto = "dummy";
           };
         }
 
