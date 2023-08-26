@@ -508,9 +508,10 @@
             export where proto = "tun" || proto = "dummy";
           };
         }
-        protocol ospf v3 tailscale {
+
+        protocol ospf v2 v4 {
           ipv4 {
-            import where net ~ 192.0.0.0/24 || net ~ 100.64.0.0/10;
+            import all
             export all;
           };
           area 100.64.0.0 {
@@ -518,20 +519,20 @@
           };
         }
 
-        # protocol bgp midnightthoughts {
-        #   local as 4242423867;
-        #   source address 100.64.0.1;
-        #   strict bind 1;
-        #   ipv4 {
-        #     import where net ~ 192.0.0.0/24;
-        #     export all;
-        #     next hop address 100.64.0.1;
-        #     #next hop self;
-        #   };
-        #   multihop 3;
-        #   graceful restart on;
-        #   neighbor 100.64.0.3 port 180 as 4242423867;
-        # }
+        protocol kernel {
+          ipv6 {
+            export where proto = "tun" || proto = "dummy";
+          };
+        }
+
+        protocol ospf v3 v6 {
+            ipv6 {
+                export all;
+            };
+            area 100.64.0.0 {
+                interface "tailscale0", "floating1";
+            };
+        }
       '';
     };
 
