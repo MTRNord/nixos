@@ -146,7 +146,7 @@
       floating1 = {
         enable = true;
         name = "floating1";
-        address = [ "192.0.0.1/32" ];
+        address = [ "192.0.12.2/32" ];
         matchConfig = {
           Name = "floating1";
         };
