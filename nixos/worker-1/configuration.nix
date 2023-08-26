@@ -513,7 +513,7 @@
         protocol direct {
           ipv4;
           ipv6;
-          interface "floating1";
+          interface "floating1", "tailscale0";
         }
 
         protocol static {
@@ -525,8 +525,8 @@
           source address 100.64.0.1;
           strict bind 1;
           ipv4 {
-            #import none;
             export all;
+            next hop self;
           };
           multihop 2;
           graceful restart on;
