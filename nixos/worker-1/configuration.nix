@@ -613,7 +613,7 @@
           unicastPeers = [ "10.100.0.2" ];
           virtualIps = [
             {
-              addr = "192.0.0.1/32";
+              addr = "192.0.0.1/24";
               dev = "floating1";
             }
           ];
