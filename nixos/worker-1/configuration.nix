@@ -488,11 +488,9 @@
         # ];
         defined-sets = {
           prefix-sets = [
-            { }
             {
               prefix-set-name = "ps2";
               prefix-list = [
-                { }
                 {
                   ip-prefix = "10.0.0.0/10";
                 }
@@ -501,11 +499,9 @@
           ];
         };
         policy-definitons = [
-          { }
           {
             name = "pd2";
             statements = [
-              { }
               {
                 name = "statement1";
                 conditions.match-prefix-set = {
@@ -520,7 +516,6 @@
           }
         ];
         neighbors = [
-          { }
           {
             config = {
               neighbor-address = "100.64.0.3";
