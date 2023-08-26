@@ -142,7 +142,7 @@
       ipv4.addresses = [
         {
           address = "192.0.0.1";
-          prefixLength = "32";
+          prefixLength = 32;
         }
       ];
     };
