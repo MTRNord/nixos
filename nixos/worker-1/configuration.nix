@@ -546,10 +546,9 @@
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";
-        domain = "internal.midnightthoughts.space";
+        domain = "lg.midnightthoughts.space";
         servers = [
           "worker-1"
-          "nordgedanken"
         ];
       };
     };
