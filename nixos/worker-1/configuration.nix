@@ -154,6 +154,20 @@
     };
   };
 
+
+
+  # SOPS
+  sops.age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+  sops.gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
+  # This is using an age key that is expected to already be in the filesystem
+  sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey = true;
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.secrets.marcel_initial_password.neededForUsers = true;
+  sops.secrets.root_initial_password.neededForUsers = true;
+
+  sops.secrets."wireguard/privateKey" = { };
   networking = {
     hostName = "worker-1";
     enableIPv6 = true;
@@ -161,7 +175,30 @@
     useDHCP = true;
     # networkmanager.enable = true;
 
+    nat = {
+      enable = true;
+      externalInterface = "enp1s0";
+      internalInterfaces = [ "wg0" ];
+    };
+
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
+
+    wireguard.interfaces = {
+      wg0 = {
+        ips = [ "10.100.0.1/24" ];
+        listenPort = 51820;
+      };
+      privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
+      table = "off";
+
+      peers = [
+        {
+          publicKey = "meow";
+          allowedIPs = [ "0.0.0.0/0" "::/0" ];
+          endpoint = "100.64.0.3:51820";
+        }
+      ];
+    };
 
     firewall =
       let
@@ -213,7 +250,7 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" ];
+        trustedInterfaces = [ "tailscale0" "floating1" "wg0" ];
         enable = true;
         allowPing = true;
         logRefusedConnections = false;
@@ -340,17 +377,6 @@
       UseDns = false;
     };
   };
-
-  # SOPS
-  sops.age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
-  sops.gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
-  # This is using an age key that is expected to already be in the filesystem
-  sops.age.keyFile = "/persist/var/lib/sops-nix/key.txt";
-  # This will generate a new key if the key specified above does not exist
-  sops.age.generateKey = true;
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.secrets.marcel_initial_password.neededForUsers = true;
-  sops.secrets.root_initial_password.neededForUsers = true;
   sops.secrets.ssh_host_ed25519_key = {
     mode = "0600";
     path = "/etc/ssh/ssh_host_ed25519_key";
@@ -518,7 +544,7 @@
             export all;
           };
           area 0 {
-            interface "tailscale0";
+            interface "wg0";
             interface "floating1" {
               type nonbroadcast;
             };
@@ -536,7 +562,7 @@
             export all;
           };
           area 0 {
-            interface "tailscale0";
+            interface "wg0";
             interface "floating1" {
               type nonbroadcast;
             };
