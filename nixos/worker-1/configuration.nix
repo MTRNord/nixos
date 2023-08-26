@@ -525,8 +525,9 @@
           source address 100.64.0.1;
           strict bind 1;
           ipv4 {
+            import where net ~ 192.0.0.0/24;
             export all;
-            next hop self;
+            #next hop self;
           };
           multihop 2;
           graceful restart on;
