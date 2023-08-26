@@ -595,6 +595,30 @@
       };
     };
 
+    keepalived = {
+      enable = true;
+      extraGlobalDefs = ''
+        router_id uMASTER
+      '';
+      vrrpInstances = {
+        VI_1 = {
+          state = "BACKUP";
+          interface = "floating1";
+          virtualRouterId = 230;
+          priority = 101;
+          extraConfig = ''
+            advert_int 1
+          '';
+          virtualIps = [
+            {
+              addr = "192.0.0.1/32";
+              dev = "floating1";
+            }
+          ];
+        };
+      };
+    };
+
     postgresql = {
       enableJIT = true;
       enable = false;
