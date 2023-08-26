@@ -511,7 +511,7 @@
 
         protocol ospf v2 v4 {
           ipv4 {
-            import all
+            import all;
             export all;
           };
           area 100.64.0.0 {
@@ -526,12 +526,12 @@
         }
 
         protocol ospf v3 v6 {
-            ipv6 {
-                export all;
-            };
-            area 100.64.0.0 {
-                interface "tailscale0", "floating1";
-            };
+          ipv6 {
+            export all;
+          };
+          area 100.64.0.0 {
+            interface "tailscale0", "floating1";
+          };
         }
       '';
     };
