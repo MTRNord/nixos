@@ -473,7 +473,10 @@
     group = "patroni";
   };
   services = {
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "both";
+    };
     headscale = {
       enable = true;
       address = "0.0.0.0";
