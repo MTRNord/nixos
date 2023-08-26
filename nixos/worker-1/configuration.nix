@@ -130,6 +130,8 @@
   hardware.enableAllFirmware = true;
 
   systemd.network.enable = true;
+  # Broken
+  boot.initrd.systemd.network.wait-online.enable = false;
   systemd.network = {
     netdevs = {
       floating1 = {
