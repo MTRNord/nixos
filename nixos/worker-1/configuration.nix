@@ -963,6 +963,8 @@
       listen postgres
         bind 100.64.0.1:5000
         bind 127.0.0.1:5000
+        bind :5000 interface floating1
+        mode tcp
         option httpchk
         http-check expect status 200
         default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
