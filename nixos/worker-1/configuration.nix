@@ -528,9 +528,10 @@
           ipv4 {
             import where net ~ 192.0.0.0/24;
             export all;
+            next hop address 100.64.0.1;
             #next hop self;
           };
-          multihop 2;
+          multihop 3;
           graceful restart on;
           neighbor 100.64.0.3 port 180 as 4242423867;
         }
