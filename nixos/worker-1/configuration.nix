@@ -603,12 +603,14 @@
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "floating1";
+          interface = "wg0";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
             advert_int 1
           '';
+          unicastSrcIp = "10.100.0.1";
+          unicastPeers = [ "10.100.0.2" ];
           virtualIps = [
             {
               addr = "192.0.0.1/32";
