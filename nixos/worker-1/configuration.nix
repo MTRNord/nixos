@@ -487,12 +487,13 @@
         #   }
         # ];
         neighbors = [
-          [{
+          { }
+          {
             config = {
               neighbor-address = "100.64.0.3";
               peer-as = 4242423595;
             };
-          }]
+          }
         ];
       };
     };
