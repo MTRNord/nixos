@@ -146,7 +146,7 @@
       floating1 = {
         enable = true;
         name = "floating1";
-        address = [ "192.0.12.2/32" ];
+        address = [ ];
         matchConfig = {
           Name = "floating1";
         };
@@ -614,7 +614,7 @@
           unicastPeers = [ "10.100.0.2" ];
           virtualIps = [
             {
-              addr = "192.0.0.1/32";
+              addr = "192.0.12.1/32";
               dev = "floating1";
             }
           ];
