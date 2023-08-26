@@ -531,17 +531,15 @@
                 import-policy-list = [ "pd2" ];
               };
             };
-            afis-safis = [
+            afi-safis = [
+              { }
               {
-                config = {
-                  afis-safe-name = "l3vpn-ipv4-flowspec";
-                };
+                config = { };
+                afis-safe-name = "l3vpn-ipv4-flowspec";
               }
-
               {
-                config = {
-                  afis-safe-name = "l3vpn-ipv6-flowspec";
-                };
+                config = { };
+                afis-safe-name = "l3vpn-ipv6-flowspec";
               }
             ];
           }
