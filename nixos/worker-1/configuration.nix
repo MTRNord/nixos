@@ -482,6 +482,7 @@
       settings = {
         logtail.enabled = false;
         server_url = "https://headscale.midnightthoughts.space";
+        ip_prefixes = [ "fd7a:115c:a1e0::/48" "100.64.0.0/10" "192.0.0.0/24" ];
 
         dns_config = {
           base_domain = "headscale.midnightthoughts.space";
