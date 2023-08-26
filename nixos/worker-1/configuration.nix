@@ -567,6 +567,7 @@
 
         protocol ospf v3 v6 {
           ipv6 {
+            import all;
             export all;
           };
           area 0 {
