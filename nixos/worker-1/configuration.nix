@@ -136,6 +136,17 @@
 
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
+    interfaces.floating1 = {
+      virtualType = "dummy";
+      name = "floating1";
+      ipv4.addresses = [
+        {
+          address = "192.0.0.1";
+          prefixLength = "32";
+        }
+      ];
+    };
+
     firewall =
       let
         blockedV4 = [
@@ -186,7 +197,7 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" ];
+        trustedInterfaces = [ "tailscale0" "floating1" ];
         enable = true;
         allowPing = true;
         logRefusedConnections = false;
@@ -468,86 +479,33 @@
       };
     };
 
-    gobgpd = {
+    bird2 = {
       enable = true;
-      settings = {
-        global = {
-          config = {
-            as = 4242423867;
-            router-id = "100.64.0.1";
-            local-address-list = [ "100.64.0.1" ];
-          };
-        };
-        # bmp-servers = [
-        #   {
-        #     config = {
-        #       address = "127.0.0.1";
-        #       port = 11019;
-        #     };
-        #   }
-        # ];
-        defined-sets = {
-          prefix-sets = [
-            {
-              prefix-set-name = "ps2";
-              prefix-list = [
-                {
-                  ip-prefix = "10.0.0.0/10";
-                }
-              ];
-            }
-          ];
-        };
-        policy-definitions = [
-          {
-            name = "pd2";
-            statements = [
-              {
-                name = "statement1";
-                conditions.match-prefix-set = {
-                  prefix-set = "ps2";
-                  match-set-options = "any";
-                };
-                actions = {
-                  route-disposition = "reject-route";
-                };
-              }
-            ];
-          }
-        ];
-        neighbors = [
-          {
-            config = {
-              neighbor-address = "100.64.0.3";
-              peer-as = 4242423595;
-            };
-            route-server = {
-              config = {
-                route-server-client = true;
-              };
-            };
-            apply-policy = {
-              config = {
-                import-policy-list = [ "pd2" ];
-              };
-            };
-            afi-safis = [
-              { }
-              {
-                config = {
-                  afi-safi-name = "l3vpn-ipv4-flowspec";
-                };
-              }
-              { }
-              {
-                config = {
-                  afi-safi-name = "l3vpn-ipv6-flowspec";
-                };
-              }
-            ];
-          }
-        ];
-      };
+      config = ''
+        router id 100.64.0.1;
+        protocol kernel {
+          scan time 60;
+          import none;
+        }
+
+        protocol device {
+          scan time 60;
+        }
+
+        protocol direct {
+          interface "floating1";
+        }
+
+        protocol bgp midnightthoughts {
+          local as 4242423867;
+          source address 100.64.0.1;
+          import none;
+          export all;
+          graceful restart on;
+          multihop 2;
+          neighbor 100.64.0.3 as 4242423595;
+        }
+      '';
     };
 
     postgresql = {
