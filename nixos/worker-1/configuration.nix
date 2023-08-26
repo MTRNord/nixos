@@ -537,31 +537,30 @@
         protocol device {
         }
 
-        protocol kernel {
-          ipv4 {
-            export where proto = "wg" || proto = "dummy";
-          };
-        }
-
         protocol direct {
-          ipv4;
-          ipv6;
           interface "floating1";
         }
 
-        protocol ospf v2 v4 {
+        protocol kernel {
           ipv4 {
-            import all;
-            export all;
-          };
-          area 0 {
-            interface "wg0";
+            export where proto = "wg";
           };
         }
 
         protocol kernel {
           ipv6 {
-            export where proto = "wg6" || proto = "dummy";
+            export where proto = "wg6";
+          };
+        }
+        
+        protocol ospf v2 v4 {
+          ipv4 {
+            import all;
+            export all;
+          };
+          graceful restart 1;
+          area 0 {
+            interface "wg0";
           };
         }
 
@@ -570,6 +569,7 @@
             import all;
             export all;
           };
+          graceful restart 1;
           area 0 {
             interface "wg0";
           };
