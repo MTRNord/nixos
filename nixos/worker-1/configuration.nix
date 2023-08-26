@@ -129,6 +129,7 @@
   boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
+  systemd.network.enable = true;
   systemd.network = {
     netdevs = {
       floating1 = {
@@ -154,6 +155,7 @@
   networking = {
     hostName = "worker-1";
     enableIPv6 = true;
+    useNetworkd = true;
     useDHCP = true;
     # networkmanager.enable = true;
 
