@@ -505,7 +505,7 @@
 
         protocol kernel {
           ipv4 {
-            export where proto = "tun";
+            export where proto = "tun" || proto = "dummy";
           };
         }
 
