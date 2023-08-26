@@ -482,7 +482,7 @@
       settings = {
         logtail.enabled = false;
         server_url = "https://headscale.midnightthoughts.space";
-        ip_prefixes = [ "fd7a:115c:a1e0::/48" "100.64.0.0/10" "192.0.0.0/24" ];
+        ip_prefixes = [ "fd7a:115c:a1e0::/48" "100.64.0.0/10" ];
 
         dns_config = {
           base_domain = "headscale.midnightthoughts.space";
@@ -498,43 +498,41 @@
       enable = true;
       config = ''
         router id 100.64.0.1;
-        protocol kernel {
-          ipv4 {
-            export all;
-          };
-        }
-
-        protocol kernel {
-          ipv6 { export all; };
-        }
+        debug protocols all;
 
         protocol device {
         }
 
-        protocol direct {
-          ipv4;
-          ipv6;
-          interface "floating1", "tailscale0";
+        protocol kernel {
+            ipv4 {
+                export where proto = "wg";
+            };
         }
 
-        protocol static {
-          ipv4;     # Again, IPv4 channel with default options
+        protocol ospf v2 tailscale {
+            ipv4 {
+                import where net ~ 192.0.0.0/24 || net ~ 100.64.0.0/10;
+                export all;
+            };
+            area 192.0.0.0 {
+                interface "tailscale0", "floating1";
+            };
         }
 
-        protocol bgp midnightthoughts {
-          local as 4242423867;
-          source address 100.64.0.1;
-          strict bind 1;
-          ipv4 {
-            import where net ~ 192.0.0.0/24;
-            export all;
-            next hop address 100.64.0.1;
-            #next hop self;
-          };
-          multihop 3;
-          graceful restart on;
-          neighbor 100.64.0.3 port 180 as 4242423867;
-        }
+        # protocol bgp midnightthoughts {
+        #   local as 4242423867;
+        #   source address 100.64.0.1;
+        #   strict bind 1;
+        #   ipv4 {
+        #     import where net ~ 192.0.0.0/24;
+        #     export all;
+        #     next hop address 100.64.0.1;
+        #     #next hop self;
+        #   };
+        #   multihop 3;
+        #   graceful restart on;
+        #   neighbor 100.64.0.3 port 180 as 4242423867;
+        # }
       '';
     };
 
