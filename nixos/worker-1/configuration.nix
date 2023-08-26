@@ -177,13 +177,14 @@
 
     nat = {
       enable = true;
+      enableIPv6 = true;
       externalInterface = "enp1s0";
       internalInterfaces = [ "wg0" ];
     };
 
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
-    wireguard.interfaces = {
+    wg-quick.interfaces = {
       wg0 = {
         ips = [ "10.100.0.1/24" ];
         listenPort = 51820;
