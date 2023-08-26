@@ -515,13 +515,14 @@
         protocol bgp midnightthoughts {
           local as 4242423867;
           source address 100.64.0.1;
+          strict bind 1;
           ipv4 {
             import none;
             export all;
           };
           graceful restart on;
           multihop 2;
-          neighbor 100.64.0.3 port 180 as 4242423595;
+          neighbor 100.64.0.3 port 180 as 4242423867;
         }
       '';
     };
