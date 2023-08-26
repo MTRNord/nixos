@@ -552,7 +552,7 @@
             export where proto = "wg6";
           };
         }
-        
+
         protocol ospf v2 v4 {
           ipv4 {
             import all;
@@ -614,7 +614,7 @@
           unicastPeers = [ "10.100.0.2" ];
           virtualIps = [
             {
-              addr = "192.0.0.1/24";
+              addr = "192.0.0.1/32";
               dev = "floating1";
             }
           ];
