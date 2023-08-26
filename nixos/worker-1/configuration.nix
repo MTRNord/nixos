@@ -545,27 +545,16 @@
 
         protocol kernel {
           ipv4 {
-            import none;
-            export all;
-            #export where proto = "wg";
+            import all;
+            export where proto = "wg" || proto = "dummy";
           };
         }
 
         protocol kernel {
           ipv6 {
-            import none;
-            export all;
-            #export where proto = "wg6";
-          };
-        }
-
-        protocol static {
-          ipv4 {
             import all;
+            export where proto = "wg6" || proto = "dummy";
           };
-        }
-        protocol static {
-          ipv6;
         }
 
         protocol ospf v2 v4 {
@@ -629,7 +618,7 @@
           unicastPeers = [ "10.100.0.2" ];
           virtualIps = [
             {
-              addr = "192.0.12.1/24";
+              addr = "10.100.12.1/24";
               dev = "floating1";
             }
           ];
