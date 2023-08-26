@@ -191,13 +191,14 @@
       privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
       table = "off";
 
-      peers = [
-        {
+      peers = {
+        nordgedanken = {
+          name = "nordgedanken";
           publicKey = "meow";
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
           endpoint = "100.64.0.3:51820";
-        }
-      ];
+        };
+      };
     };
 
     firewall =
