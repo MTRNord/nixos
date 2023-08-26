@@ -514,7 +514,7 @@
             import all;
             export all;
           };
-          area 100.64.0.0 {
+          area 0 {
             interface "tailscale0";
             interface "floating1" {
               type nonbroadcast;
@@ -532,9 +532,9 @@
           ipv6 {
             export all;
           };
-          area 100.64.0.0 {
+          area 0 {
             interface "tailscale0";
-            interface "floating1"  {
+            interface "floating1" {
               type nonbroadcast;
             };
           };
