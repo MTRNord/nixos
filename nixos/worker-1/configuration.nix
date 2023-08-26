@@ -538,6 +538,24 @@
       '';
     };
 
+    bird-lg = {
+      proxy = {
+        enable = true;
+        allowedIPs = [ "127.0.0.1" ];
+      };
+      frontend = {
+        enable = true;
+        titleBrand = "Midnightthoughts infra";
+        brand = "Midnightthoughts infra";
+        listenAddress = "127.0.0.1:5001";
+        domain = "internal.midnightthoughts.space";
+        servers = [
+          "worker-1"
+          "nordgedanken"
+        ];
+      };
+    };
+
     postgresql = {
       enableJIT = true;
       enable = false;
@@ -843,6 +861,14 @@
           proxyPass =
             "http://localhost:${toString config.services.headscale.port}";
           proxyWebsockets = true;
+        };
+      };
+      "lg.midnightthoughts.space" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass =
+            "http://localhost:5001";
         };
       };
     };
