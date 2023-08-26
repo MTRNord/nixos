@@ -129,23 +129,32 @@
   boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
+  systemd.network = {
+    netdevs = {
+      floating1 = {
+        enable = true;
+        netdevConfig = {
+          Kind = "dummy";
+          Name = "floating1";
+        };
+      };
+    };
+    networks = {
+      floating1 = {
+        enable = true;
+        name = "floating1";
+        addresses = [ "192.0.0.1/32" ];
+      };
+    };
+  };
+
   networking = {
     hostName = "worker-1";
     enableIPv6 = true;
+    useDHCP = true;
     # networkmanager.enable = true;
 
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
-
-    interfaces.floating1 = {
-      virtualType = "dummy";
-      name = "floating1";
-      ipv4.addresses = [
-        {
-          address = "192.0.0.1";
-          prefixLength = 32;
-        }
-      ];
-    };
 
     firewall =
       let
