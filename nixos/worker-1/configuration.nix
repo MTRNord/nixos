@@ -515,7 +515,12 @@
             export all;
           };
           area 100.64.0.0 {
-            interface "tailscale0", "floating1";
+            interface "tailscale0" {
+              type ptp;
+            };
+            interface "floating1" {
+              type nonbroadcast;
+            };
           };
         }
 
