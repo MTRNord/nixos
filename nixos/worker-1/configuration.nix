@@ -269,8 +269,6 @@
     config.services.headscale.package
     patroni
     etcd_3_4
-    gobgpd
-    gobgp
   ];
 
   # Ensure /etc/shells is setup for zsh
