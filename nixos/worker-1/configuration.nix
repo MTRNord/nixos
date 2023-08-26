@@ -609,7 +609,7 @@
     ];
     files = [
       "/etc/machine-id"
-      "/etc/NIXOS"
+      #"/etc/NIXOS"
       "/etc/secrets/initrd/ssh_host_ed25519_key"
       "/etc/secrets/initrd/ssh_host_ed25519_key.pub"
       "/var/lib/sops-nix/key.txt"
