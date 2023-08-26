@@ -498,7 +498,7 @@
             }
           ];
         };
-        policy-definitons = [
+        policy-definitions = [
           {
             name = "pd2";
             statements = [
