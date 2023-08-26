@@ -538,19 +538,34 @@
         }
 
         protocol direct {
+          ipv4;
+          ipv6;
           interface "floating1";
         }
 
         protocol kernel {
           ipv4 {
-            export where proto = "wg";
+            import none;
+            export all;
+            #export where proto = "wg";
           };
         }
 
         protocol kernel {
           ipv6 {
-            export where proto = "wg6";
+            import none;
+            export all;
+            #export where proto = "wg6";
           };
+        }
+
+        protocol static {
+          ipv4 {
+            import all;
+          };
+        }
+        protocol static {
+          ipv6;
         }
 
         protocol ospf v2 v4 {
