@@ -508,14 +508,17 @@
             export where proto = "tun" || proto = "dummy";
           };
         }
+        protocol direct	{
+          interface "floating1";
+        }
 
-        protocol ospf v2 tailscale {
+        protocol ospf v3 tailscale {
           ipv4 {
             import where net ~ 192.0.0.0/24 || net ~ 100.64.0.0/10;
             export all;
           };
           area 100.64.0.0 {
-            interface "tailscale0", "floating1";
+            interface "tailscale0";
           };
         }
 
