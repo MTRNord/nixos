@@ -483,7 +483,9 @@
         router id 100.64.0.1;
         protocol kernel {
           scan time 60;
-          import none;
+          ipv4 {
+            import none;
+          };
         }
 
         protocol device {
@@ -497,8 +499,10 @@
         protocol bgp midnightthoughts {
           local as 4242423867;
           source address 100.64.0.1;
-          import none;
-          export all;
+          ipv4 {
+            import none;
+            export all;
+          };
           graceful restart on;
           multihop 2;
           neighbor 100.64.0.3 as 4242423595;
