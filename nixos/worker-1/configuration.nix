@@ -167,7 +167,7 @@
   sops.secrets.marcel_initial_password.neededForUsers = true;
   sops.secrets.root_initial_password.neededForUsers = true;
 
-  sops.secrets."wireguard/privateKey" = { };
+  sops.secrets."wireguard/private_key" = { };
   networking = {
     hostName = "worker-1";
     enableIPv6 = true;
@@ -187,7 +187,7 @@
       wg0 = {
         ips = [ "10.100.0.1/24" ];
         listenPort = 51820;
-        privateKeyFile = config.sops.secrets."wireguard/privateKey".path;
+        privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         table = "off";
 
         peers = [
