@@ -486,6 +486,39 @@
         #     };
         #   }
         # ];
+        defined-sets = {
+          prefix-sets = [
+            { }
+            {
+              prefix-set-name = "ps2";
+              prefix-list = [
+                { }
+                {
+                  ip-prefix = "10.0.0.0/10";
+                }
+              ];
+            }
+          ];
+        };
+        policy-definitons = [
+          { }
+          {
+            name = "pd2";
+            statements = [
+              { }
+              {
+                name = "statement1";
+                conditions.match-prefix-set = {
+                  prefix-set = "ps2";
+                  match-set-options = "any";
+                };
+                actions = {
+                  route-disposition = "reject-route";
+                };
+              }
+            ];
+          }
+        ];
         neighbors = [
           { }
           {
@@ -493,6 +526,29 @@
               neighbor-address = "100.64.0.3";
               peer-as = 4242423595;
             };
+            route-server = {
+              config = {
+                route-server-client = true;
+              };
+            };
+            apply-policy = {
+              config = {
+                import-policy-list = [ "pd2" ];
+              };
+            };
+            afis-safis = [
+              {
+                config = {
+                  afis-safe-name = "l3vpn-ipv4-flowspec";
+                };
+              }
+
+              {
+                config = {
+                  afis-safe-name = "l3vpn-ipv6-flowspec";
+                };
+              }
+            ];
           }
         ];
       };
