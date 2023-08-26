@@ -258,6 +258,8 @@
     config.services.headscale.package
     patroni
     etcd_3_4
+    gobgpd
+    gobgp
   ];
 
   # Ensure /etc/shells is setup for zsh
@@ -463,6 +465,35 @@
             "8.8.8.8"
           ];
         };
+      };
+    };
+
+    gobgpd = {
+      enable = true;
+      settings = {
+        global = {
+          config = {
+            as = 4242423867;
+            router-id = "100.64.0.1";
+            local-address-list = [ "100.64.0.1" ];
+          };
+        };
+        # bmp-servers = [
+        #   {
+        #     config = {
+        #       address = "127.0.0.1";
+        #       port = 11019;
+        #     };
+        #   }
+        # ];
+        neighbors = [
+          {
+            config = {
+              neighbor-address = "100.64.0.3";
+              peer-as = 4242423595;
+            };
+          }
+        ];
       };
     };
 
