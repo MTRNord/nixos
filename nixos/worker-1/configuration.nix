@@ -962,9 +962,9 @@
         timeout check 5s
 
       listen postgres
-        bind 100.64.0.1:5001
-        bind 127.0.0.1:5001
-        bind :5001 interface floating1
+        bind 100.64.0.1:5002
+        bind 127.0.0.1:5002
+        bind :5002 interface floating1
         mode tcp
         option httpchk
         http-check expect status 200
