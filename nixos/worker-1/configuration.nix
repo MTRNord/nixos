@@ -609,15 +609,15 @@
       extraConfig = ''
         # Virtual Servers definitions
         virtual_server 10.100.12.1 5000 {
-          delay_loop 30
+          delay_loop 10
 
           lb_algo wrr
           lb_kind DS
 
-          persistence_timeout 50
+          persistence_timeout 10
           protocol TCP
           real_server 100.64.0.3 5432 {
-              weight 2
+              weight 1
               HTTP_GET {
                 url {
                   path /
@@ -630,7 +630,7 @@
               }
           }
           real_server 100.64.0.1 5432 {
-              weight 2
+              weight 1
               HTTP_GET {
                 url {
                   path /
