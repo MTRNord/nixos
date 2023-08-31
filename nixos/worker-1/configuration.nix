@@ -612,7 +612,7 @@
           delay_loop 30
 
           lb_algo wrr
-          lb_kind NAT
+          lb_kind DR
 
           persistence_timeout 50
           protocol TCP
