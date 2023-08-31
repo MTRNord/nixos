@@ -606,44 +606,44 @@
       extraGlobalDefs = ''
         lvs_id LVS_BACK
       '';
-      extraConfig = ''
-        # Virtual Servers definitions
-        virtual_server 10.100.12.1 5000 {
-          delay_loop 10
+      # extraConfig = ''
+      #   # Virtual Servers definitions
+      #   virtual_server 10.100.12.1 5000 {
+      #     delay_loop 10
 
-          lb_algo wrr
-          lb_kind DS
+      #     lb_algo wrr
+      #     lb_kind DS
 
-          persistence_timeout 10
-          protocol TCP
-          real_server 100.64.0.3 5432 {
-              weight 1
-              HTTP_GET {
-                url {
-                  path /
-                }
+      #     persistence_timeout 10
+      #     protocol TCP
+      #     real_server 100.64.0.3 5432 {
+      #         weight 1
+      #         HTTP_GET {
+      #           url {
+      #             path /
+      #           }
 
-                connect_port 8008
-                connect_timeout 3
-                retry 3
-                delay_before_retry 2
-              }
-          }
-          real_server 100.64.0.1 5432 {
-              weight 1
-              HTTP_GET {
-                url {
-                  path /
-                }
+      #           connect_port 8008
+      #           connect_timeout 3
+      #           retry 3
+      #           delay_before_retry 2
+      #         }
+      #     }
+      #     real_server 100.64.0.1 5432 {
+      #         weight 1
+      #         HTTP_GET {
+      #           url {
+      #             path /
+      #           }
 
-                connect_port 8008
-                connect_timeout 3
-                retry 3
-                delay_before_retry 2
-              }
-          }
-        }
-      '';
+      #           connect_port 8008
+      #           connect_timeout 3
+      #           retry 3
+      #           delay_before_retry 2
+      #         }
+      #     }
+      #   }
+      # '';
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
@@ -1008,7 +1008,7 @@
       listen postgres
         bind 100.64.0.1:5000
         bind 127.0.0.1:5000
-        #bind 10.100.12.1:5000
+        bind 10.100.12.1:5000
         mode tcp
         option httpchk
         http-check expect status 200
