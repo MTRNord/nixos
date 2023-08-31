@@ -623,6 +623,7 @@
                   path /
                 }
 
+                connect_port 8008
                 connect_timeout 3
                 retry 3
                 delay_before_retry 2
@@ -635,6 +636,7 @@
                   path /
                 }
 
+                connect_port 8008
                 connect_timeout 3
                 retry 3
                 delay_before_retry 2
