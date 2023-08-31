@@ -604,7 +604,7 @@
     keepalived = {
       enable = true;
       extraGlobalDefs = ''
-        router_id uMASTER
+        lvs_id LVS_BACK
       '';
       extraConfig = ''
         # Virtual Servers definitions
