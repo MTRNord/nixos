@@ -553,7 +553,7 @@
         passwordFile = config.sops.secrets."redis_password".path;
       };
       hostname = "forum.miki.community";
-      plugins = [
+      plugins = with config.services.discourse.package.plugins; [
         discourse-github
         discourse-solved
         discourse-docs
