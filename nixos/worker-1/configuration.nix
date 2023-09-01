@@ -572,6 +572,15 @@
           enable_local_logins_via_email = true;
           allow_new_registrations = false;
         };
+        spam = {
+          notify_mods_when_user_silenced = true;
+        };
+        legal = {
+          tos_url = "https://docs.draupnir.midnightthoughts.space/docs/code_of_conduct/";
+        };
+        plugins = {
+          chat_enabled = false;
+        };
       };
       admin = {
         username = "MTRNord";
