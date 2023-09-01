@@ -544,9 +544,8 @@
           serverAddress = "mail.nordgedanken.dev";
           username = "support@miki.community";
           passwordFile = config.sops.secrets."discourse/mail_password".path;
-          enableStartTLSAuto = false;
-          opensslVerifyMode = "";
           authentication = "login";
+          forceTLS = true;
         };
         incoming.enable = false;
         contactEmailAddress = "support@miki.community";
