@@ -570,7 +570,7 @@
           must_approve_users = false;
           enable_local_logins = true;
           enable_local_logins_via_email = true;
-          allow_new_registrations = false;
+          allow_new_registrations = true;
         };
         spam = {
           notify_mods_when_user_silenced = true;
