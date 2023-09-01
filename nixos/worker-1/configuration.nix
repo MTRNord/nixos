@@ -45,8 +45,11 @@
 
       asterisk = {
         withOpus = true;
-
       };
+
+      permittedInsecurePackages = [
+        "nodejs-16.20.2"
+      ];
     };
   };
 
