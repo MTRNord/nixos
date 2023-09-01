@@ -528,50 +528,50 @@
     group = "discourse";
   };
   services = {
-    discourse = {
-      enable = false;
-      database = {
-        host = "postgres.internal.midnightthoughts.space";
-        passwordFile = config.sops.secrets."discourse/db_password".path;
-      };
-      backendSettings = {
-        db_port = 5000;
-      };
-      secretKeyBaseFile = config.sops.secrets."discourse/secret_key_base".path;
-      mail = {
-        outgoing = {
-          port = 465;
-          serverAddress = "mail.nordgedanken.dev";
-          username = "support@miki.community";
-          passwordFile = config.sops.secrets."discourse/mail_password".path;
-          authentication = "login";
-        };
-        incoming.enable = false;
-        contactEmailAddress = "support@miki.community";
-      };
-      redis = {
-        host = "localhost";
-      };
-      hostname = "forum.miki.community";
-      plugins = with config.services.discourse.package.plugins; [
-        discourse-github
-        discourse-solved
-        discourse-docs
-      ];
-      siteSettings = {
-        required = {
-          title = "Matrix Projects Forum";
-          contact_email = "support@miki.community";
-          notification_email = "noreply@forum.miki.community";
-        };
-      };
-      admin = {
-        username = "MTRNord";
-        fullName = "Marcel";
-        email = "mtrnord@nordgedanken.dev";
-        passwordFile = config.sops.secrets."discourse/admin_password".path;
-      };
-    };
+    # discourse = {
+    #   enable = false;
+    #   database = {
+    #     host = "postgres.internal.midnightthoughts.space";
+    #     passwordFile = config.sops.secrets."discourse/db_password".path;
+    #   };
+    #   backendSettings = {
+    #     db_port = 5000;
+    #   };
+    #   secretKeyBaseFile = config.sops.secrets."discourse/secret_key_base".path;
+    #   mail = {
+    #     outgoing = {
+    #       port = 465;
+    #       serverAddress = "mail.nordgedanken.dev";
+    #       username = "support@miki.community";
+    #       passwordFile = config.sops.secrets."discourse/mail_password".path;
+    #       authentication = "login";
+    #     };
+    #     incoming.enable = false;
+    #     contactEmailAddress = "support@miki.community";
+    #   };
+    #   redis = {
+    #     host = "localhost";
+    #   };
+    #   hostname = "forum.miki.community";
+    #   plugins = with config.services.discourse.package.plugins; [
+    #     discourse-github
+    #     discourse-solved
+    #     discourse-docs
+    #   ];
+    #   siteSettings = {
+    #     required = {
+    #       title = "Matrix Projects Forum";
+    #       contact_email = "support@miki.community";
+    #       notification_email = "noreply@forum.miki.community";
+    #     };
+    #   };
+    #   admin = {
+    #     username = "MTRNord";
+    #     fullName = "Marcel";
+    #     email = "mtrnord@nordgedanken.dev";
+    #     passwordFile = config.sops.secrets."discourse/admin_password".path;
+    #   };
+    # };
     tailscale = {
       enable = true;
       useRoutingFeatures = "both";
