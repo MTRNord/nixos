@@ -565,6 +565,13 @@
           contact_email = "support@miki.community";
           notification_email = "noreply@forum.miki.community";
         };
+        login = {
+          login_required = true;
+          must_approve_users = true;
+          enable_local_logins = true;
+          enable_local_logins_via_email = true;
+          allow_new_registrations = false;
+        };
       };
       admin = {
         username = "MTRNord";
