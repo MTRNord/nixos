@@ -822,6 +822,7 @@
       "/var/lib/postgresql/${config.services.patroni.postgresqlPackage.psqlSchema}"
       "/var/lib/patroni"
       "/var/lib/etcd"
+      "/var/lib/discourse"
     ];
     files = [
       "/etc/machine-id"
