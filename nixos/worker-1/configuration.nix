@@ -47,15 +47,6 @@
         withOpus = true;
       };
 
-      discourse = {
-        runtimeEnv = {
-          HOME = "/run/discourse/home";
-          RAILS_ENV = "production";
-          UNICORN_LISTENER = "/run/discourse/sockets/unicorn.sock";
-          UNICORN_WORKERS = 6;
-        };
-      };
-
       permittedInsecurePackages = [
         "nodejs-16.20.2"
       ];
