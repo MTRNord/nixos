@@ -529,7 +529,7 @@
   };
   services = {
     discourse = {
-      enable = false;
+      enable = true;
       database = {
         host = "postgres.internal.midnightthoughts.space";
         passwordFile = config.sops.secrets."discourse/db_password".path;
