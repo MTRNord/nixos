@@ -4,60 +4,57 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" "sr_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
+    fsType = "btrfs";
+    options = [ "subvol=root" "compress=zstd" "noatime" ];
+  };
 
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/56da9aee-dc91-4736-ae22-781e46ccb25e";
 
-  fileSystems."/home" =
-    {
+  fileSystems = {
+    "/home" = {
       device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
-  fileSystems."/nix" =
-    {
+    "/nix" = {
       device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
-  fileSystems."/persist" =
-    {
+    "/persist" = {
       device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
       fsType = "btrfs";
       options = [ "subvol=persist" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
-  fileSystems."/var/log" =
-    {
+    "/var/log" = {
       device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
-  fileSystems."/boot" =
-    {
+    "/boot" = {
       device = "/dev/disk/by-uuid/840B-723D";
       fsType = "vfat";
     };
+  };
 
   swapDevices = [{
     device = "/var/lib/swapfile";

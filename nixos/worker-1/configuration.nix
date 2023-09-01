@@ -504,7 +504,74 @@
     owner = "patroni";
     group = "patroni";
   };
+  sops.secrets."redis_password" = {
+    owner = "redis";
+    group = "redis";
+  };
+  sops.secrets."discourse/db_password" = {
+    owner = "discourse";
+    group = "discourse";
+  };
+  sops.secrets."discourse/secret_key_base" = {
+    owner = "discourse";
+    group = "discourse";
+  };
+  sops.secrets."discourse/admin_password" = {
+    owner = "discourse";
+    group = "discourse";
+  };
   services = {
+    redis = {
+      vmOverCommit = true;
+      servers = {
+        localhost = {
+          enable = true;
+          requirePassFile = config.sops.secrets."redis_password".path;
+        };
+      };
+    };
+    discourse = {
+      enable = true;
+      database = {
+        host = "postgres.internal.midnightthoughts.space:5000";
+        passwordFile = config.sops.secrets."discourse/db_password".path;
+      };
+      secretKeyBaseFile = config.sops.secrets."discourse/secret_key_base".path;
+      mail = {
+        outgoing = {
+          port = 465;
+          serverAddress = "mail.nordgedanken.dev";
+          username = "support@miki.community";
+          passwordFile = config.sops.secrets."discourse/mail_password".path;
+          authentication = "login";
+        };
+        incoming.enable = false;
+        contactEmailAddress = "support@miki.community";
+      };
+      redis = {
+        host = "localhost";
+        passwordFile = config.sops.secrets."redis_password".path;
+      };
+      hostname = "forum.miki.community";
+      plugins = [
+        discourse-github
+        discourse-solved
+        discourse-docs
+      ];
+      siteSettings = {
+        required = {
+          title = "Matrix Projects Forum";
+          contact_email = "support@miki.community";
+          notification_email = "noreply@forum.miki.community";
+        };
+      };
+      admin = {
+        username = "MTRNord";
+        fullName = "Marcel";
+        email = "mtrnord@nordgedanken.dev";
+        passwordFile = config.sops.secrets."discourse/admin_password".path;
+      };
+    };
     tailscale = {
       enable = true;
       useRoutingFeatures = "both";
