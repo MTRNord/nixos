@@ -527,6 +527,10 @@
     owner = "discourse";
     group = "discourse";
   };
+  sops.secrets."discourse/redis_password" = {
+    owner = "discourse";
+    group = "discourse";
+  };
   services = {
     redis = {
       vmOverCommit = true;
@@ -557,7 +561,7 @@
       };
       redis = {
         host = "localhost";
-        passwordFile = config.sops.secrets."redis_password".path;
+        passwordFile = config.sops.secrets."discourse/redis_password".path;
       };
       hostname = "forum.miki.community";
       plugins = with config.services.discourse.package.plugins; [
