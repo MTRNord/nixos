@@ -545,7 +545,7 @@
           username = "support@miki.community";
           passwordFile = config.sops.secrets."discourse/mail_password".path;
           enableStartTLSAuto = false;
-          opensslVerifyMode = null;
+          opensslVerifyMode = "";
           authentication = "login";
         };
         incoming.enable = false;
