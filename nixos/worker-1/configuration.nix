@@ -508,8 +508,8 @@
     group = "patroni";
   };
   sops.secrets."redis_password" = {
-    owner = "redis";
-    group = "redis";
+    owner = "redis-localhost";
+    group = "redis-localhost";
   };
   sops.secrets."discourse/db_password" = {
     owner = "discourse";
