@@ -523,6 +523,10 @@
     owner = "discourse";
     group = "discourse";
   };
+  sops.secrets."discourse/mail_password" = {
+    owner = "discourse";
+    group = "discourse";
+  };
   services = {
     redis = {
       vmOverCommit = true;
