@@ -566,8 +566,8 @@
           notification_email = "noreply@forum.miki.community";
         };
         login = {
-          login_required = true;
-          must_approve_users = true;
+          login_required = false;
+          must_approve_users = false;
           enable_local_logins = true;
           enable_local_logins_via_email = true;
           allow_new_registrations = false;
