@@ -507,10 +507,6 @@
     owner = "patroni";
     group = "patroni";
   };
-  sops.secrets."redis_password" = {
-    owner = "redis-localhost";
-    group = "redis-localhost";
-  };
   sops.secrets."discourse/db_password" = {
     owner = "discourse";
     group = "discourse";
@@ -532,20 +528,14 @@
     group = "discourse";
   };
   services = {
-    redis = {
-      vmOverCommit = true;
-      servers = {
-        localhost = {
-          enable = true;
-          requirePassFile = config.sops.secrets."redis_password".path;
-        };
-      };
-    };
     discourse = {
       enable = true;
       database = {
-        host = "postgres.internal.midnightthoughts.space:5000";
+        host = "postgres.internal.midnightthoughts.space";
         passwordFile = config.sops.secrets."discourse/db_password".path;
+      };
+      backendSettings = {
+        db_port = 5000;
       };
       secretKeyBaseFile = config.sops.secrets."discourse/secret_key_base".path;
       mail = {
@@ -561,7 +551,6 @@
       };
       redis = {
         host = "localhost";
-        passwordFile = config.sops.secrets."discourse/redis_password".path;
       };
       hostname = "forum.miki.community";
       plugins = with config.services.discourse.package.plugins; [
