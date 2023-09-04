@@ -344,27 +344,27 @@
           };
         };
       };
-      streamConfig = ''
-        match server_ok {
-            status 200;
-        }
-        upstream postgres {
-          zone postgres 64k;
-          server 10.100.0.2:5432;
-          server 10.100.0.1:5432;
-        }
-        server {
-          listen 127.0.0.1:5000 tcp;
-          listen 100.64.0.1:5000 tcp;
-          listen 10.100.12.1:5000 tcp;
-          proxy_pass postgres;
-          health_check port=8008 interval=3 fails=3 passes=2 mandatory persistent  match=server_ok;
-        }
-      '';
+      # streamConfig = ''
+      #   match server_ok {
+      #       status 200;
+      #   }
+      #   upstream postgres {
+      #     zone postgres 64k;
+      #     server 10.100.0.2:5432;
+      #     server 10.100.0.1:5432;
+      #   }
+      #   server {
+      #     listen 127.0.0.1:5000 tcp;
+      #     listen 100.64.0.1:5000 tcp;
+      #     listen 10.100.12.1:5000 tcp;
+      #     proxy_pass postgres;
+      #     health_check port=8008 interval=3 fails=3 passes=2 mandatory persistent  match=server_ok;
+      #   }
+      # '';
     };
 
     haproxy = {
-      enable = false;
+      enable = true;
       config = ''
         global
           maxconn 300
