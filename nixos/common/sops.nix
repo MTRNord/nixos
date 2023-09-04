@@ -111,6 +111,10 @@
         owner = "discourse";
         group = "discourse";
       };
+      pgadmin_password = {
+        owner = "pgadmin";
+        group = "pgadmin";
+      };
     };
   };
 

@@ -11,6 +11,7 @@
       "/var/lib/patroni"
       "/var/lib/etcd"
       "/var/lib/discourse"
+      "/var/lib/pgadmin"
     ];
     files = [
       "/etc/machine-id"
