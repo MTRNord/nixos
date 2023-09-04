@@ -23,8 +23,8 @@
     ../common/common.nix
     ../common/server.nix
     ./darlings.nix
+    ./boot.nix
 
-    ../common/lib/boot.nix
     ../common/lib/shell.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
