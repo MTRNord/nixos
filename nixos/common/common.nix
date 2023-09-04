@@ -26,6 +26,7 @@
     dnsutils
     jq
     compsize
+    iperf
   ];
 
   # Write known-hosts
