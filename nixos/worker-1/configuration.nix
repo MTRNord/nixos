@@ -350,7 +350,9 @@
       enable = true;
       config = ''
         global
-          maxconn 100
+          maxconn 300
+          nbthread 6
+          cpu-map 1/all 0-5
 
         defaults
           log global
@@ -358,7 +360,7 @@
           retries 2
           timeout client 30m
           timeout connect 4s
-          timeout server 30m
+          timeout server 1m
           timeout check 5s
 
         listen postgres
@@ -369,10 +371,8 @@
           option httpchk
           http-check expect status 200
           default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
-          server pgsql1 100.64.0.3:5432 maxconn 100 check port 8008
-          server pgsql2 100.64.0.1:5432 maxconn 100 check port 8008
-          server pg_new1 10.100.0.2:5432 maxconn 100 check port 8008
-          server pg_new2 10.100.0.1:5432 maxconn 100 check port 8008
+          server pg_new1 10.100.0.2:5432 maxconn 300 check port 8008
+          server pg_new2 10.100.0.1:5432 maxconn 300 check port 8008
       '';
     };
 

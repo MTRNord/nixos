@@ -34,6 +34,7 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.ipv4.conf.all.forwarding" = true;
       "net.ipv6.conf.all.forwarding" = true;
+      "net.ipv4.tcp_tw_reuse" = 1;
     };
     # Ensure a clean & sparkling /tmp on fresh boots.
     tmp.cleanOnBoot = true;
@@ -58,4 +59,19 @@
       UseDns = false;
     };
   };
+
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "8192";
+    }
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "8192";
+    }
+  ];
 }
