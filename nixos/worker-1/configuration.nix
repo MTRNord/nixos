@@ -628,14 +628,14 @@
     };
     patroni = {
       enable = true;
-      nodeIp = "100.64.0.1";
+      nodeIp = "10.100.0.1";
       name = "worker-1";
       scope = "cluster-1";
       postgresqlPackage = pkgs.postgresql_14;
 
       settings = {
         postgresql = {
-          listen = lib.mkForce "127.0.0.1,100.64.0.1,10.100.0.1:5432";
+          listen = lib.mkForce "127.0.0.1,10.100.0.1:5432";
           parameters = {
             shared_buffers = "8GB";
           };
