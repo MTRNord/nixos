@@ -53,7 +53,7 @@
         db = host=10.100.0.1 port=5432
 
         [pgbouncer]
-        listen_addr = ::
+        listen_addr = *
         listen_port = 5000
 
         ; Define your PgBouncer user and password here (replace with your actual values)
