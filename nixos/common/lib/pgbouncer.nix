@@ -22,6 +22,7 @@
     description = "PgBouncer - PostgreSQL connection pooler";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
+      LimitNOFILE = 8192;
       ExecStart = "${pkgs.pgbouncer}/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini";
       Restart = "always";
       RestartSec = 5;
