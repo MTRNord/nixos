@@ -64,7 +64,7 @@
         auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
 
         ; Connection Pooling Settings
-        pool_mode = transaction
+        pool_mode = statement
         max_client_conn = 200
         min_pool_size = 5
         reserve_pool_size = 5
