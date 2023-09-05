@@ -26,6 +26,7 @@
     ./boot.nix
 
     ../common/lib/shell.nix
+    ../common/lib/envoy.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
     ../common/lib/asterisk.nix
@@ -364,7 +365,7 @@
     };
 
     haproxy = {
-      enable = true;
+      enable = false;
       config = ''
         global
           maxconn 300
