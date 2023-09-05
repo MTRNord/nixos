@@ -9,7 +9,7 @@
           address = {
             socket_address = {
               protocol = "TCP";
-              address = "127.0.0.1";
+              address = "0.0.0.0";
               port_value = "9901";
             };
           };
@@ -110,7 +110,7 @@
           clusters = [
             {
               name = "postgres_cluster";
-              connect_timeout = "0.5s";
+              connect_timeout = "0.25s";
               type = "STRICT_DNS";
               lb_policy = "LEAST_REQUEST";
               load_assignment = {
