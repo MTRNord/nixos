@@ -32,7 +32,7 @@
 
   environment.etc."pgbouncer/pgbouncer.ini" = {
     user = config.users.users.pgbouncer.name;
-    group = config.users.users.pgbouncer.name.group;
+    group = config.users.users.pgbouncer.group;
     text = ''
       [databases]
       db2 = host=10.100.0.2 port=5432
