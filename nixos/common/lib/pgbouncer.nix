@@ -40,7 +40,7 @@
 
       ; Define your PgBouncer user and password here (replace with your actual values)
       auth_type = hba
-      auth_hba_file = ${services.patroni.postgresqlDataDir}/pg_hba.conf
+      auth_hba_file = ${config.services.patroni.postgresqlDataDir}/pg_hba.conf
 
       ; Connection Pooling Settings
       pool_mode = transaction
