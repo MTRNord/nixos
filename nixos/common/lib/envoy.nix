@@ -96,7 +96,6 @@
                   healthy_threshold = 2;
                   http_health_check = {
                     path = "/";
-                    port = 8008;
                   };
                 }
               ];
