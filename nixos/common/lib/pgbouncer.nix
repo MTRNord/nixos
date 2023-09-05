@@ -38,9 +38,7 @@
       group = config.users.users.pgbouncer.group;
       text = ''
         host    all             all             10.100.12.1/32          md5
-        host    replication     all             10.100.12.1/32          md5
         host    all             all             10.100.0.0/10  	      	md5
-        host    replication     all             10.100.0.0/10           md5
         host    all             all             10.244.0.0/10           md5
       '';
     };
