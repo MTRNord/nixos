@@ -46,6 +46,66 @@
                 }
               ];
             }
+            {
+              name = "postgres_100.64.0.1";
+              address = {
+                socket_address = {
+                  address = "100.64.0.1";
+                  port_value = 5000;
+                };
+              };
+              filter_chains = [
+                {
+                  filters = [
+                    # {
+                    #   name = "envoy.filters.network.postgres_proxy";
+                    #   typed_config = {
+                    #     "@type" = "type.googleapis.com/envoy.extensions.filters.network.postgres_proxy.v3alpha.PostgresProxy";
+                    #     stat_prefix = "destination";
+                    #   };
+                    # }
+                    {
+                      name = "envoy.filters.network.tcp_proxy";
+                      typed_config = {
+                        "@type" = "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy";
+                        stat_prefix = "destination";
+                        cluster = "postgres_cluster";
+                      };
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              name = "postgres_127.0.0.1";
+              address = {
+                socket_address = {
+                  address = "127.0.0.1";
+                  port_value = 5000;
+                };
+              };
+              filter_chains = [
+                {
+                  filters = [
+                    # {
+                    #   name = "envoy.filters.network.postgres_proxy";
+                    #   typed_config = {
+                    #     "@type" = "type.googleapis.com/envoy.extensions.filters.network.postgres_proxy.v3alpha.PostgresProxy";
+                    #     stat_prefix = "destination";
+                    #   };
+                    # }
+                    {
+                      name = "envoy.filters.network.tcp_proxy";
+                      typed_config = {
+                        "@type" = "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy";
+                        stat_prefix = "destination";
+                        cluster = "postgres_cluster";
+                      };
+                    }
+                  ];
+                }
+              ];
+            }
           ];
           clusters = [
             {

@@ -364,36 +364,6 @@
       # '';
     };
 
-    haproxy = {
-      enable = false;
-      config = ''
-        global
-          maxconn 300
-          nbthread 6
-          cpu-map 1/all 0-5
-
-        defaults
-          log global
-          mode tcp
-          retries 2
-          timeout client 30m
-          timeout connect 4s
-          timeout server 1m
-          timeout check 5s
-
-        listen postgres
-          bind 100.64.0.1:5000
-          bind 127.0.0.1:5000
-          bind 10.100.12.1:5000
-          mode tcp
-          option httpchk
-          http-check expect status 200
-          default-server inter 3s fall 3 rise 2 on-marked-down shutdown-sessions
-          server pg_new1 10.100.0.2:5432 maxconn 300 check port 8008
-          server pg_new2 10.100.0.1:5432 maxconn 300 check port 8008
-      '';
-    };
-
     discourse = {
       enable = true;
       database = {
