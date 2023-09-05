@@ -27,13 +27,13 @@
               filter_chains = [
                 {
                   filters = [
-                    {
-                      name = "envoy.filters.network.postgres_proxy";
-                      typed_config = {
-                        "@type" = "type.googleapis.com/envoy.extensions.filters.network.postgres_proxy.v3alpha.PostgresProxy";
-                        stat_prefix = "destination";
-                      };
-                    }
+                    # {
+                    #   name = "envoy.filters.network.postgres_proxy";
+                    #   typed_config = {
+                    #     "@type" = "type.googleapis.com/envoy.extensions.filters.network.postgres_proxy.v3alpha.PostgresProxy";
+                    #     stat_prefix = "destination";
+                    #   };
+                    # }
                     {
                       name = "envoy.filters.network.tcp_proxy";
                       typed_config = {
