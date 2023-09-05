@@ -24,6 +24,9 @@
       '';
       buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
     });
+    envoy = prev.envoy.overrideAttrs (old: {
+      bazelTargets = old.bazelTargets ++ [ "--//contrib/postgres_proxy/filters/network/source:config" ];
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
