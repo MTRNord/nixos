@@ -4,7 +4,7 @@
     pgbouncer
   ];
   users = {
-    groups = { };
+    groups.pgbouncer = { };
     users = {
       pgbouncer = {
         isSystemUser = true;
