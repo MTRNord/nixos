@@ -2,7 +2,7 @@
 {
   services = {
     envoy = {
-      enable = true;
+      enable = false;
       settings = {
         admin = {
           access_log_path = "/dev/null";
@@ -111,8 +111,9 @@
             {
               name = "postgres_cluster";
               connect_timeout = "0.25s";
-              type = "STRICT_DNS";
+              type = "STATIC";
               lb_policy = "LEAST_REQUEST";
+              per_connection_buffer_limit_bytes = 16777216;
               load_assignment = {
                 cluster_name = "postgres_cluster";
                 endpoints = [
