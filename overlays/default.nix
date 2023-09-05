@@ -25,7 +25,7 @@
       buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
     });
     envoy = prev.envoy.overrideAttrs (old: {
-      bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:config" ];
+      bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     });
   };
 
