@@ -56,6 +56,8 @@
         listen_addr = *
         listen_port = 5000
 
+        ignore_startup_parameters = extra_float_digits
+
         ; Define your PgBouncer user and password here (replace with your actual values)
         auth_type = hba
         auth_hba_file = /etc/pgbouncer/pg_hba.conf
