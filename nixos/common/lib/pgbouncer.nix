@@ -10,6 +10,7 @@
         isSystemUser = true;
         description = "PgBouncer User";
         group = "pgbouncer";
+        extraGroups = [ "patroni" ];
       };
     };
   };
