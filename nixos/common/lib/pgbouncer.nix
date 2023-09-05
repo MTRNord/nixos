@@ -3,10 +3,14 @@
   environment.systemPackages = with pkgs; [
     pgbouncer
   ];
-  users.users = {
-    pgbouncer = {
-      isSystemUser = true;
-      description = "PgBouncer User";
+  users = {
+    group = "pgbouncer";
+    users = {
+      pgbouncer = {
+        isSystemUser = true;
+        description = "PgBouncer User";
+        group = "pgbouncer";
+      };
     };
   };
 
