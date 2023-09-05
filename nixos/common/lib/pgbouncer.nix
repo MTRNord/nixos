@@ -49,8 +49,8 @@
       group = config.users.users.pgbouncer.group;
       text = ''
         [databases]
-        db2 = host=10.100.0.2 port=5432
-        db = host=10.100.0.1 port=5432
+        * = host=10.100.0.2 port=5432
+        * = host=10.100.0.1 port=5432
 
         [pgbouncer]
         listen_addr = *
