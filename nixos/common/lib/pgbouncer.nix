@@ -31,27 +31,41 @@
     };
   };
 
-  environment.etc."pgbouncer/pgbouncer.ini" = {
-    user = config.users.users.pgbouncer.name;
-    group = config.users.users.pgbouncer.group;
-    text = ''
-      [databases]
-      db2 = host=10.100.0.2 port=5432
-      db = host=10.100.0.1 port=5432
+  environment.etc = {
+    "pgbouncer/pg_hba.conf" = {
 
-      [pgbouncer]
-      listen_addr = ::
-      listen_port = 5000
+      user = config.users.users.pgbouncer.name;
+      group = config.users.users.pgbouncer.group;
+      text = ''
+        host    all             all             10.100.12.1/32          md5
+        host    replication     all             10.100.12.1/32          md5
+        host    all             all             10.100.0.0/10  	      	md5
+        host    replication     all             10.100.0.0/10           md5
+        host    all             all             10.244.0.0/10           md5
+      '';
+    };
+    "pgbouncer/pgbouncer.ini" = {
+      user = config.users.users.pgbouncer.name;
+      group = config.users.users.pgbouncer.group;
+      text = ''
+        [databases]
+        db2 = host=10.100.0.2 port=5432
+        db = host=10.100.0.1 port=5432
 
-      ; Define your PgBouncer user and password here (replace with your actual values)
-      auth_type = hba
-      auth_hba_file = ${config.services.patroni.postgresqlDataDir}/pg_hba.conf
+        [pgbouncer]
+        listen_addr = ::
+        listen_port = 5000
 
-      ; Connection Pooling Settings
-      pool_mode = transaction
-      max_client_conn = 200
-      min_pool_size = 5
-      reserve_pool_size = 5
-    '';
+        ; Define your PgBouncer user and password here (replace with your actual values)
+        auth_type = hba
+        auth_hba_file = /etc/pgbouncer/pg_hba.conf
+
+        ; Connection Pooling Settings
+        pool_mode = transaction
+        max_client_conn = 200
+        min_pool_size = 5
+        reserve_pool_size = 5
+      '';
+    };
   };
 }
