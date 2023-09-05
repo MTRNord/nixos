@@ -59,7 +59,7 @@
         ignore_startup_parameters = extra_float_digits
 
         ; Define your PgBouncer user and password here (replace with your actual values)
-        auth_type = hba
+        auth_type = md5
         auth_hba_file = /etc/pgbouncer/pg_hba.conf
         auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
 
