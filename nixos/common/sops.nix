@@ -115,6 +115,10 @@
         owner = "pgadmin";
         group = "pgadmin";
       };
+      pgbouncer_auth_file = {
+        owner = "pgbouncer";
+        group = "pgbouncer";
+      };
     };
   };
 

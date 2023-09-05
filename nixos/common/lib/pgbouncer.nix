@@ -59,6 +59,7 @@
         ; Define your PgBouncer user and password here (replace with your actual values)
         auth_type = hba
         auth_hba_file = /etc/pgbouncer/pg_hba.conf
+        auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
 
         ; Connection Pooling Settings
         pool_mode = transaction
