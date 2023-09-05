@@ -31,7 +31,7 @@
   };
 
   environment.etc."pgbouncer/pgbouncer.ini" = {
-    owner = config.users.users.pgbouncer.name;
+    user = config.users.users.pgbouncer.name;
     group = config.users.users.pgbouncer.name.group;
     text = ''
       [databases]
