@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     pgcat
+    util-linux
   ];
   users = {
     groups.pgcat = {
@@ -27,7 +28,7 @@
       LimitNOFILE = 65536;
       Environment = "RUST_LOG=info";
       ExecStart = "${pkgs.pgcat}/bin/pgcat /etc/pgcat/pgcat.toml";
-      ExecReload = "kill -s SIGHUP $MAINPID";
+      ExecReload = "${pkgs.util-linux}/bin/kill -s SIGHUP $MAINPID";
       Restart = "always";
       RestartSec = 1;
       TimeoutStopSec = 5;
