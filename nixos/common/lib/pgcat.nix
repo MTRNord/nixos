@@ -43,8 +43,6 @@
   };
   environment.etc = {
     "confd/conf.d/pgcat.toml" = {
-      user = "confd";
-      group = "confd";
       text = ''
         [template]
         prefix = "/service/cluster-1"

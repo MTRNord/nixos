@@ -120,9 +120,6 @@
         group = "pgbouncer";
       };
       pgcat_settings_file_template = {
-        owner = "confd";
-        group = "confd";
-        mode = "0777";
         path = "/etc/confd/templates/pgcat.toml.tmpl";
       };
     };
