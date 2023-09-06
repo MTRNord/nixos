@@ -16,7 +16,7 @@
   };
 
   systemd.services.pgbouncer = {
-    enable = false;
+    enable = true;
     after = [ "network-online.target" ];
     requires = [ "network-online.target" ];
     description = "PgBouncer - PostgreSQL connection pooler";
@@ -49,8 +49,8 @@
       group = config.users.users.pgbouncer.group;
       text = ''
         [databases]
-        * = host=10.100.0.2 port=5432
-        * = host=10.100.0.1 port=5432
+        * = host=10.100.0.2 port=5432 pool_size=10
+        * = host=10.100.0.1 port=5432 pool_size=10
 
         [pgbouncer]
         listen_addr = *
@@ -66,6 +66,7 @@
         ; Connection Pooling Settings
         pool_mode = transaction
         max_client_conn = 200
+        default_pool_size = 20
         min_pool_size = 5
         reserve_pool_size = 5
       '';
