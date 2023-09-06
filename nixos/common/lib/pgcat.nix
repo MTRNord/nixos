@@ -48,7 +48,7 @@
         prefix = "/service/cluster-1"
         owner = "pgcat"
         mode = "0644"
-        src = "pgcat.tmpl"
+        src = "pgcat.toml.tmpl"
         dest = "/etc/pgcat/pgcat.toml"
 
         reload_cmd = "systemctl reload pgcat"
