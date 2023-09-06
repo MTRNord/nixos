@@ -59,4 +59,11 @@
       '';
     };
   };
+  # Ensure confd can create a config
+  system.activationScripts = {
+    postgresqlMkdir = {
+      text = "mkdir -p /etc/pgcat && chown pgcat:pgcat -R /etc/pgcat && chmod o+w /etc/pgcat";
+      deps = [ ];
+    };
+  };
 }
