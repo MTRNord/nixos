@@ -47,7 +47,7 @@
       text = ''
         [template]
         prefix = "/service/cluster-1"
-        uid = ${config.users.users.pgcat.uid}
+        uid = 985
         mode = "0644"
         src = "pgcat.toml.tmpl"
         dest = "/etc/pgcat/pgcat.toml"
