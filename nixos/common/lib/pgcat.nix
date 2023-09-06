@@ -10,6 +10,7 @@
         isSystemUser = true;
         description = "PgCat User";
         group = "pgcat";
+        uid = 985;
       };
     };
   };
