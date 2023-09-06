@@ -29,7 +29,6 @@
     ../common/lib/patroni.nix
     ../common/lib/pgadmin.nix
     ../common/lib/pgbouncer.nix
-    ../common/lib/pgcat.nix
     ../common/lib/envoy.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
