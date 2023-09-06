@@ -4,7 +4,9 @@
     pgcat
   ];
   users = {
-    groups.pgcat = { };
+    groups.pgcat = {
+      gid = 985;
+    };
     users = {
       pgcat = {
         isSystemUser = true;
@@ -48,6 +50,7 @@
         [template]
         prefix = "/service/cluster-1"
         uid = 985
+        gid = 985
         mode = "0644"
         src = "pgcat.toml.tmpl"
         dest = "/etc/pgcat/pgcat.toml"
