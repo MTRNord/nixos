@@ -16,7 +16,7 @@
   };
 
   systemd.services.pgbouncer = {
-    enable = true;
+    enable = false;
     after = [ "network-online.target" ];
     requires = [ "network-online.target" ];
     description = "PgBouncer - PostgreSQL connection pooler";
