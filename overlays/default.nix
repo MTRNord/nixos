@@ -35,7 +35,7 @@
         submodules = true;
       };
 
-      nativeBuildInputs = [ pkgs.autoconf pkgs.autoconf-archive pkgs.autoreconfHook ];
+      nativeBuildInputs = [ pkgs.libevent pkgs.libtool pkgs.pkg-config pkgs.autoreconfHook ];
     });
   };
 
