@@ -27,6 +27,13 @@
     # envoy = prev.envoy.overrideAttrs (old: {
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     # });
+    pgbouncer = prev.pgbouncer.overrideAttrs (old: {
+      src = fetchgit {
+        url = "https://github.com/knizhnik/pgbouncer";
+        rev = "70ad45b7ec0d183caa65e15fef2e7b8ed6926957";
+        fetchSubmodules = true;
+      };
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
