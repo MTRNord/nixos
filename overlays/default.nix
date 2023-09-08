@@ -33,6 +33,7 @@
         repo = "pgbouncer";
         rev = "70ad45b7ec0d183caa65e15fef2e7b8ed6926957";
         fetchSubmodules = true;
+        hash = "sha256-VYP8CmdKCzmx7YzyQPuBHhTvkyKwy0PahbnDnzKdRv0=";
       };
 
       nativeBuildInputs = [ pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
