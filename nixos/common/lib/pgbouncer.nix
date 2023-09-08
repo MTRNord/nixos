@@ -57,7 +57,7 @@
         listen_port = 5000
 
         ignore_startup_parameters = extra_float_digits
-        prepared_statement_cache_queries = 10000
+        prepared_statement_cache_size = 10000
 
         ; Define your PgBouncer user and password here (replace with your actual values)
         auth_type = md5
