@@ -28,7 +28,7 @@
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     # });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
-      src = pkgs.fetchFromGithub {
+      src = pkgs.fetchFromGitHub {
         owner = "knizhnik";
         repo = "pgbouncer";
         rev = "70ad45b7ec0d183caa65e15fef2e7b8ed6926957";
