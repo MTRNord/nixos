@@ -34,6 +34,8 @@
         ref = "prepared_statements";
         submodules = true;
       };
+
+      nativeBuildInputs = old.nativeBuildInputs ++ [ autoreconfHook ];
     });
   };
 
