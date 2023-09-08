@@ -1,5 +1,5 @@
 # This file defines overlays
-{ inputs, pkgs, autoreconfHook, ... }:
+{ inputs, pkgs, ... }:
 {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs { pkgs = final; };
@@ -35,7 +35,7 @@
         submodules = true;
       };
 
-      nativeBuildInputs = old.nativeBuildInputs ++ [ autoreconfHook ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.autoreconfHook ];
     });
   };
 
