@@ -37,6 +37,11 @@
       };
 
       nativeBuildInputs = [ pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
+
+      autoreconfPhase = ''
+        ./autogen.sh
+      '';
+
     });
   };
 
