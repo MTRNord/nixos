@@ -36,7 +36,7 @@
         hash = "sha256-VYP8CmdKCzmx7YzyQPuBHhTvkyKwy0PahbnDnzKdRv0=";
       };
 
-      nativeBuildInputs = [ pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
+      nativeBuildInputs = [ pkgs.python311 pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
 
       autoreconfPhase = ''
         ./autogen.sh
