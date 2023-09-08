@@ -35,7 +35,7 @@
         submodules = true;
       };
 
-      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.autoconf269 pkgs.autoconf-archive pkgs.autoreconfHook269 ];
+      nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.autoconf pkgs.autoconf-archive pkgs.autoreconfHook ];
     });
   };
 
