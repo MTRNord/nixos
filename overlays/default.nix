@@ -28,11 +28,11 @@
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     # });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
-      src = builtins.fetchGit {
-        url = "https://github.com/knizhnik/pgbouncer";
+      src = pkgs.fetchFromGithub {
+        owner = "knizhnik";
+        repo = "pgbouncer";
         rev = "70ad45b7ec0d183caa65e15fef2e7b8ed6926957";
-        ref = "prepared_statements";
-        submodules = true;
+        fetchSubmodules = true;
       };
 
       nativeBuildInputs = [ pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
