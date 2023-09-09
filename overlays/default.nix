@@ -31,9 +31,9 @@
       src = pkgs.fetchFromGitHub {
         owner = "knizhnik";
         repo = "pgbouncer";
-        rev = "70ad45b7ec0d183caa65e15fef2e7b8ed6926957";
+        rev = "8b9b2875ed156df671e31d951391cd2792182d2c";
         fetchSubmodules = true;
-        hash = "sha256-VYP8CmdKCzmx7YzyQPuBHhTvkyKwy0PahbnDnzKdRv0=";
+        hash = "sha256-OZTH7KRP/TNWf9pn/Ii2uEbN5QRvhO6sy3orhj/bWjc=";
       };
 
       nativeBuildInputs = [ pkgs.python311 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
