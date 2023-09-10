@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     pgbouncer
+    util-linux
   ];
   users = {
     groups.pgbouncer = { };
@@ -24,6 +25,7 @@
     serviceConfig = {
       LimitNOFILE = 8192;
       ExecStart = "${pkgs.pgbouncer}/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini";
+      ExecReload = "${pkgs.util-linux}/bin/kill -s SIGHUP $MAINPID";
       Restart = "always";
       RestartSec = 5;
       TimeoutStopSec = 5;

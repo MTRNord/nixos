@@ -9,23 +9,23 @@
     prefix = "/service/cluster-1";
   };
   environment.etc = {
-    "confd/conf.d/pgcat.toml" = {
-      text = ''
-        [template]
-        prefix = "/service/cluster-1"
-        uid = 985
-        gid = 983
-        mode = "0644"
-        src = "pgcat.toml.tmpl"
-        dest = "/etc/pgcat/pgcat.toml"
+    # "confd/conf.d/pgcat.toml" = {
+    #   text = ''
+    #     [template]
+    #     prefix = "/service/cluster-1"
+    #     uid = 985
+    #     gid = 983
+    #     mode = "0644"
+    #     src = "pgcat.toml.tmpl"
+    #     dest = "/etc/pgcat/pgcat.toml"
 
-        reload_cmd = "systemctl reload pgcat"
+    #     reload_cmd = "systemctl reload pgcat"
 
-        keys = [
-            "/", "/members/","/leader"
-        ]
-      '';
-    };
+    #     keys = [
+    #         "/", "/members/","/leader"
+    #     ]
+    #   '';
+    # };
     "confd/conf.d/pgbouncer.toml" = {
       text = ''
         [template]
