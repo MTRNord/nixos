@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     patroni
     etcd_3_4
+    coreutils
   ];
 
   services = {
@@ -47,7 +48,7 @@
         postgresql = {
           listen = lib.mkForce "127.0.0.1,10.100.0.1:5432";
           parameters = {
-            max_connections = "160";
+            max_connections = "300";
             superuser_reserved_connections = "3";
 
             shared_buffers = "4096 MB";
@@ -55,7 +56,7 @@
             maintenance_work_mem = "320 MB";
             huge_pages = "off";
             effective_cache_size = "11 GB";
-            effective_io_concurrency = "200"; # concurrent IO only really activated if OS supports posix_fadvise function
+            effective_io_concurrency = "100"; # concurrent IO only really activated if OS supports posix_fadvise function
             random_page_cost = "1.25"; # speed of random disk access relative to sequential access (1.0)
 
             # Monitoring
@@ -66,7 +67,7 @@
             # Replication
             wal_level = "replica"; # consider using at least "replica"
             max_wal_senders = "10";
-            #synchronous_commit = "on";
+            synchronous_commit = "on";
 
             # Checkpointing: 
             checkpoint_timeout = "15 min";
@@ -76,7 +77,7 @@
 
             # WAL archiving
             archive_mode = "on"; # having it on enables activating P.I.T.R. at a later time without restart›
-            archive_command = "/bin/true"; # not doing anything yet with WAL-s
+            archive_command = "${pkgs.coreutils}/bin/true"; # not doing anything yet with WAL-s
 
             # WAL writing
             wal_compression = "on";
@@ -93,10 +94,10 @@
             bgwriter_flush_after = "0";
 
             # Parallel queries: 
-            max_worker_processes = "12";
-            max_parallel_workers_per_gather = "6";
-            max_parallel_maintenance_workers = "6";
-            max_parallel_workers = "12";
+            max_worker_processes = "14";
+            max_parallel_workers_per_gather = "7";
+            max_parallel_maintenance_workers = "7";
+            max_parallel_workers = "14";
             parallel_leader_participation = "on";
 
             # Advanced features 
