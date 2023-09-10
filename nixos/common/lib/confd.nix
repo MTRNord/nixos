@@ -70,7 +70,7 @@
   # Ensure confd can create a config
   system.activationScripts = {
     postgresqlMkdir = {
-      text = "mkdir -p /etc/pgcat && chown pgcat:pgcat -R /etc/pgcat && chmod o+w /etc/pgcat";
+      text = "mkdir -p /etc/pgbouncer && chown pgbouncer:pgbouncer -R /etc/pgbouncer && chmod o+w /etc/pgbouncer";
       deps = [ ];
     };
   };
