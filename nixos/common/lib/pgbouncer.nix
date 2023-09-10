@@ -44,33 +44,33 @@
         host    all             all             10.244.0.0/10           md5
       '';
     };
-    "pgbouncer/pgbouncer.ini" = {
-      user = config.users.users.pgbouncer.name;
-      group = config.users.users.pgbouncer.group;
-      text = ''
-        [databases]
-        * = host=10.100.0.2 port=5432 pool_size=10
-        * = host=10.100.0.1 port=5432 pool_size=10
+    # "pgbouncer/pgbouncer.ini" = {
+    #   user = config.users.users.pgbouncer.name;
+    #   group = config.users.users.pgbouncer.group;
+    #   text = ''
+    #     [databases]
+    #     * = host=10.100.0.2 port=5432 pool_size=10
+    #     * = host=10.100.0.1 port=5432 pool_size=10
 
-        [pgbouncer]
-        listen_addr = *
-        listen_port = 5000
+    #     [pgbouncer]
+    #     listen_addr = *
+    #     listen_port = 5000
 
-        ignore_startup_parameters = extra_float_digits
-        prepared_statement_cache_size = 10000
+    #     ignore_startup_parameters = extra_float_digits
+    #     prepared_statement_cache_size = 10000
 
-        ; Define your PgBouncer user and password here (replace with your actual values)
-        auth_type = md5
-        auth_hba_file = /etc/pgbouncer/pg_hba.conf
-        auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
+    #     ; Define your PgBouncer user and password here (replace with your actual values)
+    #     auth_type = md5
+    #     auth_hba_file = /etc/pgbouncer/pg_hba.conf
+    #     auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
 
-        ; Connection Pooling Settings
-        pool_mode = transaction
-        max_client_conn = 200
-        default_pool_size = 10
-        min_pool_size = 2
-        reserve_pool_size = 5
-      '';
-    };
+    #     ; Connection Pooling Settings
+    #     pool_mode = transaction
+    #     max_client_conn = 200
+    #     default_pool_size = 10
+    #     min_pool_size = 2
+    #     reserve_pool_size = 5
+    #   '';
+    # };
   };
 }

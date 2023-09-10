@@ -36,39 +36,4 @@
       Group = config.users.users.pgcat.group; # Set the group under which PgCat should run
     };
   };
-
-  services.confd = {
-    enable = true;
-    nodes = [
-      "http://100.64.0.3:2379"
-      "http://100.64.0.1:2379"
-    ];
-    prefix = "/service/cluster-1";
-  };
-  environment.etc = {
-    "confd/conf.d/pgcat.toml" = {
-      text = ''
-        [template]
-        prefix = "/service/cluster-1"
-        uid = 985
-        gid = 983
-        mode = "0644"
-        src = "pgcat.toml.tmpl"
-        dest = "/etc/pgcat/pgcat.toml"
-
-        reload_cmd = "systemctl reload pgcat"
-
-        keys = [
-            "/", "/members/","/leader"
-        ]
-      '';
-    };
-  };
-  # Ensure confd can create a config
-  system.activationScripts = {
-    postgresqlMkdir = {
-      text = "mkdir -p /etc/pgcat && chown pgcat:pgcat -R /etc/pgcat && chmod o+w /etc/pgcat";
-      deps = [ ];
-    };
-  };
 }
