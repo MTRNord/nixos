@@ -124,6 +124,7 @@
       };
 
       kubernetes_ca_file = { };
+      kubernetes_ca_client_file = { };
     };
   };
 

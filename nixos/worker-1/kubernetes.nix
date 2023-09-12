@@ -28,6 +28,7 @@
     addons.dns.enable = true;
     easyCerts = false;
     caFile = config.sops.secrets.kubernetes_ca_file.path;
+    clientCaFile = config.sops.secrets.kubernetes_ca_client_file.path;
     kubelet = {
       enable = true;
       kubeconfig = {
