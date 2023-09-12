@@ -122,6 +122,8 @@
       pgcat_settings_file_template = {
         path = "/etc/confd/templates/pgcat.toml.tmpl";
       };
+
+      kubernetes_ca_file = { };
     };
   };
 
