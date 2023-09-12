@@ -18,6 +18,7 @@
     conntrack-tools
     cri-tools
     cilium-cli
+    k9s
   ];
 
   boot.kernelModules = [
