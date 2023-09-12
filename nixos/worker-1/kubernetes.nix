@@ -20,7 +20,6 @@
   boot.kernel.sysctl = {
     # TODO IPV6/DualStack
     "net.ipv4.ip_forward" = 1;
-    "net.bridge.bridge-nf-call-iptables" = 1;
   };
 
   virtualisation.cri-o.enable = true;
