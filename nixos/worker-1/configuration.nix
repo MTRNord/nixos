@@ -224,7 +224,7 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" "wg0" ];
+        trustedInterfaces = [ "tailscale0" "floating1" "wg0" "cilium_host" "cilium_net" "cilium_vxlan" ];
         enable = true;
         allowPing = true;
         logRefusedConnections = false;
