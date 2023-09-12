@@ -25,7 +25,8 @@
     serviceConfig = {
       LimitNOFILE = 8192;
       ExecStart = "${pkgs.pgbouncer}/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini";
-      ExecReload = "${pkgs.util-linux}/bin/kill -s SIGHUP $MAINPID";
+      ExecReload = "${pkgs.util-linux}/bin/kill -HUP $MAINPID";
+      #KillSignal = "SIGINT";
       Restart = "always";
       RestartSec = 5;
       TimeoutStopSec = 5;
