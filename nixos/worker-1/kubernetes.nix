@@ -28,12 +28,12 @@
     addons.dns.enable = true;
     easyCerts = false;
     caFile = config.sops.secrets.kubernetes_ca_file.path;
-    clientCaFile = config.sops.secrets.kubernetes_ca_client_file.path;
     kubelet = {
       enable = true;
       kubeconfig = {
         server = "https://[2a01:4f9:4a:451c:2::5]:6443";
       };
+      clientCaFile = config.sops.secrets.kubernetes_ca_client_file.path;
       extraOpts = "--fail-swap-on=false";
       taints = {
         "arm64" = {
