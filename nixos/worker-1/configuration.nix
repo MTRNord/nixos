@@ -225,6 +225,8 @@
       {
         checkReversePath = "loose";
         trustedInterfaces = [ "tailscale0" "floating1" "wg0" "cilium_host" "cilium_net" "cilium_vxlan" ];
+        logReversePathDrops = true;
+        logRefusedPackets = true;
         enable = true;
         allowPing = true;
         logRefusedConnections = false;
