@@ -32,6 +32,17 @@
     "ip6_tables"
   ];
 
+  firewall.allowedTCPPorts = [
+    4240
+    4244
+    4245
+    4250
+  ];
+  firewall.allowedUDPPorts = [
+    8473
+    51871
+  ];
+
 
   services.kubernetes = {
     apiserverAddress = "https://[2a01:4f9:4a:451c:2::5]:6443";
