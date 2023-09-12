@@ -61,7 +61,7 @@
 
         pool_mode = transaction
         max_client_conn = 200
-        default_pool_size = 10
+        default_pool_size = 20
         min_pool_size = 2
         reserve_pool_size = 5
       '';
