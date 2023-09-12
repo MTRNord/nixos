@@ -37,6 +37,7 @@
     4244
     4245
     4250
+    10250
   ];
   networking.firewall.allowedUDPPorts = [
     8473
