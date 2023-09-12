@@ -72,5 +72,5 @@
     };
   };
   services.kubernetes.flannel.enable = false;
-  services.kubernetes.kubelet.cni.packages = [ pkgs.cni-plugins ];
+  services.kubernetes.kubelet.cni.packages = lib.mkAfter [ pkgs.cni-plugins ];
 }
