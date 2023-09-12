@@ -13,6 +13,8 @@
     ethtool
     socat
     cni
+    conntrack-tools
+    cri-tools
   ];
 
   boot.kernelModules = [ "br_netfilter" ];
