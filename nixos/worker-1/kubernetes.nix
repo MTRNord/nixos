@@ -16,7 +16,6 @@
   ];
 
   boot.kernelModules = [ "br_netfilter" ];
-  virtualisation.cri-o.enable = true;
 
   services.kubernetes = {
     apiserverAddress = "https://[2a01:4f9:4a:451c:2::5]:6443";
