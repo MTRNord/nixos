@@ -3,6 +3,7 @@
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/kubernetes/"
+      "/etc/kubernetes/"
     ];
   };
 
