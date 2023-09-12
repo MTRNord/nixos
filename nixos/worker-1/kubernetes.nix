@@ -17,6 +17,7 @@
     cni
     conntrack-tools
     cri-tools
+    cilium-cli
   ];
 
   boot.kernelModules = [ "br_netfilter" ];
