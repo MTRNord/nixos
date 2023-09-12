@@ -34,6 +34,8 @@
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
     ../common/lib/asterisk.nix
+
+    ./kubernetes.nix
   ];
 
   nixpkgs = {
