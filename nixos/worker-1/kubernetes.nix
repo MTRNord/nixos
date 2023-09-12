@@ -40,6 +40,7 @@
     addons.dns.enable = true;
     easyCerts = false;
     caFile = config.sops.secrets.kubernetes_ca_file.path;
+    dataDir = "/var/lib/kubelet";
     kubelet = {
       enable = true;
       kubeconfig = {
