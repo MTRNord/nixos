@@ -26,17 +26,18 @@
     etcd = {
       enable = true;
       initialClusterState = "existing";
-      listenClientUrls = [ "http://100.64.0.1:2379" ];
-      listenPeerUrls = [ "http://100.64.0.1:2380" ];
+      listenClientUrls = [ "http://10.100.0.1:2379" ];
+      listenPeerUrls = [ "http://10.100.0.1:2380" ];
       initialCluster = [
-        "worker-1=http://100.64.0.1:2380"
-        "nordgedanken=http://100.64.0.3:2380"
+        "worker-1=http://10.100.0.1:2380"
+        "nordgedanken=http://10.100.0.2:2380"
       ];
       extraConf = {
         "UNSUPPORTED_ARCH" = "arm64";
         "ENABLE_V2" = "true";
       };
     };
+
     patroni = {
       enable = true;
       nodeIp = "10.100.0.1";
@@ -110,8 +111,8 @@
         };
         etcd = {
           hosts = [
-            "100.64.0.3:2379"
-            "100.64.0.1:2379"
+            "10.100.0.1:2379"
+            "10.100.0.2:2379"
           ];
         };
         tags = {
@@ -143,5 +144,5 @@
     };
   };
 
-  systemd.services.etcd.serviceConfig.ExecStart = lib.mkForce "${pkgs.etcd_3_4}/bin/etcd";
+  systemd.services.etcd.serviceConfig.ExecStart = lib.mkForce "${pkgs.etcd_3_4}/bin/etcd --force-new-cluster";
 }
