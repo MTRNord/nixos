@@ -3,8 +3,8 @@
   services.confd = {
     enable = true;
     nodes = [
-      "http://100.64.0.3:2379"
-      "http://100.64.0.1:2379"
+      "http://10.100.0.1:2379"
+      "http://10.100.0.2:2379"
     ];
     prefix = "/service/cluster-1";
   };
