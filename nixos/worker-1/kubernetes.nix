@@ -39,4 +39,5 @@
       };
     };
   };
+  services.kubernetes.flannel.enable = false;
 }
