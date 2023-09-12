@@ -55,6 +55,7 @@
     caFile = config.sops.secrets.kubernetes_ca_file.path;
     dataDir = "/var/lib/kubelet";
     kubelet = {
+      clusterDns = lib.mkForce "10.96.0.10";
       cni.configDir = "/persist/kubernetes/cni";
       enable = true;
       kubeconfig = {

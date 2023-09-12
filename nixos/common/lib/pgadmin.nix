@@ -11,4 +11,10 @@
       initialPasswordFile = config.sops.secrets.pgadmin_password.path;
     };
   };
+  # system.activationScripts = {
+  #   postgresqlMkdir = {
+  #     text = "chown pgadmin:pgadmin -R /var/lib/pgadmin";
+  #     deps = [ ];
+  #   };
+  # };
 }
