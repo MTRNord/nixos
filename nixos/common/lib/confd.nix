@@ -59,8 +59,8 @@
         auth_hba_file = /etc/pgbouncer/pg_hba.conf
         auth_file = ${config.sops.secrets.pgbouncer_auth_file.path}
 
-        admin_users postgres
-        stats_users postgres
+        admin_users = postgres
+        stats_users = postgres
 
         pool_mode = transaction
         max_client_conn = 200
