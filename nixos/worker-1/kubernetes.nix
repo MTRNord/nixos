@@ -32,13 +32,13 @@
     "ip6_tables"
   ];
 
-  firewall.allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     4240
     4244
     4245
     4250
   ];
-  firewall.allowedUDPPorts = [
+  networking.firewall.allowedUDPPorts = [
     8473
     51871
   ];
