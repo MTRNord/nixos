@@ -232,12 +232,9 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" "wg0" "cilium_host" "cilium_net" "cilium_vxlan" ];
-        logReversePathDrops = true;
-        logRefusedPackets = true;
+        trustedInterfaces = [ "tailscale0" "floating1" "wg0" ];
         enable = true;
         allowPing = true;
-        logRefusedConnections = false;
         allowedTCPPorts = [
           22 # ssh
           5060 # SIP
