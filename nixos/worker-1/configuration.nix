@@ -259,11 +259,20 @@
 
         extraCommands =
           builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -A INPUT -s ${ip} -j DROP") blockedV4) + "\n"
-          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -A INPUT -s ${ip} -j DROP") blockedV6);
+          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -A INPUT -s ${ip} -j DROP") blockedV6) + "\n"
+          + ''
+            iptables -A nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
+            ip6tables -A nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
+          '';
 
         extraStopCommands =
           builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -D INPUT -s ${ip} -j DROP") blockedV4) + "\n"
-          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -D INPUT -s ${ip} -j DROP") blockedV6);
+          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -D INPUT -s ${ip} -j DROP") blockedV6) + "\n"
+          + ''
+            iptables -D nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
+            ip6tables -D nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
+          '';
+
       };
   };
 
