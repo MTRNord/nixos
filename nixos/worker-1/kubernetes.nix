@@ -22,8 +22,9 @@
     apiserverAddress = "https://[2a01:4f9:4a:451c:2::5]:6443";
     masterAddress = "[2a01:4f9:4a:451c:2::5]";
     roles = [ "node" ];
+    proxy.enable = false;
+    easyCerts = true;
     kubelet = {
-      enable = true;
       kubeconfig = {
         server = "https://[2a01:4f9:4a:451c:2::5]:6443";
       };
