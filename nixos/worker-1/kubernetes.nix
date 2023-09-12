@@ -1,5 +1,6 @@
 { lib, pkgs, config, ... }:
 {
+  config.services.kubernetes.kubelet.cni.packages = [ pkgs.cni-plugins ];
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/kubernetes/"
@@ -73,5 +74,4 @@
   };
   services.kubernetes.flannel.enable = false;
   services.kubernetes.kubelet.cni.packages = [ pkgs.cni-plugins ];
-  config.services.kubernetes.kubelet.cni.packages = [ pkgs.cni-plugins ];
 }
