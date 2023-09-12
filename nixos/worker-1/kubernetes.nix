@@ -4,6 +4,7 @@
     directories = [
       "/var/lib/kubernetes/"
       "/etc/kubernetes/"
+      "/var/lib/kubelet"
     ];
   };
 
@@ -34,7 +35,7 @@
         server = "https://[2a01:4f9:4a:451c:2::5]:6443";
       };
       clientCaFile = config.sops.secrets.kubernetes_ca_client_file.path;
-      extraOpts = "--fail-swap-on=false";
+      extraOpts = "--fail-swap-on=false --kubeconfig=/etc/kubernetes/kubelet.conf --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --config=/var/lib/kubelet/config.yaml";
       taints = {
         "arm64" = {
           key = "arch";
