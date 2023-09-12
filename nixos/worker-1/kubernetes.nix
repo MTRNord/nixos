@@ -23,8 +23,10 @@
     masterAddress = "[2a01:4f9:4a:451c:2::5]";
     roles = [ "node" ];
     proxy.enable = false;
-    easyCerts = true;
+    addons.dns.enable = true;
+    easyCerts = false;
     kubelet = {
+      enable = true;
       kubeconfig = {
         server = "https://[2a01:4f9:4a:451c:2::5]:6443";
       };
