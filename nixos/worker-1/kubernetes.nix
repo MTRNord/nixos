@@ -55,6 +55,7 @@
     caFile = config.sops.secrets.kubernetes_ca_file.path;
     dataDir = "/var/lib/kubelet";
     kubelet = {
+      cni.configDir = "/persist/kubernetes/cni";
       enable = true;
       kubeconfig = {
         server = "https://[2a01:4f9:4a:451c:2::5]:6443";
