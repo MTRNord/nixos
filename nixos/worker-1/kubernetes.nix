@@ -26,6 +26,7 @@
     "xt_nat"
     "br_netfilter"
     "ip6table_mangle"
+    "ip6table_raw"
   ];
 
 
