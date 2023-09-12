@@ -20,7 +20,13 @@
     cilium-cli
   ];
 
-  boot.kernelModules = [ "br_netfilter" ];
+  boot.kernelModules = [
+    "iptable_nat"
+    "iptable_filter"
+    "xt_nat"
+    "br_netfilter"
+  ];
+
 
   services.kubernetes = {
     apiserverAddress = "https://[2a01:4f9:4a:451c:2::5]:6443";
