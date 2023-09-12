@@ -16,12 +16,6 @@
   ];
 
   boot.kernelModules = [ "br_netfilter" ];
-
-  boot.kernel.sysctl = {
-    # TODO IPV6/DualStack
-    "net.ipv4.ip_forward" = 1;
-  };
-
   virtualisation.cri-o.enable = true;
 
   services.kubernetes = {
