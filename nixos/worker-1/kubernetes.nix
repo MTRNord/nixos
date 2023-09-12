@@ -25,6 +25,7 @@
     "iptable_filter"
     "xt_nat"
     "br_netfilter"
+    "ip6_tables"
   ];
 
 
