@@ -24,10 +24,10 @@
     # nix-colors.url = "github:misterio77/nix-colors";
 
     kubenix.url = "github:hall/kubenix";
-    deploy-rs.url = "github:serokell/deploy-rs";
+    docker-utils.url = "github:collinarnett/docker-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, docker-utils, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -41,9 +41,15 @@
       packages = forAllSystems (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          build-draupnir = {
+            # TODO: Pull Draupnir
+            # TODO: Run yarn describe version task
+            # TODO: Build image using https://github.com/collinarnett/docker-utils
+          };
         in
         import ./pkgs { inherit pkgs; }
       );
+
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
       devShells = forAllSystems (system:
@@ -89,6 +95,5 @@
           ];
         };
       };
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
