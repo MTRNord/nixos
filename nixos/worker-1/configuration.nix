@@ -100,8 +100,6 @@
 
   };
 
-  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-
   # Broken
   systemd.network.wait-online.enable = false;
   systemd.network = {

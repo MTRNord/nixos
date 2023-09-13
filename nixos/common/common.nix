@@ -27,6 +27,7 @@
     jq
     compsize
     iperf
+    qemu
   ];
 
   # Write known-hosts
