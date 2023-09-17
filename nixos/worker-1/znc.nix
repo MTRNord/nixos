@@ -54,9 +54,9 @@
       };
       streamConfig =
         let
-          cert = config.security.acme.certs."${cfg.domainName}".directory + "/fullchain.pem";
-          certKey = config.security.acme.certs."${cfg.domainName}".directory + "/key.pem";
-          trustedCert = config.security.acme.certs."${cfg.domainName}".directory + "/chain.pem";
+          cert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/fullchain.pem";
+          certKey = config.security.acme.certs."znc.midnightthoughts.space".directory + "/key.pem";
+          trustedCert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/chain.pem";
         in
         ''
           upstream znc {
