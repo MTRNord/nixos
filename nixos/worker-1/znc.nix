@@ -37,7 +37,7 @@
       upstreams = {
         "znc" = {
           servers = {
-            "localhost:58457" = { };
+            "[::1]:58457" = { };
           };
         };
       };
