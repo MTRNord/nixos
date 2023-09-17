@@ -25,7 +25,7 @@
           port = 6697;
           useSSL = true;
           modules = [ "simple_away" ];
-          channels = [ "#fedora-buildsys" ];
+          channels = [ "fedora-buildsys" ];
         };
       };
     };
