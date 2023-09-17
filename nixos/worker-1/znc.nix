@@ -7,7 +7,7 @@
   };
   services.znc = {
     enable = true;
-    modulePackages = [ zncModules.clientbuffer ];
+    modulePackages = [ pkgs.zncModules.clientbuffer ];
     confOptions = {
       passBlock = ''
         <Pass password>
