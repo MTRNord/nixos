@@ -9,6 +9,7 @@
     enable = true;
     modulePackages = [ pkgs.zncModules.clientbuffer ];
     confOptions = {
+      useSSL = false;
       passBlock = ''
         <Pass password>
             Method = sha256
