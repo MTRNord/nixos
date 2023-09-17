@@ -52,6 +52,28 @@
           };
         };
       };
+      streamConfig =
+        let
+          cert = config.security.acme.certs."${cfg.domainName}".directory + "/fullchain.pem";
+          certKey = config.security.acme.certs."${cfg.domainName}".directory + "/key.pem";
+          trustedCert = config.security.acme.certs."${cfg.domainName}".directory + "/chain.pem";
+        in
+        ''
+          upstream znc {
+            server [::1]:58457;
+          }
+          server {
+            listen 6697 ssl;
+            listen [::]:6697 ssl;
+            ssl_certificate ${cert};
+            ssl_certificate_key ${certKey};
+            ssl_trusted_certificate ${trustedCert};
+            proxy_pass znc;
+          }
+        '';
     };
   };
+  networking.firewall.allowedTCPPorts = [
+    6697
+  ];
 }
