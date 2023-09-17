@@ -20,6 +20,7 @@
       marcel_initial_password.neededForUsers = true;
       root_initial_password.neededForUsers = true;
       "wireguard/private_key" = { };
+      "wireguard/worker-2/private_key" = { };
       ssh_host_ed25519_key = {
         mode = "0600";
         path = "/etc/ssh/ssh_host_ed25519_key";

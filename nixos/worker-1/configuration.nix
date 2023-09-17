@@ -36,6 +36,7 @@
     ../common/lib/asterisk.nix
 
     ./kubernetes.nix
+    ./znc.nix
   ];
 
   nixpkgs = {
@@ -169,6 +170,7 @@
         table = "off";
 
         peers = [
+          # big one
           {
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
             allowedIPs = [
@@ -176,6 +178,15 @@
               "::/0"
             ];
             endpoint = "95.217.202.35:51820";
+          }
+          # worker-2
+          {
+            publicKey = "gswnnC4NQp0fXXGDhLaPVslCYPHMsXti0JloOzuGdn8=";
+            allowedIPs = [
+              "0.0.0.0/0"
+              "::/0"
+            ];
+            endpoint = "65.109.5.159:51820";
           }
         ];
       };
