@@ -422,6 +422,10 @@
         discourse-github
         discourse-solved
         discourse-docs
+        discourse-calendar
+	discourse-github
+	discourse-assign
+	discourse-solved
       ];
       siteSettings = {
         required = {
@@ -443,6 +447,7 @@
           tos_url = "https://docs.draupnir.midnightthoughts.space/docs/code_of_conduct/";
         };
         plugins = {
+          calendar_enabled = true;
           chat_enabled = false;
         };
       };
