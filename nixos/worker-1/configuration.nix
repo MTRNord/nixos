@@ -426,6 +426,7 @@
 	discourse-github
 	discourse-assign
 	discourse-solved
+	discourse-chat-integration
       ];
       siteSettings = {
         required = {
