@@ -423,10 +423,15 @@
         discourse-solved
         discourse-docs
         discourse-calendar
-	discourse-github
-	discourse-assign
-	discourse-solved
-	discourse-chat-integration
+        discourse-github
+        discourse-assign
+        discourse-solved
+        discourse-chat-integration
+        discourse-data-explorer
+        pkgs.discourse-footnote
+	pkgs.discourse-cakeday
+	pkgs.discourse-templates
+	#pkgs.discourse-spoiler-alert
       ];
       siteSettings = {
         required = {
