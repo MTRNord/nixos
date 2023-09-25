@@ -32,6 +32,7 @@
         rev = "v3.1.1";
         sha256 = "sha256-22GXFYPjPYL20amR4xFB4L/dCp32H4Z3uf0GLGEghUE=";
       };
+      installPhase = old.installPhase;
     });
     # envoy = prev.envoy.overrideAttrs (old: {
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
