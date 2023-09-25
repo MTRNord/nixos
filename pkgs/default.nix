@@ -40,7 +40,7 @@
         owner = "discourse";
         repo = "discourse-gamification";
         rev = "2a9ad0df39bad537a6bd7ca38a578c4d6d60ebbc";
-        sha256 = "sha256-rhkwAZGq9WPqVBuLc5eZJz+ve8x1nk6pVoYNEfDmPwIA";
+        sha256 = "sha256-urmCt3FCIU0YSbkEJgDOzN/2dYjyYnPstjWCGOp/Vbs=";
       };
     };
   #  discourse-spoiler-alert = pkgs.discourse.mkDiscoursePlugin
