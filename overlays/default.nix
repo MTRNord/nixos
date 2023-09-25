@@ -24,6 +24,15 @@
       '';
       buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
     });
+    discourse = prev.discourse.overrideAttrs (old: {
+      version = "3.1.1";
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse";
+        rev = "v3.1.1";
+        sha256 = "sha256-22GXFYPjPYL20amR4xFB4L/dCp32H4Z3uf0GLGEghUE=";
+      };
+    });
     # envoy = prev.envoy.overrideAttrs (old: {
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     # });
