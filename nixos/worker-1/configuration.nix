@@ -429,9 +429,10 @@
         discourse-chat-integration
         discourse-data-explorer
         pkgs.discourse-footnote
-	pkgs.discourse-cakeday
-	pkgs.discourse-templates
-	#pkgs.discourse-spoiler-alert
+        pkgs.discourse-gamification
+        pkgs.discourse-cakeday
+        pkgs.discourse-templates
+        #pkgs.discourse-spoiler-alert
       ];
       siteSettings = {
         required = {
