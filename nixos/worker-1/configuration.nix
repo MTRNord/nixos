@@ -422,12 +422,12 @@
         discourse-github
         discourse-solved
         discourse-docs
-        pkgs.discourse-calendar
+        discourse-calendar
         discourse-github
-        pkgs.discourse-assign
+        discourse-assign
         discourse-solved
-        pkgs.discourse-chat-integration
-        pkgs.discourse-data-explorer
+        discourse-chat-integration
+        discourse-data-explorer
         pkgs.discourse-footnote
         pkgs.discourse-gamification
         pkgs.discourse-cakeday
