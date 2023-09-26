@@ -393,7 +393,7 @@
     };
 
     discourse = {
-      package = inputs.nixpkgs-discourse.${pkgs.system}.discourse;
+      package = inputs.nixpkgs-discourse.legacyPackages.${pkgs.system}.discourse;
       enable = true;
       database = {
         host = "postgres.internal.midnightthoughts.space";
