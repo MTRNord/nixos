@@ -24,18 +24,49 @@
       '';
       buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
     });
-#    discourse = prev.discourse.overrideAttrs (old: {
-#      version = "3.1.1";
-#      src = pkgs.fetchFromGitHub {
-#        owner = "discourse";
-#        repo = "discourse";
-#        rev = "v3.1.1";
-#        sha256 = "sha256-c7GCvMt0OMlOVNayHuHqjAz7lwmttar90F4T5icUu0g=";
-#      };
-#    });
     # envoy = prev.envoy.overrideAttrs (old: {
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
     # });
+    discourse-calendar = prev.discourse-calendar.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse-calendar";
+        rev = "4d4fe40d09f7232b1348e1ff910b37b2cec0835d";
+        hash = "sha256-w1sqE3KxwrE8SWqZUtPVhjITOPFXwlj4iPyPZeSfvtI";
+      };
+    });
+    discourse-assign = prev.discourse-assign.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse-assign";
+        rev = "e9c7cb5c3f90109bc47223b0aa4054d681e9cc04";
+        hash = "sha256-w1h1dCSyOml+AT7lPKENYfawm6BU2De5CyBHrDnDcrM=";
+      };
+    });
+    discourse-chat-integration = prev.discourse-chat-integration.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse-chat-integration";
+        rev = "4f9ccb58cae8600dcb6db84f38f235283911e6e8";
+        hash = "sha256-Em9aAwAfUoqsOHLrqNhxUQXsO4Owydf9nhCHbBaqqpg=";
+      };
+    });
+    discourse-data-explorer = prev.discourse-data-explorer.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse-data-explorer";
+        rev = "06193f27ef15828479eea61ae4a80bf59806a535";
+        hash = "sha256-afjqgi2gzRpbZt5K9yXPy4BJ5qRv7A4ZkXHX85+Cv7s=";
+      };
+    });
+    discourse-data-explorer = prev.discourse-data-explorer.overrideAttrs (old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "discourse";
+        repo = "discourse-data-explorer";
+        rev = "06193f27ef15828479eea61ae4a80bf59806a535";
+        hash = "sha256-afjqgi2gzRpbZt5K9yXPy4BJ5qRv7A4ZkXHX85+Cv7s=";
+      };
+    });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
       src = pkgs.fetchFromGitHub {
         owner = "knizhnik";
