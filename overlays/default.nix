@@ -59,14 +59,6 @@
         hash = "sha256-afjqgi2gzRpbZt5K9yXPy4BJ5qRv7A4ZkXHX85+Cv7s=";
       };
     });
-    discourse-data-explorer = prev.discourse-data-explorer.overrideAttrs (old: {
-      src = pkgs.fetchFromGitHub {
-        owner = "discourse";
-        repo = "discourse-data-explorer";
-        rev = "06193f27ef15828479eea61ae4a80bf59806a535";
-        hash = "sha256-afjqgi2gzRpbZt5K9yXPy4BJ5qRv7A4ZkXHX85+Cv7s=";
-      };
-    });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
       src = pkgs.fetchFromGitHub {
         owner = "knizhnik";
