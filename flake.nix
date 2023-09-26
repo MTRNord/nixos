@@ -42,7 +42,6 @@
       # Acessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system:
         let
-          nixpkgs.legacyPackages.${system}.discourse = nixpkgs-discourse.legacyPackages.${system}.discourse;
           pkgs = nixpkgs.legacyPackages.${system};
           build-draupnir = {
             # TODO: Pull Draupnir
