@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 {
   users.users."node-yara-rs-runner" = { isNormalUser = false; };
-  services.github-runner = {
+  services.github-runners = {
     "node-yara-rs" = {
       url = "https://github.com/MTRNord/node-yara-rs";
       enable = true;
