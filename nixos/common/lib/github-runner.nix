@@ -7,6 +7,7 @@
       enable = true;
       extraLabels = [ "arm64" ];
       ephemeral = true;
+      replace = true;
       user = "node-yara-rs-runner";
       tokenFile = config.sops.secrets.node_yara_rs_runner_tokenfile.path;
       extraPackages = [
