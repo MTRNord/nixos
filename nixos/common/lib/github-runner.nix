@@ -41,7 +41,7 @@
         autoconf
         automake
         libtool
-        llvmPackages.libclang
+        libclang
         (yara.override { enableStatic = true; })
         gcc
         libllvm
@@ -49,7 +49,7 @@
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
         YARA_INCLUDE_DIR = "${pkgs.yara}/include";
-        LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
+        LIBCLANG_PATH = "${pkgs.libclang}/lib";
         BINDGEN_EXTRA_CLANG_ARGS = "$(< ${pkgs.stdenv.cc}/nix-support/libc-crt1-cflags) \
           $(< ${pkgs.stdenv.cc}/nix-support/libc-cflags) \
           $(< ${pkgs.pkgs.stdenv.cc}/nix-support/cc-cflags) \
