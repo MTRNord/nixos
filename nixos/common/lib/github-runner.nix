@@ -23,13 +23,13 @@
         curl
         rustup
         (yara.override { enableStatic = true; })
-        clang16
+        clang_16
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
         YARA_INCLUDE_DIR = "${pkgs.yara}/include";
-        LIBCLANG_PATH = "${pkgs.clang16.cc.lib}/lib";
-        BINDGEN_EXTRA_CLANG_ARGS = "$(< ${pkgs.clang16}/nix-support/cc-cflags) $(< ${pkgs.clang16}/nix-support/libc-cflags) $(< ${pkgs.clang16}/nix-support/libcxx-cxxflags) $NIX_CFLAGS_COMPILE -idirafter ${pkgs.clang16}/lib/clang/${lib.getVersion pkgs.clang16}/include";
+        LIBCLANG_PATH = "${pkgs.clang_16.cc.lib}/lib";
+        BINDGEN_EXTRA_CLANG_ARGS = "$(< ${pkgs.clang_16}/nix-support/cc-cflags) $(< ${pkgs.clang_16}/nix-support/libc-cflags) $(< ${pkgs.clang_16}/nix-support/libcxx-cxxflags) $NIX_CFLAGS_COMPILE -idirafter ${pkgs.clang_16}/lib/clang/${lib.getVersion pkgs.clang_16}/include";
       };
     };
   };
