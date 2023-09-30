@@ -24,6 +24,7 @@
         pkgs.automake
         pkgs.libtool
         (pkgs.yara.override { enableStatic = true; })
+        pkgs.gcc
       ];
     };
   };
