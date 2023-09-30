@@ -13,6 +13,7 @@
         pkgs.yarn
         pkgs.nodejs_20
         pkgs.curl
+        pkgs.rustup
       ];
     };
   };
