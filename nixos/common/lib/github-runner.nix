@@ -30,7 +30,7 @@
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
         YARA_INCLUDE_DIR = "${pkgs.yara}/include";
-        LIBCLANG_PATH = "${llvmPackages.libclang}/lib";
+        LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
         BINDGEN_EXTRA_CLANG_ARGS = "$(< ${stdenv.cc}/nix-support/libc-crt1-cflags) \
           $(< ${stdenv.cc}/nix-support/libc-cflags) \
           $(< ${stdenv.cc}/nix-support/cc-cflags) \
