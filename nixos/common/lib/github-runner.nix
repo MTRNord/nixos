@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, stdenv, ... }:
 {
   users.users."node-yara-rs-runner" = { isNormalUser = false; };
   services.github-runners = {
@@ -27,6 +27,18 @@
         (pkgs.yara.override { enableStatic = true; })
         pkgs.gcc
       ];
+      extraEnvironment = {
+        YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
+        YARA_INCLUDE_DIR = "${pkgs.yara}/include";
+        LIBCLANG_PATH = "${llvmPackages.libclang}/lib";
+        BINDGEN_EXTRA_CLANG_ARGS = "$(< ${stdenv.cc}/nix-support/libc-crt1-cflags) \
+          $(< ${stdenv.cc}/nix-support/libc-cflags) \
+          $(< ${stdenv.cc}/nix-support/cc-cflags) \
+          $(< ${stdenv.cc}/nix-support/libcxx-cxxflags) \
+          ${lib.optionalString stdenv.cc.isClang "-idirafter ${stdenv.cc.cc}/lib/clang/${lib.getVersion stdenv.cc.cc}/include"} \
+          ${lib.optionalString stdenv.cc.isGNU "-isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc} -isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc}/${stdenv.hostPlatform.config} -idirafter ${stdenv.cc.cc}/lib/gcc/${stdenv.hostPlatform.config}/${lib.getVersion stdenv.cc.cc}/include"} \
+        ";
+      };
     };
   };
 }
