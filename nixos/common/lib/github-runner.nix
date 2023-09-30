@@ -22,6 +22,7 @@
         pkgs.protobufc
         pkgs.autoconf
         pkgs.automake
+        pkgs.libtool
       ];
     };
   };
