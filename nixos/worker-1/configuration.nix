@@ -29,7 +29,7 @@
     ../common/lib/patroni.nix
     ../common/lib/confd.nix
     ../common/lib/pgbouncer.nix
-    ../common/lib/pgadmin.nix
+    #../common/lib/pgadmin.nix
     ../common/lib/envoy.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
