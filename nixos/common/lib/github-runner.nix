@@ -21,6 +21,7 @@
         pkgs.pcre
         pkgs.protobufc
         pkgs.autoconf
+        pkgs.automake
       ];
     };
   };
