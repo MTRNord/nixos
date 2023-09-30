@@ -19,6 +19,7 @@
         pkgs.openssl
         pkgs.pcre
         pkgs.protobufc
+        pkgs.autoconf
       ];
     };
   };
