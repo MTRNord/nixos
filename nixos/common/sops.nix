@@ -126,6 +126,9 @@
 
       kubernetes_ca_file = { };
       kubernetes_ca_client_file = { };
+      node_yara_rs_runner_tokenfile = {
+        owner = "node-yara-rs-runner";
+      };
     };
   };
 

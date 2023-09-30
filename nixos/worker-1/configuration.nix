@@ -35,6 +35,7 @@
     ../common/lib/podman.nix
     ../common/lib/asterisk.nix
     ../common/lib/discourse.nix
+    ../common/lib/github-runner.nix
 
     ./kubernetes.nix
     ./znc.nix
@@ -306,6 +307,7 @@
       };
 
       "root".passwordFile = config.sops.secrets.root_initial_password.path;
+      "node-yara-rs-runner" = { isNormalUser = false; };
     };
   };
 
