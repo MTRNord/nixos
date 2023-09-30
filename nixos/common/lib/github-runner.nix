@@ -24,6 +24,7 @@
         rustup
         yara
         clang_16
+        binutils
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
