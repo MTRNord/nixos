@@ -23,7 +23,7 @@
         pkgs.autoconf
         pkgs.automake
         pkgs.libtool
-        (pkgs.yara.override { enableStatic = true; })`
+        (pkgs.yara.override { enableStatic = true; })
       ];
     };
   };
