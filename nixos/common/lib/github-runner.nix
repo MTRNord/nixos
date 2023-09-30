@@ -1,6 +1,23 @@
 { lib, pkgs, config, ... }:
 {
   users.users."node-yara-rs-runner" = { isNormalUser = false; };
+  environment.systemPackages = with pkgs; [
+    yarn
+    nodejs_20
+    curl
+    rustup
+    gnumake
+    pkg-config
+    openssl
+    pcre
+    protobufc
+    autoconf
+    automake
+    libtool
+    llvmPackages.libclang
+    (yara.override { enableStatic = true; })
+    gcc
+  ];
   services.github-runners = {
     "node-yara-rs" = {
       url = "https://github.com/MTRNord/node-yara-rs";
@@ -10,22 +27,22 @@
       replace = true;
       user = "node-yara-rs-runner";
       tokenFile = config.sops.secrets.node_yara_rs_runner_tokenfile.path;
-      extraPackages = [
-        pkgs.yarn
-        pkgs.nodejs_20
-        pkgs.curl
-        pkgs.rustup
-        pkgs.gnumake
-        pkgs.pkg-config
-        pkgs.openssl
-        pkgs.pcre
-        pkgs.protobufc
-        pkgs.autoconf
-        pkgs.automake
-        pkgs.libtool
-        pkgs.llvmPackages.libclang
-        (pkgs.yara.override { enableStatic = true; })
-        pkgs.gcc
+      extraPackages = with pkgs; [
+        yarn
+        nodejs_20
+        curl
+        rustup
+        gnumake
+        pkg-config
+        openssl
+        pcre
+        protobufc
+        autoconf
+        automake
+        libtool
+        llvmPackages.libclang
+        (yara.override { enableStatic = true; })
+        gcc
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
