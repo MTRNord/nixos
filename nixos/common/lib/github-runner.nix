@@ -11,6 +11,8 @@
       tokenFile = config.sops.secrets.node_yara_rs_runner_tokenfile.path;
       extraPackages = [
         pkgs.yarn
+        pkgs.nodejs_20
+        pkgs.curl
       ];
     };
   };
