@@ -128,6 +128,7 @@
       kubernetes_ca_client_file = { };
       node_yara_rs_runner_tokenfile = {
         owner = "node-yara-rs-runner";
+        group = "node-yara-rs-runner";
       };
     };
   };

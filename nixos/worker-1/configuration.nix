@@ -307,8 +307,13 @@
       };
 
       "root".passwordFile = config.sops.secrets.root_initial_password.path;
-      "node-yara-rs-runner" = { isNormalUser = false; };
+      "node-yara-rs-runner" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "node-yara-rs-runner";
+      };
     };
+    groups.node-yara-rs-runner = { };
   };
 
   services.gitea-actions-runner = {
