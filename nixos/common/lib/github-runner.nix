@@ -1,4 +1,4 @@
-{ lib, pkgs, config, stdenv, ... }:
+{ lib, pkgs, config, ... }:
 {
   users.users."node-yara-rs-runner" = { isNormalUser = false; };
   services.github-runners = {
@@ -31,12 +31,12 @@
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
         YARA_INCLUDE_DIR = "${pkgs.yara}/include";
         LIBCLANG_PATH = "${pkgs.llvmPackages.libclang}/lib";
-        BINDGEN_EXTRA_CLANG_ARGS = "$(< ${stdenv.cc}/nix-support/libc-crt1-cflags) \
-          $(< ${stdenv.cc}/nix-support/libc-cflags) \
-          $(< ${stdenv.cc}/nix-support/cc-cflags) \
+        BINDGEN_EXTRA_CLANG_ARGS = "$(< ${pkgs.stdenv.cc}/nix-support/libc-crt1-cflags) \
+          $(< ${pkgs.stdenv.cc}/nix-support/libc-cflags) \
+          $(< ${pkgs.pkgs.stdenv.cc}/nix-support/cc-cflags) \
           $(< ${stdenv.cc}/nix-support/libcxx-cxxflags) \
-          ${lib.optionalString stdenv.cc.isClang "-idirafter ${stdenv.cc.cc}/lib/clang/${lib.getVersion stdenv.cc.cc}/include"} \
-          ${lib.optionalString stdenv.cc.isGNU "-isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc} -isystem ${stdenv.cc.cc}/include/c++/${lib.getVersion stdenv.cc.cc}/${stdenv.hostPlatform.config} -idirafter ${stdenv.cc.cc}/lib/gcc/${stdenv.hostPlatform.config}/${lib.getVersion stdenv.cc.cc}/include"} \
+          ${lib.optionalString pkgs.stdenv.cc.isClang "-idirafter ${pkgs.stdenv.cc.cc}/lib/clang/${lib.getVersion pkgs.stdenv.cc.cc}/include"} \
+          ${lib.optionalString pkgs.stdenv.cc.isGNU "-isystem ${pkgs.stdenv.cc.cc}/include/c++/${lib.getVersion pkgs.stdenv.cc.cc} -isystem ${pkgs.stdenv.cc.cc}/include/c++/${lib.getVersion pkgs.stdenv.cc.cc}/${pkgs.stdenv.hostPlatform.config} -idirafter ${pkgs.stdenv.cc.cc}/lib/gcc/${pkgs.stdenv.hostPlatform.config}/${lib.getVersion pkgs.stdenv.cc.cc}/include"} \
         ";
       };
     };
