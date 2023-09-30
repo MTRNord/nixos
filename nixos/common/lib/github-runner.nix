@@ -17,6 +17,7 @@
     (yara.override { enableStatic = true; })
     gcc
     clang
+    napi-rs-cli
   ];
   services.github-runners = {
     "node-yara-rs" = {
@@ -43,6 +44,7 @@
         (yara.override { enableStatic = true; })
         gcc
         clang
+        napi-rs-cli
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
