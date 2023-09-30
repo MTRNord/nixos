@@ -14,6 +14,11 @@
         pkgs.nodejs_20
         pkgs.curl
         pkgs.rustup
+        pkgs.gnumake
+        pkgs.pkg-config
+        pkgs.openssl
+        pkgs.pcre
+        pkgs.protobufc
       ];
     };
   };
