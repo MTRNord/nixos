@@ -23,7 +23,6 @@
         curl
         rustup
         (yara.override { enableStatic = true; })
-        nix
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
