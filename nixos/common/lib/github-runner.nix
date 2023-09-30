@@ -23,6 +23,7 @@
         pkgs.autoconf
         pkgs.automake
         pkgs.libtool
+        pkgs.libclang
         (pkgs.yara.override { enableStatic = true; })
         pkgs.gcc
       ];
