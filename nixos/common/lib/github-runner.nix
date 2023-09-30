@@ -34,7 +34,7 @@
         BINDGEN_EXTRA_CLANG_ARGS = "$(< ${pkgs.stdenv.cc}/nix-support/libc-crt1-cflags) \
           $(< ${pkgs.stdenv.cc}/nix-support/libc-cflags) \
           $(< ${pkgs.pkgs.stdenv.cc}/nix-support/cc-cflags) \
-          $(< ${stdenv.cc}/nix-support/libcxx-cxxflags) \
+          $(< ${pkgs.stdenv.cc}/nix-support/libcxx-cxxflags) \
           ${lib.optionalString pkgs.stdenv.cc.isClang "-idirafter ${pkgs.stdenv.cc.cc}/lib/clang/${lib.getVersion pkgs.stdenv.cc.cc}/include"} \
           ${lib.optionalString pkgs.stdenv.cc.isGNU "-isystem ${pkgs.stdenv.cc.cc}/include/c++/${lib.getVersion pkgs.stdenv.cc.cc} -isystem ${pkgs.stdenv.cc.cc}/include/c++/${lib.getVersion pkgs.stdenv.cc.cc}/${pkgs.stdenv.hostPlatform.config} -idirafter ${pkgs.stdenv.cc.cc}/lib/gcc/${pkgs.stdenv.hostPlatform.config}/${lib.getVersion pkgs.stdenv.cc.cc}/include"} \
         ";
