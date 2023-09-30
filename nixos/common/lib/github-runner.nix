@@ -6,18 +6,7 @@
     nodejs_20
     curl
     rustup
-    gnumake
-    pkg-config
-    openssl
-    pcre
-    protobufc
-    autoconf
-    automake
-    libtool
     (yara.override { enableStatic = true; })
-    gcc
-    clang
-    napi-rs-cli
   ];
   services.github-runners = {
     "node-yara-rs" = {
@@ -33,18 +22,8 @@
         nodejs_20
         curl
         rustup
-        gnumake
-        pkg-config
-        openssl
-        pcre
-        protobufc
-        autoconf
-        automake
-        libtool
         (yara.override { enableStatic = true; })
-        gcc
-        clang
-        napi-rs-cli
+        nix
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
