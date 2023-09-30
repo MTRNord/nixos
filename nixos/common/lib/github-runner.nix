@@ -10,7 +10,7 @@
       user = "node-yara-rs-runner";
       tokenFile = config.sops.secrets.node_yara_rs_runner_tokenfile.path;
       extraPackages = [
-
+        pkgs.yarn
       ];
     };
   };
