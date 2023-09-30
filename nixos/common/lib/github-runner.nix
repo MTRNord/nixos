@@ -14,10 +14,9 @@
     autoconf
     automake
     libtool
-    llvmPackages.libclang
     (yara.override { enableStatic = true; })
     gcc
-    libllvm
+    clang
   ];
   services.github-runners = {
     "node-yara-rs" = {
@@ -41,10 +40,9 @@
         autoconf
         automake
         libtool
-        libclang
         (yara.override { enableStatic = true; })
         gcc
-        libllvm
+        clang
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
