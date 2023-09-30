@@ -5,7 +5,7 @@
     "node-yara-rs" = {
       url = "https://github.com/MTRNord/node-yara-rs";
       enable = true;
-      extraLabels = "arm64";
+      extraLabels = [ "arm64" ];
       ephemeral = true;
       user = "node-yara-rs-runner";
       tokenFile = config.sops.secrets.node_yara_rs_runner_tokenfile.path;
