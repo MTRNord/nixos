@@ -6,7 +6,7 @@
     nodejs_20
     curl
     rustup
-    (yara.override { enableStatic = true; })
+    yara
   ];
   services.github-runners = {
     "node-yara-rs" = {
@@ -22,15 +22,13 @@
         nodejs_20
         curl
         rustup
-        (yara.override { enableStatic = true; })
+        yara
         clang_16
       ];
       extraEnvironment = {
         YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
         YARA_INCLUDE_DIR = "${pkgs.yara}/include";
         LIBCLANG_PATH = "${pkgs.clang_16.cc.lib}/lib";
-        # Try hacking LD_LIBRARY_PATH for rust
-        LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.yara}/lib";
         BINDGEN_EXTRA_CLANG_ARGS = lib.readFile "${pkgs.clang_16}/nix-support/cc-cflags" + " " + lib.readFile "${pkgs.clang_16}/nix-support/libc-cflags" + " " + lib.readFile "${pkgs.clang_16}/nix-support/libcxx-cxxflags" + " " + "-idirafter ${pkgs.clang_16}/lib/clang/${lib.getVersion pkgs.clang_16}/include";
       };
     };
