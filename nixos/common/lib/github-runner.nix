@@ -27,8 +27,8 @@
         binutils
       ];
       extraEnvironment = {
-        YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
-        YARA_INCLUDE_DIR = "${pkgs.yara}/include";
+        #YARA_LIBRARY_PATH = "${pkgs.yara}/lib";
+        #YARA_INCLUDE_DIR = "${pkgs.yara}/include";
         LIBCLANG_PATH = "${pkgs.clang_16.cc.lib}/lib";
         BINDGEN_EXTRA_CLANG_ARGS = lib.readFile "${pkgs.clang_16}/nix-support/cc-cflags" + " " + lib.readFile "${pkgs.clang_16}/nix-support/libc-cflags" + " " + lib.readFile "${pkgs.clang_16}/nix-support/libcxx-cxxflags" + " " + "-idirafter ${pkgs.clang_16}/lib/clang/${lib.getVersion pkgs.clang_16}/include";
       };
