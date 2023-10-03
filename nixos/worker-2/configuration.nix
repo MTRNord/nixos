@@ -275,6 +275,12 @@
         isSystemUser = true;
         group = "pgbouncer";
       };
+
+      "patroni" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "patroni";
+      };
       "node-yara-rs-runner" = {
         isNormalUser = false;
         isSystemUser = true;
@@ -282,6 +288,7 @@
       };
     };
     groups.discourse = { };
+    groups.patroni = { };
     groups.pgbouncer = { };
     groups.node-yara-rs-runner = { };
   };
