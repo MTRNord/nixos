@@ -8,58 +8,58 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot = {
-    initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" "sr_mod" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ ];
-    extraModulePackages = [ ];
-  };
+  boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
-    fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
-  };
+  fileSystems."/" =
+    {
+      device = "/dev/disk/by-uuid/aed1cf09-9712-472a-873f-d404950d5114";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
+    };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/56da9aee-dc91-4736-ae22-781e46ccb25e";
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/faf8fac4-1ba4-4829-ad5f-5443297962e0";
 
-  fileSystems = {
-    "/home" = {
-      device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-uuid/aed1cf09-9712-472a-873f-d404950d5114";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
-    "/nix" = {
-      device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
+  fileSystems."/nix" =
+    {
+      device = "/dev/disk/by-uuid/aed1cf09-9712-472a-873f-d404950d5114";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
-    "/persist" = {
-      device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
+  fileSystems."/persist" =
+    {
+      device = "/dev/disk/by-uuid/aed1cf09-9712-472a-873f-d404950d5114";
       fsType = "btrfs";
       options = [ "subvol=persist" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
-    "/var/log" = {
-      device = "/dev/disk/by-uuid/2dd0146f-acd1-4d76-a353-9f4cf7721972";
+  fileSystems."/var/log" =
+    {
+      device = "/dev/disk/by-uuid/aed1cf09-9712-472a-873f-d404950d5114";
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
-    "/boot" = {
-      device = "/dev/disk/by-uuid/840B-723D";
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-uuid/7A1A-5727";
       fsType = "vfat";
     };
-  };
 
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 16 * 1024;
-  }];
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/02378ab7-c25b-4e64-8d36-213fa5be1615"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
