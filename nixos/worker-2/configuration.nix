@@ -30,7 +30,7 @@
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
 
-    ./kubernetes.nix
+    #./kubernetes.nix
   ];
 
   nixpkgs = {
