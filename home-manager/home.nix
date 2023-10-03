@@ -50,8 +50,10 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
-  home.file.".ssh/allowed_signers".text =
-    "* ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeAYFhGNeDKYsb9qQx6V6OzWTr4M7Gue3Eka2Y3I56b marcel@worker-1";
+  home.file.".ssh/allowed_signers".text = ''
+    * ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeAYFhGNeDKYsb9qQx6V6OzWTr4M7Gue3Eka2Y3I56b marcel@worker-1
+    * ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeAYFhGNeDKYsb9qQx6V6OzWTr4M7Gue3Eka2Y3I56b marcel@worker-2
+  '';
 
   # Enable home-manager and git
   programs = {
