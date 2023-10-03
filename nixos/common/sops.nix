@@ -11,8 +11,6 @@
     };
     gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
 
-
-
     defaultSopsFile = ./secrets/secrets.yaml;
 
     # keys
