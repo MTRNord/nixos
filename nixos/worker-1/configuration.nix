@@ -182,15 +182,15 @@
             ];
             endpoint = "95.217.202.35:51820";
           }
-          # worker-2
-          {
-            publicKey = "gswnnC4NQp0fXXGDhLaPVslCYPHMsXti0JloOzuGdn8=";
-            allowedIPs = [
-              "10.100.0.3/24"
-              "fe99:13::3/64"
-            ];
-            endpoint = "37.27.5.79:51820";
-          }
+          # # worker-2
+          # {
+          #   publicKey = "gswnnC4NQp0fXXGDhLaPVslCYPHMsXti0JloOzuGdn8=";
+          #   allowedIPs = [
+          #     "10.100.0.3/24"
+          #     "fe99:13::3/64"
+          #   ];
+          #   endpoint = "37.27.5.79:51820";
+          # }
         ];
       };
 
