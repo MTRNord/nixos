@@ -26,7 +26,7 @@
     ./boot.nix
 
     ../common/lib/shell.nix
-    ../common/lib/confd.nix
+    #../common/lib/confd.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
 
