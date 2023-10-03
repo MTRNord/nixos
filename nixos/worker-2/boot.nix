@@ -26,7 +26,10 @@
         # to unprivileged users.
         hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
         # I'll just authorize all keys authorized post-boot.
-        authorizedKeys = config.users.users.marcel.openssh.authorizedKeys.keys;
+        #authorizedKeys = config.users.users.marcel.openssh.authorizedKeys.keys;
+        authorizedKeys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
+        ];
       };
     };
   };

@@ -41,6 +41,7 @@
     # btrfs boot
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "btrfs" ];
+    initrd.supportedFilesystems = [ "btrfs" ];
   };
 
   hardware.enableAllFirmware = true;
