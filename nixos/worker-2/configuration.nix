@@ -275,9 +275,15 @@
         isSystemUser = true;
         group = "pgbouncer";
       };
+      "node-yara-rs-runner" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "node-yara-rs-runner";
+      };
     };
     groups.discourse = { };
     groups.pgbouncer = { };
+    groups.node-yara-rs-runner = { };
   };
 
   # Restic Backup
