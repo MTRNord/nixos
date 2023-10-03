@@ -9,7 +9,7 @@
       # This will generate a new key if the key specified above does not exist
       generateKey = true;
     };
-    #gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
+    gnupg.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_rsa_key" ];
 
     defaultSopsFile = ./secrets/secrets.yaml;
 
