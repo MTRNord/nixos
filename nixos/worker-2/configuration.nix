@@ -262,8 +262,19 @@
         extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
       };
-
       "root".passwordFile = config.sops.secrets.root_initial_password.path;
+
+      "discourse" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "discourse";
+      };
+
+      "pgbouncer" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "pgbouncer";
+      };
     };
   };
 
