@@ -276,6 +276,8 @@
         group = "pgbouncer";
       };
     };
+    groups.discourse = { };
+    groups.pgbouncer = { };
   };
 
   # Restic Backup
