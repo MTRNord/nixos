@@ -176,6 +176,7 @@
           {
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
             allowedIPs = [
+              "10.100.12.1/24"
               "10.100.0.2/24"
               "fe99:13::2/64"
             ];

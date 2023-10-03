@@ -149,6 +149,7 @@
           {
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
             allowedIPs = [
+              "10.100.12.1/24"
               "10.100.0.2/24"
               "fe99:13::2/64"
             ];
@@ -158,8 +159,9 @@
           {
             publicKey = "IGlPQDCrkWDPgzxSADbed/UFLxz93K+rRXXu9aa4+G8=";
             allowedIPs = [
-              "0.0.0.0/0"
-              "::/0"
+              "10.100.12.1/24"
+              "10.100.0.1/24"
+              "fe99:13::1/64"
             ];
             endpoint = "49.13.24.105:51820";
           }
