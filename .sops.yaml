@@ -1,7 +1,7 @@
 keys:
   - &admin_mtrnord age1esjyg2qfy49awv0ptkzvpk425adczjr38m37w2mmcahzc4p8n54sll2nzh
   - &server_worker_1 age17stexdkcvgrtlwspm6fk4eutpuspd9hyv9wqdkjstpa548hzkg0sem5max
-  - &server_worker_2 age1c6420232n3rs9kwlqjrucv88pdu0khmdzxlff8tpnvmccuh9sups07l3hr
+  - &server_worker_2 age1lfcg46f34nm94fdj2vpkwggcntjlayd7e09excw6gez6fh43m9tq8v2qah
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
