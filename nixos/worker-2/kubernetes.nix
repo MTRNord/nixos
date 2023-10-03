@@ -20,6 +20,7 @@
     cri-tools
     cilium-cli
     k9s
+    nfs-utils
   ];
 
   boot.kernelModules = [
