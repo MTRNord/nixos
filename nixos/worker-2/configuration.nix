@@ -101,11 +101,11 @@
     networks = {
       "20-v6" = {
         matchConfig = {
-          MACAddress = "96:00:02:44:cf:52";
+          MACAddress = "96:00:02:97:a7:51";
         };
         address = [
-          "49.13.24.105/32"
-          "2a01:4f8:c012:492::1/64"
+          "37.27.5.79/32"
+          "2a01:4f9:c012:54d3::/64"
         ];
         routes = [
           { routeConfig.Gateway = "fe80::1"; }
