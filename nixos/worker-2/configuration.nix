@@ -122,7 +122,13 @@
     };
   };
 
-  services.powerdns.extraConfig = config.pdns.config + ''
+  services.powerdns.extraConfig = ''
+    launch=gsqlite3
+    master=yes
+    webserver-address=0.0.0.0
+    webserver-allow-from=127.0.0.1,::1,10.244.0.0/16,31.17.243.193
+    webserver-port=8081
+    gsqlite3-database=/var/lib/pdns/pdns.db
     local-address=37.27.5.79 2a01:4f9:c012:54d3::
   '';
 
