@@ -489,7 +489,7 @@
             scan time 20;
 
             ipv6 {
-                import none;
+                import filter { if is_valid_network_v6()  then accept; else reject; };
                 export filter {
                     if source = RTS_STATIC then reject;
                     krt_prefsrc = fe99:13::1;
@@ -502,7 +502,7 @@
             scan time 20;
 
             ipv4 {
-                import none;
+                import filter { if is_valid_network()  then accept; else reject; }
                 export filter {
                     if source = RTS_STATIC then reject;
                     krt_prefsrc = 10.100.0.1;
