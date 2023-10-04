@@ -353,25 +353,38 @@
             fe99:13::/64
           ];
         }
+        protocol direct {
+          ipv4 {
+            table backbone;
+            import filter { if is_valid_network() then accept; else reject; };
+            export filter { if is_valid_network() then accept; else reject; };
+          };
+          ipv6 {
+            table backbone6;
+            import filter { if is_valid_network_v6() then accept; else reject; };
+            export filter { if is_valid_network_v6() then accept; else reject; };
+          };
+          interface "wg0", "wg1";
+        }
 
         protocol kernel {
-            scan time 20;
+          scan time 20;
 
-            ipv6 {
-                table backbone6;
-                import filter { if is_valid_network_v6()  then accept; else reject; };
-                export filter { if is_valid_network_v6()  then accept; else reject; };
-            };
+          ipv6 {
+            table backbone6;
+            import filter { if is_valid_network_v6()  then accept; else reject; };
+            export filter { if is_valid_network_v6()  then accept; else reject; };
+          };
         };
 
         protocol kernel {
-            scan time 20;
+          scan time 20;
 
-            ipv4 {
-                table backbone;
-                import filter { if is_valid_network()  then accept; else reject; };
-                export filter { if is_valid_network()  then accept; else reject; };
-            };
+          ipv4 {
+            table backbone;
+            import filter { if is_valid_network()  then accept; else reject; };
+            export filter { if is_valid_network()  then accept; else reject; };
+          };
         }
 
         protocol ospf v2 v4 {
