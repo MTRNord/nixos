@@ -448,7 +448,7 @@
         function is_valid_network() {
           return net ~ [
             10.100.0.0/24,
-            10.100.12.1/32
+            10.100.12.0/24
           ];
         }
 
