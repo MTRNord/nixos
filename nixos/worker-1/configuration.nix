@@ -448,7 +448,7 @@
     bird2 = {
       enable = true;
       config = ''
-        router id 100.64.0.1;
+        router id 10.100.0.1;
         debug protocols all;
 
         protocol device {
