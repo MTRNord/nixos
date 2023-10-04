@@ -1,7 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, nixpkgs-unstable, ... }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -31,6 +31,9 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+      (self: super: {
+        lsd = nixpkgs-unstable.lsd;
+      })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -40,7 +43,6 @@
       allowUnfreePredicate = (_: true);
     };
   };
-
   home = {
     username = "marcel";
     homeDirectory = "/home/marcel";
@@ -100,12 +102,12 @@
       settings = {
         classic = false;
         blocks = [
-          "permissions"
+          "permission"
           "user"
-          "groups"
+          "group"
           "size"
           "git"
-          "dates"
+          "date"
           "name"
         ];
         total-size = true;

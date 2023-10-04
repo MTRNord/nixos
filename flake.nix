@@ -29,7 +29,7 @@
     docker-utils.url = "github:collinarnett/docker-utils";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-discourse, home-manager, sops-nix, docker-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-discourse, home-manager, sops-nix, docker-utils, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
