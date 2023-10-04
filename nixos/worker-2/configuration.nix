@@ -403,9 +403,6 @@
             };
         }
 
-
-
-
         protocol ospf v2 v4 {
           ipv4 {
             import filter {
@@ -416,8 +413,10 @@
             export filter { if is_valid_network() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
           };
           graceful restart 1;
-          area 0 {
-            interface "wg0", "wg1"; 
+          area 0.0.0.0 {
+            interface "wg0", "wg1" {
+              type ptmp;
+            };
           };
         }
 
@@ -431,8 +430,10 @@
             export filter { if is_valid_network_v6() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
           };
           graceful restart 1;
-          area 0 {
-            interface "wg0", "wg1";
+          area 0.0.0.0 {
+            interface "wg0", "wg1" {
+              type ptmp;
+            };
           };
         }
       '';
