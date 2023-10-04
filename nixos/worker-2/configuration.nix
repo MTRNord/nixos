@@ -28,6 +28,7 @@
     ../common/lib/shell.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
+    ../common/lib/pdns.nix
     ./kubernetes.nix
   ];
 
