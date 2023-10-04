@@ -524,6 +524,7 @@
         domain = "lg.midnightthoughts.space";
         servers = [
           "worker-1"
+          "worker-2"
           "nordgedanken"
         ];
       };
