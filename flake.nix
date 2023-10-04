@@ -98,7 +98,7 @@
       homeConfigurations = {
         "marcel@worker-1" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs nixpkgs-unstable; };
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
@@ -106,7 +106,7 @@
         };
         "marcel@worker-2" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs nixpkgs-unstable; };
           modules = [
             # > Our main home-manager configuration file <
             ./home-manager/home.nix
