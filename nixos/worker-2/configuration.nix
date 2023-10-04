@@ -353,8 +353,6 @@
         }
 
         protocol device {
-          scan time 10;
-          interface "wg0", "wg1";
         }
 
         protocol kernel {
@@ -362,11 +360,7 @@
 
             ipv6 {
                 import filter { if is_valid_network_v6()  then accept; else reject; };
-                export filter {
-                    if source = RTS_STATIC then reject;
-                    krt_prefsrc = fe99:13::3;
-                    accept;
-                };
+                export all;
             };
         };
 
@@ -375,45 +369,29 @@
 
             ipv4 {
                 import filter { if is_valid_network()  then accept; else reject; };
-                export filter {
-                    if source = RTS_STATIC then reject;
-                    krt_prefsrc = 10.100.0.3;
-                    accept;
-                };
+                export all;
             };
         }
 
         protocol ospf v2 v4 {
           ipv4 {
-            import filter {
-              if is_valid_network() then {
-                accept;
-              } else reject;
-            };
-            export filter { if is_valid_network() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
+            import none;
+            export all;
           };
           graceful restart 1;
           area 0.0.0.0 {
-            interface "wg0", "wg1" {
-              type ptmp;
-            };
+            interface "wg0", "wg1";
           };
         }
 
         protocol ospf v3 v6 {
           ipv6 {
-            import filter {
-              if is_valid_network_v6() then {
-                accept;
-              } else reject;
-            };
-            export filter { if is_valid_network_v6() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
+            import none;
+            export all;
           };
           graceful restart 1;
           area 0.0.0.0 {
-            interface "wg0", "wg1" {
-              type ptmp;
-            };
+            interface "wg0", "wg1";
           };
         }
       '';
