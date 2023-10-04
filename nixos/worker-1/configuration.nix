@@ -499,7 +499,7 @@
           };
           graceful restart 1;
           area 0.0.0.0 {
-            interface "wg0", "wg1";
+            interface "wg0", "wg1", "floating1";
           };
         }
 
@@ -510,7 +510,7 @@
           };
           graceful restart 1;
           area 0.0.0.0 {
-            interface "wg0", "wg1";
+            interface "wg0", "wg1", "floating1";
           };
         }
       '';
