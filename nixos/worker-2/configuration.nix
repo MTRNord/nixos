@@ -240,6 +240,10 @@
           9962
           9100
         ];
+        allowedUDPPorts = [
+          51820
+          51821
+        ];
 
         extraCommands =
           builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -A INPUT -s ${ip} -j DROP") blockedV4) + "\n"

@@ -273,6 +273,8 @@
         ];
         allowedUDPPorts = [
           5060 # SIP
+          51820
+          51821
           config.services.tailscale.port
         ];
 
