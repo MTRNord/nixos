@@ -128,6 +128,7 @@
     webserver-address=0.0.0.0
     webserver-allow-from=127.0.0.1,::1,10.244.0.0/16,31.17.243.193
     webserver-port=8081
+    api=yes
     gsqlite3-database=/persist/var/lib/pdns/pdns.db
     local-address=37.27.5.79 2a01:4f9:c012:54d3::
   '';
