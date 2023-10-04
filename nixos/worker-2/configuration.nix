@@ -374,7 +374,15 @@
           };
         }
 
-        protocol ospf v2 v4 {
+        protocol static {
+          ipv4;
+        }
+
+        protocol static {
+          ipv6;
+        }
+
+        protocol ospf v3 v4 {
           ipv4 {
             import all;
             export all;

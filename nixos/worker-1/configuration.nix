@@ -442,8 +442,8 @@
     bird2 = {
       enable = true;
       config = ''
-        router id 10.100.0.1;
-        debug protocols all;
+          router id 10.100.0.1;
+          debug protocols all;
 
         function is_valid_network() {
           return net ~ [
@@ -457,36 +457,40 @@
             fe99:13::/64
           ];
         }
-
+      
         protocol device {
-          scan time 10;
+          scan time 10;           # Scan interfaces every 10 seconds
         }
 
-        protocol direct {
-          ipv4;
-          ipv6;
-          interface "floating1";
-        }
-
-        protocol kernel {
-          scan time 20;
-
-          ipv6 {
-            import filter { if is_valid_network_v6() then accept; else reject; };
-            export filter { if is_valid_network_v6() then accept; else reject; };
-          };
-        };
-
-        protocol kernel {
-          scan time 20;
-
+        protocol static {
           ipv4 {
-            import filter { if is_valid_network() then accept; else reject; };
-            export filter { if is_valid_network() then accept; else reject; };
+            import all;
           };
         }
 
-        protocol ospf v2 v4 {
+        protocol static {
+          ipv6 {
+            import all;
+          };
+        }
+
+        protocol kernel {
+          metric 64;
+          ipv4 {                  # Connect protocol to IPv4 table by channel
+            import filter { if is_valid_network() then accept; else reject; };      # Import to table, default is import all
+            export filter { if is_valid_network() then accept; else reject; };      # Export to protocol. default is export none
+          };
+        }
+
+        protocol kernel {
+          metric 64;
+          ipv6 {                  # Connect protocol to IPv6 table by channel
+            import filter { if is_valid_network_v6() then accept; else reject; };      # Import to table, default is import all
+            export filter { if is_valid_network_v6() then accept; else reject; };      # Export to protocol. default is export none
+          };
+        }
+
+        protocol ospf v3 v4 {
           ipv4 {
             import all;
             export all;
