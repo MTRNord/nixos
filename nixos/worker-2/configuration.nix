@@ -356,18 +356,6 @@
           scan time 10;
         }
 
-        protocol direct {
-          ipv4 {
-            import filter { if is_valid_network() then accept; else reject; };
-            export filter { if is_valid_network() then accept; else reject; };
-          };
-          ipv6 {
-            import filter { if is_valid_network_v6() then accept; else reject; };
-            export filter { if is_valid_network_v6() then accept; else reject; };
-          };
-          interface "wg0", "wg1";
-        }
-
         protocol kernel {
           scan time 20;
 

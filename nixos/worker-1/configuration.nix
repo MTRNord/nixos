@@ -463,15 +463,9 @@
         }
 
         protocol direct {
-          ipv4 {
-            import filter { if is_valid_network() then accept; else reject; };
-            export filter { if is_valid_network() then accept; else reject; };
-          };
-          ipv6 {
-            import filter { if is_valid_network_v6() then accept; else reject; };
-            export filter { if is_valid_network_v6() then accept; else reject; };
-          };
-          interface "wg0", "wg1", "floating1";
+          ipv4;
+          ipv6;
+          interface "floating1";
         }
 
         protocol kernel {
