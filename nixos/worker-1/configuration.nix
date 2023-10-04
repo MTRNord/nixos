@@ -195,7 +195,7 @@
           }
         ];
       };
-      wg0 = {
+      wg1 = {
         address = [ "10.100.0.201/24" "fe99:13::201/64" ];
         listenPort = 51821;
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
