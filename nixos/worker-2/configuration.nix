@@ -131,6 +131,7 @@
     api=yes
     gsqlite3-database=/persist/var/lib/pdns/pdns.db
     local-address=37.27.5.79 2a01:4f9:c012:54d3::
+    api-key=$API_KEY
   '';
 
   networking = {
