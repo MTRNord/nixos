@@ -175,6 +175,7 @@
           # big one
           {
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
+            allowedIPs = [ ];
             # allowedIPs = [
             #   "10.100.12.1/24"
             #   "10.100.0.2/24"
