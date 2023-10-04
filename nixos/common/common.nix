@@ -28,6 +28,7 @@
     compsize
     iperf
     qemu
+    lsd
   ];
 
   # Write known-hosts
