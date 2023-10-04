@@ -353,6 +353,9 @@
             fe99:13::/64
           ];
         }
+
+        protocol device { }
+        
         protocol direct {
           ipv4 {
             table backbone;

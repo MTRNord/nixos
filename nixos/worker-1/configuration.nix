@@ -460,6 +460,7 @@
           ];
         }
 
+        protocol device { }
 
         protocol direct {
           ipv4 {
