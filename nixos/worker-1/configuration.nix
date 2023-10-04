@@ -482,7 +482,7 @@
 
         protocol device {
           scan time 10;
-          interface "wg0", "wg1";
+          interface "wg0", "wg1", "floating1";
         }
 
         protocol kernel {
