@@ -462,6 +462,18 @@
           scan time 10;           # Scan interfaces every 10 seconds
         }
 
+        protocol direct {
+          ipv4 {
+            import none;
+            export all;
+          };
+          ipv6 {
+            import none;
+            export all;
+          };
+          interface "floating1";
+        }
+
         protocol static {
           ipv4 {
             import all;
