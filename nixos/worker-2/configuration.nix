@@ -122,7 +122,7 @@
     };
   };
 
-  services.pdns.extraConfig = config.services.pdns.extraConfig + ''
+  services.powerdns.extraConfig = config.services.powerdns.extraConfig + ''
     local-address=37.27.5.79 2a01:4f9:c012:54d3::
   '';
 
