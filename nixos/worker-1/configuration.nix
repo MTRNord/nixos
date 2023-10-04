@@ -464,12 +464,12 @@
 
         protocol direct {
           ipv4 {
-            import none;
             export all;
+            import all;
           };
           ipv6 {
-            import none;
             export all;
+            import all;
           };
           interface "floating1";
         }
