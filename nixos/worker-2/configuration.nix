@@ -360,7 +360,7 @@
             ipv6 {
                 table backbone;
                 import filter { if is_valid_network_v6()  then accept; else reject; };
-                export filter { if is_valid_network()  then accept; else reject; };
+                export filter { if is_valid_network_v6()  then accept; else reject; };
             };
         };
 
