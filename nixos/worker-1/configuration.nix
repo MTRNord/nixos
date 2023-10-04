@@ -444,6 +444,8 @@
       config = ''
         router id 10.100.0.1;
         debug protocols all;
+        ipv4 table backbone;
+        ipv6 table backbone;
 
         function is_valid_network() {
           return net ~ [
@@ -458,21 +460,13 @@
           ];
         }
 
-        protocol device {
-        }
-
-        protocol direct {
-          ipv4;
-          ipv6;
-          interface "floating1";
-        }
-
         protocol kernel {
             scan time 20;
 
             ipv6 {
-                import filter { if is_valid_network_v6()  then accept; else reject; };
-                export all;
+                table backbone;
+                import filter { if is_valid_network_v6() then accept; else reject; };
+                export filter { if is_valid_network_v6() then accept; else reject; };;
             };
         };
 
@@ -480,14 +474,16 @@
             scan time 20;
 
             ipv4 {
-                import filter { if is_valid_network()  then accept; else reject; };
-                export all;
+                table backbone;
+                import filter { if is_valid_network() then accept; else reject; };
+                export filter { if is_valid_network_v6() then accept; else reject; };;
             };
         }
 
         protocol ospf v2 v4 {
           ipv4 {
-            import none;
+            table backbone;
+            import all;
             export all;
           };
           graceful restart 1;
@@ -498,7 +494,8 @@
 
         protocol ospf v3 v6 {
           ipv6 {
-            import none;
+            table backbone;
+            import all;
             export all;
           };
           graceful restart 1;
