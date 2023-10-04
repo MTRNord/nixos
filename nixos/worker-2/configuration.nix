@@ -381,7 +381,7 @@
             scan time 20;
 
             ipv6 {
-                import filter { if is_valid_network_v6()  then accept; else reject; }
+                import filter { if is_valid_network_v6()  then accept; else reject; };
                 export filter {
                     if source = RTS_STATIC then reject;
                     krt_prefsrc = fe99:13::3;
@@ -394,7 +394,7 @@
             scan time 20;
 
             ipv4 {
-                import filter { if is_valid_network()  then accept; else reject; }
+                import filter { if is_valid_network()  then accept; else reject; };
                 export filter {
                     if source = RTS_STATIC then reject;
                     krt_prefsrc = 10.100.0.3;
