@@ -32,7 +32,7 @@
       #   });
       # })
       (self: super: {
-        lsd = nixpkgs-unstable.lsd;
+        lsd = nixpkgs-unstable.legacyPackages.aarch64-linux.lsd;
       })
     ];
     # Configure your nixpkgs instance
