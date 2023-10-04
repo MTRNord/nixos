@@ -155,16 +155,16 @@
             ];
             endpoint = "95.217.202.35:51820";
           }
-          # worker-1
-          {
-            publicKey = "IGlPQDCrkWDPgzxSADbed/UFLxz93K+rRXXu9aa4+G8=";
-            allowedIPs = [
-              "10.100.12.1/24"
-              "10.100.0.1/24"
-              "fe99:13::1/64"
-            ];
-            endpoint = "49.13.24.105:51820";
-          }
+          # # worker-1
+          # {
+          #   publicKey = "IGlPQDCrkWDPgzxSADbed/UFLxz93K+rRXXu9aa4+G8=";
+          #   allowedIPs = [
+          #     "10.100.12.1/24"
+          #     "10.100.0.1/24"
+          #     "fe99:13::1/64"
+          #   ];
+          #   endpoint = "49.13.24.105:51820";
+          # }
         ];
       };
 
@@ -321,7 +321,7 @@
     bird2 = {
       enable = true;
       config = ''
-        router id 100.64.0.1;
+        router id 100.64.0.3;
         debug protocols all;
 
         protocol device {
