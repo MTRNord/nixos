@@ -178,20 +178,50 @@
             allowedIPs = [
               "10.100.12.1/24"
               "10.100.0.2/24"
+              "10.100.0.202/24"
               "fe99:13::2/64"
+              "fe99:13::202/64"
+              "10.100.0.1/24"
+              "10.100.0.201/24"
+              "fe99:13::1/64"
+              "fe99:13::201/64"
+              "10.100.0.3/24"
+              "10.100.0.203/24"
+              "fe99:13::3/64"
+              "fe99:13::203/64"
             ];
             persistentKeepalive = 25;
-            endpoint = "95.217.202.35:51820";
+            endpoint = "95.217.202.35:51821";
           }
-          # # worker-2
-          # {
-          #   publicKey = "gswnnC4NQp0fXXGDhLaPVslCYPHMsXti0JloOzuGdn8=";
-          #   allowedIPs = [
-          #     "10.100.0.3/24"
-          #     "fe99:13::3/64"
-          #   ];
-          #   endpoint = "37.27.5.79:51820";
-          # }
+        ];
+      };
+      wg0 = {
+        address = [ "10.100.0.201/24" "fe99:13::201/64" ];
+        listenPort = 51821;
+        privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+        table = "off";
+
+        peers = [
+          # worker-2
+          {
+            publicKey = "gswnnC4NQp0fXXGDhLaPVslCYPHMsXti0JloOzuGdn8=";
+            allowedIPs = [
+              "10.100.12.1/24"
+              "10.100.0.2/24"
+              "10.100.0.202/24"
+              "fe99:13::2/64"
+              "fe99:13::202/64"
+              "10.100.0.1/24"
+              "10.100.0.201/24"
+              "fe99:13::1/64"
+              "fe99:13::201/64"
+              "10.100.0.3/24"
+              "10.100.0.203/24"
+              "fe99:13::3/64"
+              "fe99:13::203/64"
+            ];
+            endpoint = "37.27.5.79:51821";
+          }
         ];
       };
 
@@ -257,6 +287,7 @@
           80
           443
           51820
+          51821
           9962
           9100
         ];
@@ -462,7 +493,7 @@
           };
           graceful restart 1;
           area 0 {
-            interface "wg0";
+            interface "wg0", "wg1";
           };
         }
 
@@ -473,7 +504,7 @@
           };
           graceful restart 1;
           area 0 {
-            interface "wg0";
+            interface "wg0", "wg1";
           };
         }
       '';
