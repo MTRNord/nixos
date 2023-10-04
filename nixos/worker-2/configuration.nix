@@ -384,7 +384,7 @@
                 import none;
                 export filter {
                     if source = RTS_STATIC then reject;
-                    krt_prefsrc = fe99:13::2;
+                    krt_prefsrc = fe99:13::3;
                     accept;
                 };
             };
@@ -397,7 +397,7 @@
                 import none;
                 export filter {
                     if source = RTS_STATIC then reject;
-                    krt_prefsrc = 10.100.0.2;
+                    krt_prefsrc = 10.100.0.3;
                     accept;
                 };
             };
