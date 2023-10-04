@@ -122,6 +122,10 @@
     };
   };
 
+  services.pdns.extraConfig = services.pdns.extraConfig + ''
+    local-address=37.27.5.79 2a01:4f9:c012:54d3::
+  '';
+
   networking = {
     hostName = "worker-2";
     enableIPv6 = true;
