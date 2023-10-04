@@ -238,7 +238,7 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" "wg0" ];
+        trustedInterfaces = [ "tailscale0" "floating1" "wg0" "wg1" ];
         enable = true;
         allowPing = true;
         allowedTCPPorts = [
