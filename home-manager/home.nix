@@ -82,6 +82,7 @@
       enable = true;
       shellAliases = {
         update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#$(hostname) && home-manager switch --flake .#marcel@$(hostname)";
+        ls = "lsd";
       };
       history = {
         size = 10000;
@@ -100,13 +101,13 @@
       settings = {
         classic = false;
         blocks = [
-          permissions
-          user
-          groups
-          size
-          git
-          dates
-          name
+          "permissions"
+          "user"
+          "groups"
+          "size"
+          "git"
+          "dates"
+          "name"
         ];
         total-size = true;
         header = true;
