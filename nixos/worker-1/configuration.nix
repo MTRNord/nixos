@@ -175,13 +175,13 @@
         peers = [
           # big one
           {
-            publicKey = "oBqOZGvt83/u8QETTGxRi8wXqXih9IPDl+T5Snqx9yA=";
+            publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
             allowedIPs = [
               "0.0.0.0/0"
               "::/0"
             ];
             persistentKeepalive = 25;
-            endpoint = "95.217.202.35:51820";
+            endpoint = "95.217.202.35:51821";
           }
         ];
       };
