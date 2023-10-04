@@ -465,44 +465,76 @@
         router id 10.100.0.1;
         debug protocols all;
 
+        function is_valid_network() {
+          return net ~ [
+            10.100.0.0/24,
+            10.100.12.1/32
+          ];
+        }
+
+        function is_valid_network_v6() {
+          return net ~ [
+            fe99:13::/64
+          ];
+        }
+
         protocol device {
-        }
-
-        protocol direct {
-          ipv4;
-          ipv6;
-          interface "floating1";
+          scan time 10;
+          interface "wg0", "wg1";
         }
 
         protocol kernel {
-          ipv4 {
-            import all;
-            export all;
-          };
-        }
+            scan time 20;
+
+            ipv6 {
+                import none;
+                export filter {
+                    if source = RTS_STATIC then reject;
+                    krt_prefsrc = fe99:13::2;
+                    accept;
+                };
+            };
+        };
 
         protocol kernel {
-          ipv6 {
-            import all;
-            export all;
-          };
+            scan time 20;
+
+            ipv4 {
+                import none;
+                export filter {
+                    if source = RTS_STATIC then reject;
+                    krt_prefsrc = 10.100.0.2;
+                    accept;
+                };
+            };
         }
+
+
+
 
         protocol ospf v2 v4 {
           ipv4 {
-            import all;
-            export all;
+            import filter {
+              if is_valid_network() then {
+                accept;
+              } else reject;
+            };
+            export filter { if is_valid_network() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
           };
           graceful restart 1;
           area 0 {
-            interface "wg0", "wg1";
+            interface "wg0", "wg1"; 
           };
         }
 
         protocol ospf v3 v6 {
           ipv6 {
-            import all;
-            export all;
+            import filter {
+              if is_valid_network_v6() then {
+                accept;
+              } else reject;
+            };
+            export filter { if is_valid_network_v6() && source ~ [RTS_STATIC, RTS_OSPF] then accept; else reject; };
           };
           graceful restart 1;
           area 0 {
