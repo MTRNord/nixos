@@ -148,12 +148,11 @@
           # big one
           {
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
-            allowedIPs = [ ];
-            # allowedIPs = [
-            #   "10.100.12.1/24"
-            #   "10.100.0.2/24"
-            #   "fe99:13::2/64"
-            # ];
+            allowedIPs = [
+              "10.100.12.1/24"
+              "10.100.0.2/24"
+              "fe99:13::2/64"
+            ];
             persistentKeepalive = 25;
             endpoint = "95.217.202.35:51820";
           }
