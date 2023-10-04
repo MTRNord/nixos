@@ -93,6 +93,25 @@
         theme = "robbyrussell";
       };
     };
+
+    lsd = {
+      enable = true;
+      enableAliases = true;
+      settings = {
+        classic = false;
+        blocks = [
+          permissions
+          user
+          groups
+          size
+          git
+          dates
+          name
+        ];
+        total-size = true;
+        header = true;
+      };
+    };
   };
 
 
