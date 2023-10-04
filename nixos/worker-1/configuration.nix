@@ -175,7 +175,7 @@
         peers = [
           # big one
           {
-            publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
+            publicKey = "oBqOZGvt83/u8QETTGxRi8wXqXih9IPDl+T5Snqx9yA=";
             # allowedIPs = [
             #   "10.100.12.1/24"
             #   "10.100.0.2/24"
