@@ -141,7 +141,7 @@
       wg0 = {
         address = [ "10.100.0.3/24" "fe99:13::3/64" ];
         listenPort = 51820;
-        privateKeyFile = config.sops.secrets."wireguard/worker-2/private_key".path;
+        privateKeyFile = config.sops.secrets."wireguard/worker-2/wg0/private_key".path;
         table = "off";
 
         peers = [
@@ -165,13 +165,13 @@
       wg1 = {
         address = [ "10.100.0.3/24" "fe99:13::3/64" ];
         listenPort = 51821;
-        privateKeyFile = config.sops.secrets."wireguard/worker-2/private_key".path;
+        privateKeyFile = config.sops.secrets."wireguard/worker-2/wg1/private_key".path;
         table = "off";
 
         peers = [
           # worker-1
           {
-            publicKey = "IGlPQDCrkWDPgzxSADbed/UFLxz93K+rRXXu9aa4+G8=";
+            publicKey = "gVNmams9FSNMrtZYVKEjr04NyEha8I7nxf6GPmdN0FQ=";
             allowedIPs = [
               "10.100.12.1/24"
               "10.100.0.2/24"
