@@ -485,6 +485,12 @@
           interface "wg0", "wg1", "floating1";
         }
 
+        protocol direct {
+          ipv4;
+          ipv6;
+          interface "floating1";
+        }
+
         protocol kernel {
             scan time 20;
 
