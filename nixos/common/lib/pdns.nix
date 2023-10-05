@@ -6,5 +6,6 @@
     secretFile = config.sops.secrets.pdns_api_key.path;
   };
 
-  networking.firewall.allowedTCPPorts = [ 8081 ];
+  networking.firewall.allowedTCPPorts = [ 8081 53 ];
+  networking.firewall.allowedUDPPorts = [ 8081 53 ];
 }
