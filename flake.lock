@@ -34,6 +34,18 @@
         "type": "github"
       }
     },
+    "github_meta": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-fZ/8EbMraNEKidvg+tY3hEvaX/cuhMoBKQ0a+eLNN80=",
+        "type": "file",
+        "url": "https://api.github.com/meta"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/meta"
+      }
+    },
     "hardware": {
       "locked": {
         "lastModified": 1695887975,
@@ -221,6 +233,7 @@
     "root": {
       "inputs": {
         "docker-utils": "docker-utils",
+        "github_meta": "github_meta",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "impermanence": "impermanence",

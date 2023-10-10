@@ -1,7 +1,11 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+  github_metadata_json = builtins.fromJSON inputs.github_meta;
+in
+{
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -126,7 +130,7 @@
     launch=gsqlite3
     master=yes
     webserver-address=0.0.0.0
-    webserver-allow-from=127.0.0.1,::1,10.244.0.0/16,31.17.243.193
+    webserver-allow-from=127.0.0.1,::1,10.244.0.0/16,31.17.243.193,${builtins.concatStringsSep "," github_metadata_json.actions}
     webserver-port=8081
     api=yes
     gsqlite3-database=/persist/var/lib/pdns/pdns.db

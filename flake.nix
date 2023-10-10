@@ -27,6 +27,10 @@
 
     kubenix.url = "github:hall/kubenix";
     docker-utils.url = "github:collinarnett/docker-utils";
+    github_meta = {
+      flake = false;
+      url = "https://api.github.com/meta";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-discourse, home-manager, sops-nix, docker-utils, ... }@inputs:
