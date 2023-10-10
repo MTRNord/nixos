@@ -3,7 +3,8 @@
 
 { inputs, outputs, lib, config, pkgs, ... }:
 let
-  github_metadata_json = builtins.fromJSON inputs.github_meta;
+  github_metadata_file = builtins.readFile inputs.github_meta;
+  github_metadata_json = builtins.fromJSON github_metadata_file;
 in
 {
   # You can import other NixOS modules here

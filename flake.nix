@@ -28,8 +28,8 @@
     kubenix.url = "github:hall/kubenix";
     docker-utils.url = "github:collinarnett/docker-utils";
     github_meta = {
+      url = "file+https://api.github.com/meta";
       flake = false;
-      url = "https://api.github.com/meta";
     };
   };
 
