@@ -37,7 +37,7 @@
     "github_meta": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Akik2/+2BYtFC4IBjoJuyw0b3GWdStK8SDNTbuPNBrs=",
+        "narHash": "sha256-ksOQUrAkio5NMs9NQxep8JjCl1CQVggZNIrq/sg+Upo=",
         "type": "file",
         "url": "https://api.github.com/meta"
       },
