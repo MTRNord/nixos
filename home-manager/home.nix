@@ -84,6 +84,7 @@
       enable = true;
       shellAliases = {
         update = "cd /etc/nixos/nixos && git pull && sudo nixos-rebuild switch --flake .#$(hostname) && home-manager switch --flake .#marcel@$(hostname)";
+        rebuild-draupnir-yara = "cd /home/marcel/Draupnir && git stash && git pull && git stash pop && podman buildx build --tag git.nordgedanken.dev/kubernetes/gitops/gnuxie/draupnir:yara --platform linux/arm64 . && podman push git.nordgedanken.dev/kubernetes/gitops/gnuxie/draupnir:yara";
       };
       history = {
         size = 10000;
