@@ -33,7 +33,7 @@
         repo = "pgbouncer";
         rev = "60708022d5b934fa53c51849b9f02d87a7881b11";
         fetchSubmodules = true;
-        hash = "sha256-oB1iCalyEW0SCKGaWGwki+c70cYzjOOGr4D55LhY1QI=";
+        hash = "sha256-ojZ23n8Bq4288yna9RVhDvZe+AcPEInG93z7/o3uQwY=";
       };
 
       nativeBuildInputs = [ pkgs.python312 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
