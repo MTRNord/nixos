@@ -53,7 +53,7 @@
         listen_port = 5000
 
         ignore_startup_parameters = extra_float_digits
-        prepared_statement_cache_size = 10000
+        max_prepared_statements = 20000
 
         auth_type = md5
         auth_hba_file = /etc/pgbouncer/pg_hba.conf
