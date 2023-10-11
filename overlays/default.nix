@@ -29,14 +29,14 @@
     # });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
       src = pkgs.fetchFromGitHub {
-        owner = "knizhnik";
+        owner = "pgbouncer";
         repo = "pgbouncer";
-        rev = "9b65938e377ae43d838e31a69cb1c9d3e8b38661";
+        rev = "60708022d5b934fa53c51849b9f02d87a7881b11";
         fetchSubmodules = true;
-        hash = "sha256-GCDb2BJlHSpY0pE56HMTJL51UKj4c05/JSaO8TRPGK0=";
+        hash = "sha256-oB1iCalyEW0SCKGaWGwki+c70cYzjOOGr4D55LhY1QI=";
       };
 
-      nativeBuildInputs = [ pkgs.python311 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
+      nativeBuildInputs = [ pkgs.python312 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
 
       autoreconfPhase = ''
         ./autogen.sh
