@@ -44,7 +44,7 @@
 
     });
 
-    python39 =
+    python =
       let
         pythonOverrides = self: super: {
           apipkg = super.apipkg.overridePythonAttrs (x: {
