@@ -45,6 +45,16 @@
     });
   };
 
+  patroni = prev.patroni.overrideAttrs (old: {
+    nativeCheckInputs = with pkgs.python312.pythonPackages; [
+      flake8
+      mock
+      pytestCheckHook
+      pytest-cov
+      requests
+    ];
+  });
+
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
