@@ -53,6 +53,26 @@
         pytest-cov
         requests
       ];
+
+      propagatedBuildInputs = with pkgs.python312.pythonPackages; [
+        boto
+        click
+        consul
+        dnspython
+        kazoo
+        kubernetes
+        prettytable
+        psutil
+        psycopg2
+        pysyncobj
+        python-dateutil
+        python-etcd
+        pyyaml
+        tzlocal
+        urllib3
+        ydiff
+      ];
+
     });
 
   };
