@@ -305,6 +305,7 @@
   environment.systemPackages = with pkgs; [
     unstable.forgejo-actions-runner
     config.services.headscale.package
+    python312
   ];
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
