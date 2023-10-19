@@ -44,35 +44,23 @@
 
     });
 
-    pythonOverrides = python-self: python-super: {
-      apipkg = python-super.apipkg.overridePythonAttrs (x: {
-        disabledTestPaths = [
-          # ModuleNotFoundError: No module named '_xyz'
-          "test_apipkg.py"
-        ];
-        pytestFlagsArray = [ ];
-      });
-      python39 =
-        pkgs.python39.override
-          {
-            packageOverrides = self.pythonOverrides;
-          };
-      python310 =
-        pkgs.python310.override
-          {
-            packageOverrides = self.pythonOverrides;
-          };
-      python311 =
-        pkgs.python311.override
-          {
-            packageOverrides = self.pythonOverrides;
-          };
-      python312 =
-        pkgs.python312.override
-          {
-            packageOverrides = self.pythonOverrides;
-          };
-    };
+    python39 =
+      let
+        pythonOverrides = self: super: {
+          apipkg = super.apipkg.overridePythonAttrs (x: {
+            disabledTestPaths = [
+              # ModuleNotFoundError: No module named '_xyz'
+              "test_apipkg.py"
+            ];
+            pytestFlagsArray = [ ];
+          });
+
+        };
+      in
+      pkgs.python39.override
+        {
+          packageOverrides = self.pythonOverrides;
+        };
 
     apipkg = prev.apipkg.overrideAttrs (old: {
       disabledTestPaths = [
