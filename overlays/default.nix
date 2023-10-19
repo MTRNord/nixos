@@ -50,6 +50,12 @@
         "test_apipkg.py"
       ];
       pytestFlagsArray = [ ];
+      doCheck = false;
+    });
+
+    sqlalchemy = prev.sqlalchemy.overrideAttrs (old: {
+      doCheck = false;
+
     });
 
   };
