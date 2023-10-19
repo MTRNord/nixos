@@ -43,7 +43,6 @@
       '';
 
     });
-  };
 
 
     patroni = prev.patroni.overrideAttrs (old: {
@@ -55,6 +54,7 @@
         requests
       ];
     });
+
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
