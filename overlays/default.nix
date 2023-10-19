@@ -53,22 +53,22 @@
         pytestFlagsArray = [ ];
       });
       python39 =
-        super.python39.override
+        pkgs.python39.override
           {
             packageOverrides = self.pythonOverrides;
           };
       python310 =
-        super.python39.override
+        pkgs.python310.override
           {
             packageOverrides = self.pythonOverrides;
           };
       python311 =
-        super.python39.override
+        pkgs.python311.override
           {
             packageOverrides = self.pythonOverrides;
           };
       python312 =
-        super.python39.override
+        pkgs.python312.override
           {
             packageOverrides = self.pythonOverrides;
           };
