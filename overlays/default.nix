@@ -44,21 +44,6 @@
 
     });
 
-    python =
-      let
-        pythonOverrides = self: super: {
-          apipkg = super.apipkg.overridePythonAttrs (x: {
-            disabledTestPaths = [
-              # ModuleNotFoundError: No module named '_xyz'
-              "test_apipkg.py"
-            ];
-            pytestFlagsArray = [ ];
-          });
-
-        };
-      in
-      pkgs.python39.override { inherit packageOverrides; self = python; };
-
     apipkg = prev.apipkg.overrideAttrs (old: {
       disabledTestPaths = [
         # ModuleNotFoundError: No module named '_xyz'
