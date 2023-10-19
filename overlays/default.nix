@@ -57,10 +57,7 @@
 
         };
       in
-      pkgs.python39.override
-        {
-          packageOverrides = self.pythonOverrides;
-        };
+      pkgs.python39.override { inherit packageOverrides; self = python; };
 
     apipkg = prev.apipkg.overrideAttrs (old: {
       disabledTestPaths = [
