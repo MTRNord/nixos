@@ -46,7 +46,7 @@
 
 
     patroni = prev.patroni.overrideAttrs (old: {
-      nativeCheckInputs = with pkgs.python312.pythonPackages; [
+      nativeCheckInputs = with pkgs.python312Packages; [
         flake8
         mock
         pytestCheckHook
@@ -54,7 +54,7 @@
         requests
       ];
 
-      propagatedBuildInputs = with pkgs.python312.pythonPackages; [
+      propagatedBuildInputs = with pkgs.python312Packages; [
         boto
         click
         consul
