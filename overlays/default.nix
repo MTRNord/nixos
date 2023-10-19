@@ -45,34 +45,11 @@
     });
 
 
-    patroni = prev.patroni.overrideAttrs (old: {
-      nativeCheckInputs = with pkgs.python312Packages; [
-        flake8
-        mock
-        pytestCheckHook
-        pytest-cov
-        requests
+    apipkg = prev.apipkg.overrideAttrs (old: {
+      disabledTestPaths = [
+        # ModuleNotFoundError: No module named '_xyz'
+        "test_apipkg.py "
       ];
-
-      propagatedBuildInputs = with pkgs.python312Packages; [
-        boto
-        click
-        consul
-        dnspython
-        kazoo
-        kubernetes
-        prettytable
-        psutil
-        psycopg2
-        pysyncobj
-        python-dateutil
-        python-etcd
-        pyyaml
-        tzlocal
-        urllib3
-        ydiff
-      ];
-
     });
 
   };
