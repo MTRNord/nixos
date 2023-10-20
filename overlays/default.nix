@@ -55,7 +55,6 @@
 
     sqlalchemy = prev.sqlalchemy.overrideAttrs (old: {
       doCheck = false;
-
     });
 
   };

@@ -244,8 +244,10 @@
           "20.15.242.144/28"
           "20.15.242.192/28"
           "40.83.2.64/28"
+          "169.150.247.39" # etke.cc
         ];
         blockedV6 = [
+          "2400:52e0:1e00::1082:1" # etke.cc
           "2003:cb:ff2c:2700::1/64" # fedi_stats
           "2600:3c02::/64" # scottherr stats
           "2600:3c03::/64" # unknown, tries public tl access
