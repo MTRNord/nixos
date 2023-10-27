@@ -170,7 +170,6 @@
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg0/private_key".path;
         table = "off";
-        mtu = 1340;
 
         peers = [
           # big one
@@ -190,7 +189,6 @@
         listenPort = 51821;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg1/private_key".path;
         table = "off";
-        mtu = 1340;
 
         peers = [
           # worker-2
