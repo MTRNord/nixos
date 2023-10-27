@@ -209,7 +209,7 @@
               "0.0.0.0/0"
             ];
             persistentKeepalive = 25;
-            endpoint = "37.27.5.79:51841";
+            endpoint = "10.0.0.3:51841";
           }
         ];
       };
