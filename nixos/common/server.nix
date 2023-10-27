@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ inputs, lib, pkgs, config, ... }:
 {
   systemd = {
     network.enable = true;
@@ -39,7 +39,7 @@
     # Ensure a clean & sparkling /tmp on fresh boots.
     tmp.cleanOnBoot = true;
     # btrfs boot
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.linuxPackages_latest;
     supportedFilesystems = [ "btrfs" ];
     initrd.supportedFilesystems = [ "btrfs" ];
   };
