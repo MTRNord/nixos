@@ -457,86 +457,49 @@
     bird2 = {
       enable = true;
       config = ''
-          router id 10.100.0.1;
-          debug protocols all;
-
-        function is_valid_network() {
-          return net ~ [
-            10.100.0.0/24,
-            10.100.12.0/24
-          ];
-        }
-
-        function is_valid_network_v6() {
-          return net ~ [
-            fe99:13::/64
-          ];
-        }
-      
+        router id 10.100.0.1;
+        debug protocols all;
+        ## Boilerplate from distro
+        log syslog all;
         protocol device {
-          scan time 10;           # Scan interfaces every 10 seconds
         }
-
         protocol direct {
-          ipv4 {
-            export all;
-            import all;
-          };
-          ipv6 {
-            export all;
-            import all;
-          };
-          interface "floating1";
+                disabled;               # Disable by default
+                ipv4;                   # Connect to default IPv4 table
+                ipv6;                   # ... and to default IPv6 table
         }
-
-        protocol static {
-          ipv4 {
-            import all;
-          };
-        }
-
-        protocol static {
-          ipv6 {
-            import all;
-          };
-        }
-
         protocol kernel {
-          metric 64;
-          ipv4 {                  # Connect protocol to IPv4 table by channel
-            import filter { if is_valid_network() then accept; else reject; };      # Import to table, default is import all
-            export filter { if is_valid_network() then accept; else reject; };      # Export to protocol. default is export none
-          };
+                ipv4 {                  # Connect protocol to IPv4 table by channel
+                      export all;	# Export to protocol. default is export none
+                };
+          persist;
         }
-
         protocol kernel {
-          metric 64;
-          ipv6 {                  # Connect protocol to IPv6 table by channel
-            import filter { if is_valid_network_v6() then accept; else reject; };      # Import to table, default is import all
-            export filter { if is_valid_network_v6() then accept; else reject; };      # Export to protocol. default is export none
-          };
+                ipv6 { export all; };
+        }
+        protocol static {
+                ipv4;                   # Again, IPv4 channel with default options
         }
 
-        protocol ospf v3 v4 {
-          ipv4 {
-            import all;
-            export all;
-          };
-          graceful restart 1;
+        ## Sauce
+        protocol ospf MyOSPF {
+                ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
+                ipv4 {
+                        export filter {
+                                if source = RTS_BGP then {
+                                        ospf_metric1 = 100;
+                                        accept;
+                                }
+                                reject;
+                        };
+                };
           area 0.0.0.0 {
-            interface "wg0", "wg1";
-          };
-        }
-
-        protocol ospf v3 v6 {
-          ipv6 {
-            import all;
-            export all;
-          };
-          graceful restart 1;
-          area 0.0.0.0 {
-            interface "wg0", "wg1";
-          };
+                        ## What matters
+                        stubnet 10.100.0.0/24;
+                        interface "wg0", "wg1", "floating1" {
+                                type ptp; # VPN tunnels should be point-to-point
+                        };
+                };
         }
       '';
     };
