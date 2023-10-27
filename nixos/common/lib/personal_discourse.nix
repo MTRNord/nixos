@@ -6,6 +6,7 @@
     database = {
       host = "postgres.internal.midnightthoughts.space";
       passwordFile = config.sops.secrets."discourse/db_password".path;
+      name = "personal_discourse";
     };
     backendSettings = {
       db_port = 5000;
