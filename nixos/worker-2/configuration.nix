@@ -162,6 +162,12 @@ in
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg0/private_key".path;
         table = "off";
+        preUp = ''
+          iptables -t mangle -A FORWARD -o wg0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        '';
+        postUp = ''
+          iptables -t mangle -A FORWARD -o wg0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        '';
 
         peers = [
           # big one
@@ -181,6 +187,12 @@ in
         listenPort = 51821;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg1/private_key".path;
         table = "off";
+        preUp = ''
+          iptables -t mangle -A FORWARD -o wg1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        '';
+        postUp = ''
+          iptables -t mangle -A FORWARD -o wg1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+        '';
 
         peers = [
           # worker-1
