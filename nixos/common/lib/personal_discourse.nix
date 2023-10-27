@@ -1,7 +1,7 @@
 { inputs, lib, pkgs, config, ... }:
 {
   services.discourse = {
-    package = inputs.nixpkgs-discourse.legacyPackages.${pkgs.system}.discourse;
+    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.discourse;
     enable = true;
     database = {
       host = "postgres.internal.midnightthoughts.space";
