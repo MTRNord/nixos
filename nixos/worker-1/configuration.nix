@@ -464,42 +464,43 @@
         protocol device {
         }
         protocol direct {
-                disabled;               # Disable by default
-                ipv4;                   # Connect to default IPv4 table
-                ipv6;                   # ... and to default IPv6 table
+          disabled;               # Disable by default
+          ipv4;                   # Connect to default IPv4 table
+          ipv6;                   # ... and to default IPv6 table
         }
         protocol kernel {
-                ipv4 {                  # Connect protocol to IPv4 table by channel
-                      export all;	# Export to protocol. default is export none
-                };
+          ipv4 {                  # Connect protocol to IPv4 table by channel
+            export all;	# Export to protocol. default is export none
+          };
           persist;
         }
         protocol kernel {
-                ipv6 { export all; };
+          ipv6 { export all; };
         }
         protocol static {
-                ipv4;                   # Again, IPv4 channel with default options
+          ipv4;                   # Again, IPv4 channel with default options
         }
 
         ## Sauce
         protocol ospf MyOSPF {
-                ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
-                ipv4 {
-                        export filter {
-                                if source = RTS_BGP then {
-                                        ospf_metric1 = 100;
-                                        accept;
-                                }
-                                reject;
-                        };
-                };
+          ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
+          ipv4 {
+            export filter {
+              if source = RTS_BGP then {
+                ospf_metric1 = 100;
+                accept;
+              }
+              reject;
+            };
+          };
           area 0.0.0.0 {
-                        ## What matters
-                        stubnet 10.100.0.0/24;
-                        interface "wg0", "wg1", "floating1" {
-                                type ptp; # VPN tunnels should be point-to-point
-                        };
-                };
+            networks {
+              10.100.0.0/24;
+            };
+            interface "wg0", "wg1", "floating1" {
+              type ptp; # VPN tunnels should be point-to-point
+            };
+          };
         }
       '';
     };
