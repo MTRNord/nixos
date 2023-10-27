@@ -165,16 +165,16 @@
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
     wg-quick.interfaces = {
-      wg0 = {
+      nordgedanken = {
         address = [ "10.100.0.1/24" "fe99:13::1/64" ];
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg0/private_key".path;
         table = "off";
         preUp = ''
-          iptables -t mangle -A FORWARD -o wg0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
         '';
         postUp = ''
-          iptables -t mangle -A FORWARD -o wg0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
         '';
 
         peers = [
@@ -183,23 +183,22 @@
             publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
             allowedIPs = [
               "0.0.0.0/0"
-              "::/0"
             ];
             persistentKeepalive = 25;
             endpoint = "95.217.202.35:51821";
           }
         ];
       };
-      wg1 = {
+      worker2 = {
         address = [ "10.100.0.1/24" "fe99:13::1/64" ];
         listenPort = 51821;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg1/private_key".path;
         table = "off";
         preUp = ''
-          iptables -t mangle -A FORWARD -o wg1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          iptables -t mangle -A FORWARD -o worker2 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
         '';
         postUp = ''
-          iptables -t mangle -A FORWARD -o wg1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          iptables -t mangle -A FORWARD -o worker2 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
         '';
 
         peers = [
@@ -208,8 +207,8 @@
             publicKey = "bVSjGeOiIO5XXPVkGLrYD4wTV52BFBOLSuCeSD97MUs=";
             allowedIPs = [
               "0.0.0.0/0"
-              "::/0"
             ];
+            persistentKeepalive = 25;
             endpoint = "37.27.5.79:51821";
           }
         ];
@@ -497,7 +496,7 @@
             networks {
               10.100.0.0/24;
             };
-            interface "wg0", "wg1", "floating1" {
+            interface "nordgedanken", "worker2", "floating1" {
               type ptp; # VPN tunnels should be point-to-point
             };
           };
