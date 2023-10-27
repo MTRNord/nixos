@@ -34,6 +34,7 @@ in
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
     ../common/lib/pdns.nix
+    ../common/lib/personal_discourse.nix
     ./kubernetes.nix
   ];
 
