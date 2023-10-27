@@ -47,7 +47,7 @@
       required = {
         title = "MTRNords personal space";
         contact_email = "support@miki.community";
-        notification_email = "noreply@forum.miki.community";
+        notification_email = lib.mkForce "noreply@forum.miki.community";
       };
       login = {
         login_required = true;
