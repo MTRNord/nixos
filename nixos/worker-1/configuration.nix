@@ -270,7 +270,7 @@
       in
       {
         checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" "wg0" "wg1" ];
+        trustedInterfaces = [ "tailscale0" "floating1" "worker2" "nordgedanken" ];
         enable = true;
         allowPing = true;
         allowedTCPPorts = [
