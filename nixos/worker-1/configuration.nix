@@ -482,6 +482,7 @@
 
         ## Sauce
         protocol ospf MyOSPF {
+          ecmp no;
           ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
           ipv4 {
             export filter {
