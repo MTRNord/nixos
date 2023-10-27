@@ -494,6 +494,7 @@
           };
           area 0.0.0.0 {
             networks {
+              10.100.0.1/32;
               10.100.0.0/24;
             };
             interface "nordgedanken", "worker2", "floating1" {
