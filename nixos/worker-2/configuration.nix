@@ -159,7 +159,7 @@ in
     wg-quick.interfaces = {
       nordgedanken = {
         address = [ "10.100.0.3/24" "fe99:13::3/64" ];
-        listenPort = 51820;
+        listenPort = 51840;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg0/private_key".path;
         table = "off";
         preUp = ''
@@ -177,13 +177,13 @@ in
               "0.0.0.0/0"
             ];
             persistentKeepalive = 25;
-            endpoint = "95.217.202.35:51820";
+            endpoint = "95.217.202.35:51830";
           }
         ];
       };
       worker1 = {
         address = [ "10.100.0.3/24" "fe99:13::3/64" ];
-        listenPort = 51821;
+        listenPort = 51841;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg1/private_key".path;
         table = "off";
         preUp = ''
@@ -267,14 +267,14 @@ in
         allowPing = true;
         allowedTCPPorts = [
           22 # ssh
-          51820
-          51821
+          51840
+          51841
           9962
           9100
         ];
         allowedUDPPorts = [
-          51820
-          51821
+          51840
+          51841
         ];
 
         extraCommands =
