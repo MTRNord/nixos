@@ -76,5 +76,5 @@
     };
   };
 
-  systemd.services.discourse.environment = { UNICORN_WORKERS = "8"; };
+  systemd.services.discourse.environment = { UNICORN_WORKERS = "16"; };
 }
