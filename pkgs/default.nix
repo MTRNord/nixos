@@ -43,6 +43,16 @@
         sha256 = "sha256-urmCt3FCIU0YSbkEJgDOzN/2dYjyYnPstjWCGOp/Vbs=";
       };
     };
+  discourse-locations = pkgs.discourse.mkDiscoursePlugin
+    {
+      name = "discourse-locations";
+      src = pkgs.fetchFromGitHub {
+        owner = "paviliondev";
+        repo = "discourse-locations";
+        rev = "58c5eabb47237b1485e76c93501433ee02011430";
+        sha256 = "sha256-urmCt3FCIU0YSbkEJgDOzN/2dYjyYnPstjWCGOp/Vbs=";
+      };
+    };
   #  discourse-spoiler-alert = pkgs.discourse.mkDiscoursePlugin
   #    {
   #      name = "discourse-spoiler-alert";
