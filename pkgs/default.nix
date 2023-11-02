@@ -50,7 +50,7 @@
         owner = "paviliondev";
         repo = "discourse-locations";
         rev = "58c5eabb47237b1485e76c93501433ee02011430";
-        sha256 = "sha256-urmCt3FCIU0YSbkEJgDOzN/2dYjyYnPstjWCGOp/Vbs=";
+        sha256 = "sha256-iTcGzlw5sX2/n8k7K07ScdX918eDX+lYS7Gly69dYis=";
       };
     };
   #  discourse-spoiler-alert = pkgs.discourse.mkDiscoursePlugin
