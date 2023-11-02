@@ -42,7 +42,7 @@
       pkgs.discourse-gamification
       pkgs.discourse-cakeday
       pkgs.discourse-templates
-      pkgs.discourse-locations
+      #pkgs.discourse-locations
       #pkgs.discourse-spoiler-alert
     ];
     siteSettings = {
