@@ -175,6 +175,8 @@ in
             publicKey = "oBqOZGvt83/u8QETTGxRi8wXqXih9IPDl+T5Snqx9yA=";
             allowedIPs = [
               "0.0.0.0/0"
+              "ff00::/8"
+              "224.0.0.0/4"
             ];
             persistentKeepalive = 25;
             endpoint = "95.217.202.35:51830";
@@ -199,6 +201,8 @@ in
             publicKey = "gVNmams9FSNMrtZYVKEjr04NyEha8I7nxf6GPmdN0FQ=";
             allowedIPs = [
               "0.0.0.0/0"
+              "ff00::/8"
+              "224.0.0.0/4"
             ];
             persistentKeepalive = 25;
             endpoint = "10.0.0.2:51821";
