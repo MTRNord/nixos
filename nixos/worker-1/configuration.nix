@@ -572,7 +572,7 @@
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "wg0";
+          interface = "nordgedanken";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
