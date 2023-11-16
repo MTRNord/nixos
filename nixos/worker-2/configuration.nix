@@ -167,6 +167,7 @@ in
         '';
         postUp = ''
           iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          ip link set nordgedanken multicast on
         '';
 
         peers = [
@@ -193,6 +194,7 @@ in
         '';
         postUp = ''
           iptables -t mangle -A FORWARD -o worker1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+          ip link set worker1 multicast on
         '';
 
         peers = [
