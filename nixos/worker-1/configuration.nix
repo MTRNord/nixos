@@ -36,6 +36,7 @@
     ../common/lib/asterisk.nix
     ../common/lib/discourse.nix
     ../common/lib/github-runner.nix
+    ../common/lib/pdns.nix
 
     ./kubernetes.nix
     ./znc.nix
