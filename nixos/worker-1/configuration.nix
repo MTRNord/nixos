@@ -149,6 +149,18 @@
     };
   };
 
+  services.powerdns.extraConfig = ''
+    launch=gsqlite3
+    master=yes
+    webserver-address=0.0.0.0
+    webserver-allow-from=127.0.0.1,::1,10.244.0.0/16,31.17.243.193,${builtins.concatStringsSep "," github_metadata_json.actions}
+    webserver-port=8081
+    api=yes
+    gsqlite3-database=/persist/var/lib/pdns/pdns.db
+    local-address=49.13.24.105 2a01:4f8:c012:492::1
+    api-key=$API_KEY
+  '';
+
   networking = {
     hostName = "worker-1";
     enableIPv6 = true;
