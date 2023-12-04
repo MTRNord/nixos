@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   services = {
     postgresql.package = pkgs.postgresql_14;
     pgadmin = {

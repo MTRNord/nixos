@@ -1,8 +1,11 @@
 # This file defines overlays
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+  additions = final: _prev: import ../pkgs {pkgs = final;};
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
@@ -22,7 +25,7 @@
         substituteInPlace menuselect.makeopts --replace 'codec_opus_open_source ' ""
         substituteInPlace menuselect.makeopts --replace 'format_ogg_opus_open_source ' ""
       '';
-      buildInputs = old.buildInputs ++ [ pkgs.postgresql ];
+      buildInputs = old.buildInputs ++ [pkgs.postgresql];
     });
     # envoy = prev.envoy.overrideAttrs (old: {
     #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
@@ -36,12 +39,11 @@
         hash = "sha256-ojZ23n8Bq4288yna9RVhDvZe+AcPEInG93z7/o3uQwY=";
       };
 
-      nativeBuildInputs = [ pkgs.python312 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook ];
+      nativeBuildInputs = [pkgs.python312 pkgs.pandoc pkgs.libevent pkgs.libtool pkgs.autoconf pkgs.automake pkgs.openssl pkgs.pkg-config pkgs.autoreconfHook];
 
       autoreconfPhase = ''
         ./autogen.sh
       '';
-
     });
 
     apipkg = prev.apipkg.overrideAttrs (old: {
@@ -49,14 +51,13 @@
         # ModuleNotFoundError: No module named '_xyz'
         "test_apipkg.py"
       ];
-      pytestFlagsArray = [ ];
+      pytestFlagsArray = [];
       doCheck = false;
     });
 
     sqlalchemy = prev.sqlalchemy.overrideAttrs (old: {
       doCheck = false;
     });
-
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

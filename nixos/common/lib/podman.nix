@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   virtualisation.podman = {
     enable = true;
     defaultNetwork.settings = {

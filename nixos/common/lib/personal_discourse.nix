@@ -1,5 +1,10 @@
-{ inputs, lib, pkgs, config, ... }:
 {
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   services.discourse = {
     package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.discourse;
     enable = true;
@@ -77,5 +82,5 @@
     };
   };
 
-  systemd.services.discourse.environment = { UNICORN_WORKERS = "16"; };
+  systemd.services.discourse.environment = {UNICORN_WORKERS = "16";};
 }

@@ -1,6 +1,10 @@
-{ lib, pkgs, config, ... }:
 {
-  users.users."node-yara-rs-runner" = { isNormalUser = false; };
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
+  users.users."node-yara-rs-runner" = {isNormalUser = false;};
   environment.systemPackages = with pkgs; [
     yarn
     nodejs_20
@@ -12,7 +16,7 @@
     "node-yara-rs" = {
       url = "https://github.com/MTRNord/node-yara-rs";
       enable = true;
-      extraLabels = [ "arm64" ];
+      extraLabels = ["arm64"];
       ephemeral = true;
       replace = true;
       user = "node-yara-rs-runner";

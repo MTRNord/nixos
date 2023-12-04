@@ -1,6 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
-
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   # General stuff
   time.timeZone = "Europe/Berlin";
 
@@ -8,7 +11,6 @@
   environment.variables.BROWSER = "echo";
   sound.enable = false;
   powerManagement.cpuFreqGovernor = "performance";
-
 
   environment.systemPackages = with pkgs; [
     wget

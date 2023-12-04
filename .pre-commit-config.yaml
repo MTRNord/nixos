@@ -1,5 +1,7 @@
 repos:
-  - repo: https://github.com/nix-community/nixpkgs-fmt
-    rev: v1.3.0
+  - repo: https://github.com/kamadorueda/alejandra
+    rev: e53c2c6c6c103dc3f848dbd9fbd93ee7c69c109f  # frozen: 3.0.0
+    # Choose either the 'alejandra' or 'alejandra-system' hook
+    # depending on what pre-requisites you have:
     hooks:
-      - id: nixpkgs-fmt
+      - id: alejandra-nix

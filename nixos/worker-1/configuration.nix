@@ -1,11 +1,16 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   github_metadata_file = builtins.readFile inputs.github_meta;
   github_metadata_json = builtins.fromJSON github_metadata_file;
-in
-{
+in {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -82,7 +87,7 @@ in
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -96,8 +101,8 @@ in
       # Sandbox
       sandbox = true;
       # Build locally
-      trusted-substituters = [ ];
-      substituters = [ ];
+      trusted-substituters = [];
+      substituters = [];
     };
 
     gc = {
@@ -105,7 +110,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 60d";
     };
-
   };
 
   # Broken
@@ -124,7 +128,7 @@ in
       floating1 = {
         enable = true;
         name = "floating1";
-        address = [ ];
+        address = [];
         matchConfig = {
           Name = "floating1";
         };
@@ -138,16 +142,30 @@ in
           "2a01:4f8:c012:492::1/64"
         ];
         routes = [
-          { routeConfig.Gateway = "fe80::1"; }
-          { routeConfig = { Gateway = "172.31.1.1"; GatewayOnLink = true; }; }
+          {routeConfig.Gateway = "fe80::1";}
+          {
+            routeConfig = {
+              Gateway = "172.31.1.1";
+              GatewayOnLink = true;
+            };
+          }
 
           # prevent some local traffic Hetzner doesn't like
           #{ routeConfig = { Destination = "172.16.0.0/12"; Type = "unreachable"; }; }
-          { routeConfig = { Destination = "192.168.0.0/16"; Type = "unreachable"; }; }
+          {
+            routeConfig = {
+              Destination = "192.168.0.0/16";
+              Type = "unreachable";
+            };
+          }
 
           # { routeConfig = { Destination = "10.0.0.0/8"; Type = "unreachable"; }; }
-          { routeConfig = { Destination = "fc00::/7"; Type = "unreachable"; }; }
-
+          {
+            routeConfig = {
+              Destination = "fc00::/7";
+              Type = "unreachable";
+            };
+          }
         ];
       };
     };
@@ -176,14 +194,14 @@ in
       enable = true;
       enableIPv6 = true;
       externalInterface = "enp1s0";
-      internalInterfaces = [ "wg0" ];
+      internalInterfaces = ["wg0"];
     };
 
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = ["8.8.8.8" "8.8.4.4"];
 
     wg-quick.interfaces = {
       nordgedanken = {
-        address = [ "10.100.0.1/24" "fe99:13::1/64" ];
+        address = ["10.100.0.1/24" "fe99:13::1/64"];
         listenPort = 51820;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg0/private_key".path;
         table = "off";
@@ -210,7 +228,7 @@ in
         ];
       };
       worker2 = {
-        address = [ "10.100.0.1/24" "fe99:13::1/64" ];
+        address = ["10.100.0.1/24" "fe99:13::1/64"];
         listenPort = 51821;
         privateKeyFile = config.sops.secrets."wireguard/worker-1/wg1/private_key".path;
         table = "off";
@@ -236,106 +254,109 @@ in
           }
         ];
       };
-
     };
 
-    firewall =
-      let
-        blockedV4 = [
-          "158.101.19.243" # full-text search scraper https://macaw.social/@angilly/109597402157254670
-          "207.231.106.226" # fediverse.network / fedi.ninja
-          "45.81.20.80" # instances.social
-          "198.58.122.231" # fedimapper.tedivm.com
-          "142.93.3.121" # fedidb.org
-          "45.158.40.164" # fedi.buzz
-          "170.39.215.216" # fediverse.observer
-          "87.157.136.163" # fedi_stats
-          "94.31.103.67" # python/federation
-          "45.56.100.29" # scottherr? same as :5a13
-          "173.230.137.240" # scottherr@mastodon.social
-          "138.37.89.34"
-          "104.21.80.126" # gangstalking.services
-          "172.67.181.16" # gangstalking.services
-          "198.98.54.220" # ryona.agency
-          "35.173.245.194"
-          "99.105.215.234" # public tl
-          "65.108.204.30" # unknown
-          "65.109.31.111" # @fediverse@mastodont.cat
-          "54.37.233.246" # fba.ryona.agency domain block scraper
-          "185.244.192.119" # mooneyed.de / drow.be / bka.li blocklist scraper
-          "23.24.204.110" # ryona tool fed.dembased.xyz / annihilation.social blocklist scraper
-          "187.190.192.31" # ryona tool unfediblockthefedi.now
-          "70.106.192.146" # blocklist scraper
-          # https://openai.com/gptbot-ranges.txt
-          "20.15.240.64/28"
-          "20.15.240.80/28"
-          "20.15.240.96/28"
-          "20.15.240.176/28"
-          "20.15.241.0/28"
-          "20.15.242.128/28"
-          "20.15.242.144/28"
-          "20.15.242.192/28"
-          "40.83.2.64/28"
-          "169.150.247.39" # etke.cc
-          "143.244.38.136" # etke.cc
-        ];
-        blockedV6 = [
-          "2400:52e0:1e00::1082:1" # etke.cc
-          "2a01:4f9:4b:4b0b::2" # etke.cc
-          "2003:cb:ff2c:2700::1/64" # fedi_stats
-          "2600:3c02::/64" # scottherr stats
-          "2600:3c03::/64" # unknown, tries public tl access
-          "2605:6400:10:1fe::1/64" # ryona.agency
-          "2a01:4f9:5a:1cc4::2" # @fediverse@mastodont.cat
-          "2604:a880:400:d1::1/64" # fedidb.org
-          "2a01:4f8:162:6027::1/64" # blocklist scraper 
-        ];
-      in
-      {
-        checkReversePath = "loose";
-        trustedInterfaces = [ "tailscale0" "floating1" "worker2" "nordgedanken" ];
-        enable = true;
-        allowPing = true;
-        allowedTCPPorts = [
-          22 # ssh
-          5060 # SIP
-          8088
-          80
-          443
-          51820
-          51821
-          9962
-          9100
-          9963
-        ];
-        allowedUDPPorts = [
-          5060 # SIP
-          51820
-          51821
-          config.services.tailscale.port
-        ];
+    firewall = let
+      blockedV4 = [
+        "158.101.19.243" # full-text search scraper https://macaw.social/@angilly/109597402157254670
+        "207.231.106.226" # fediverse.network / fedi.ninja
+        "45.81.20.80" # instances.social
+        "198.58.122.231" # fedimapper.tedivm.com
+        "142.93.3.121" # fedidb.org
+        "45.158.40.164" # fedi.buzz
+        "170.39.215.216" # fediverse.observer
+        "87.157.136.163" # fedi_stats
+        "94.31.103.67" # python/federation
+        "45.56.100.29" # scottherr? same as :5a13
+        "173.230.137.240" # scottherr@mastodon.social
+        "138.37.89.34"
+        "104.21.80.126" # gangstalking.services
+        "172.67.181.16" # gangstalking.services
+        "198.98.54.220" # ryona.agency
+        "35.173.245.194"
+        "99.105.215.234" # public tl
+        "65.108.204.30" # unknown
+        "65.109.31.111" # @fediverse@mastodont.cat
+        "54.37.233.246" # fba.ryona.agency domain block scraper
+        "185.244.192.119" # mooneyed.de / drow.be / bka.li blocklist scraper
+        "23.24.204.110" # ryona tool fed.dembased.xyz / annihilation.social blocklist scraper
+        "187.190.192.31" # ryona tool unfediblockthefedi.now
+        "70.106.192.146" # blocklist scraper
+        # https://openai.com/gptbot-ranges.txt
+        "20.15.240.64/28"
+        "20.15.240.80/28"
+        "20.15.240.96/28"
+        "20.15.240.176/28"
+        "20.15.241.0/28"
+        "20.15.242.128/28"
+        "20.15.242.144/28"
+        "20.15.242.192/28"
+        "40.83.2.64/28"
+        "169.150.247.39" # etke.cc
+        "143.244.38.136" # etke.cc
+      ];
+      blockedV6 = [
+        "2400:52e0:1e00::1082:1" # etke.cc
+        "2a01:4f9:4b:4b0b::2" # etke.cc
+        "2003:cb:ff2c:2700::1/64" # fedi_stats
+        "2600:3c02::/64" # scottherr stats
+        "2600:3c03::/64" # unknown, tries public tl access
+        "2605:6400:10:1fe::1/64" # ryona.agency
+        "2a01:4f9:5a:1cc4::2" # @fediverse@mastodont.cat
+        "2604:a880:400:d1::1/64" # fedidb.org
+        "2a01:4f8:162:6027::1/64" # blocklist scraper
+      ];
+    in {
+      checkReversePath = "loose";
+      trustedInterfaces = ["tailscale0" "floating1" "worker2" "nordgedanken"];
+      enable = true;
+      allowPing = true;
+      allowedTCPPorts = [
+        22 # ssh
+        5060 # SIP
+        8088
+        80
+        443
+        51820
+        51821
+        9962
+        9100
+        9963
+      ];
+      allowedUDPPorts = [
+        5060 # SIP
+        51820
+        51821
+        config.services.tailscale.port
+      ];
 
-        allowedUDPPortRanges = [
-          { from = 10000; to = 20000; }
-        ];
+      allowedUDPPortRanges = [
+        {
+          from = 10000;
+          to = 20000;
+        }
+      ];
 
-        extraCommands =
-          builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -A INPUT -s ${ip} -j DROP") blockedV4) + "\n"
-          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -A INPUT -s ${ip} -j DROP") blockedV6) + "\n"
-          + ''
-            iptables -A nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
-            ip6tables -A nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
-          '';
+      extraCommands =
+        builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -A INPUT -s ${ip} -j DROP") blockedV4)
+        + "\n"
+        + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -A INPUT -s ${ip} -j DROP") blockedV6)
+        + "\n"
+        + ''
+          iptables -A nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
+          ip6tables -A nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
+        '';
 
-        extraStopCommands =
-          builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -D INPUT -s ${ip} -j DROP") blockedV4) + "\n"
-          + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -D INPUT -s ${ip} -j DROP") blockedV6) + "\n"
-          + ''
-            iptables -D nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
-            ip6tables -D nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
-          '';
-
-      };
+      extraStopCommands =
+        builtins.concatStringsSep "\n" (builtins.map (ip: "iptables -D INPUT -s ${ip} -j DROP") blockedV4)
+        + "\n"
+        + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -D INPUT -s ${ip} -j DROP") blockedV6)
+        + "\n"
+        + ''
+          iptables -D nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
+          ip6tables -D nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
+        '';
+    };
   };
 
   # packages that are not flakes
@@ -355,7 +376,7 @@ in
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
         ];
-        extraGroups = [ "wheel" ];
+        extraGroups = ["wheel"];
         shell = pkgs.zsh;
       };
 
@@ -366,7 +387,7 @@ in
         group = "node-yara-rs-runner";
       };
     };
-    groups.node-yara-rs-runner = { };
+    groups.node-yara-rs-runner = {};
   };
 
   services.gitea-actions-runner = {
@@ -375,16 +396,15 @@ in
         enable = false;
         url = "https://git.nordgedanken.dev";
         tokenFile = config.sops.secrets.forgejo_runner_token.path;
-        labels = [ ];
+        labels = [];
         name = "worker-1";
       };
     };
   };
 
   systemd.services.gitea-runner-nordgedanken = {
-    serviceConfig.SupplementaryGroups = [ config.users.groups.keys.name ];
+    serviceConfig.SupplementaryGroups = [config.users.groups.keys.name];
   };
-
 
   # Restic Backup
   services.restic.backups = {
@@ -416,7 +436,7 @@ in
       upstreams = {
         "asterisk_webrtc_ws" = {
           servers = {
-            "127.0.0.1:8088" = { };
+            "127.0.0.1:8088" = {};
           };
         };
       };
@@ -437,8 +457,7 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass =
-              "http://localhost:${toString config.services.headscale.port}";
+            proxyPass = "http://localhost:${toString config.services.headscale.port}";
             proxyWebsockets = true;
           };
         };
@@ -446,8 +465,7 @@ in
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass =
-              "http://localhost:5001";
+            proxyPass = "http://localhost:5001";
           };
         };
       };
@@ -465,7 +483,7 @@ in
       settings = {
         logtail.enabled = false;
         server_url = "https://headscale.midnightthoughts.space";
-        ip_prefixes = [ "fd7a:115c:a1e0::/48" "100.64.0.0/10" ];
+        ip_prefixes = ["fd7a:115c:a1e0::/48" "100.64.0.0/10"];
 
         dns_config = {
           base_domain = "headscale.midnightthoughts.space";
@@ -533,7 +551,7 @@ in
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = [ "10.100.0.1" "fe99:13::1" ];
+        allowedIPs = ["10.100.0.1" "fe99:13::1"];
         listenAddress = "10.100.0.1:8000";
       };
       frontend = {
@@ -603,7 +621,7 @@ in
             advert_int 1
           '';
           unicastSrcIp = "10.100.0.1";
-          unicastPeers = [ "10.100.0.2" ];
+          unicastPeers = ["10.100.0.2"];
           virtualIps = [
             {
               addr = "10.100.12.1/24";

@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/znc"
@@ -7,7 +11,7 @@
   };
   services.znc = {
     enable = true;
-    modulePackages = [ pkgs.zncModules.clientbuffer ];
+    modulePackages = [pkgs.zncModules.clientbuffer];
     confOptions = {
       useSSL = false;
       passBlock = ''
@@ -25,12 +29,11 @@
           server = "irc.libera.chat";
           port = 6697;
           useSSL = true;
-          modules = [ "simple_away" ];
-          channels = [ "fedora-buildsys" ];
+          modules = ["simple_away"];
+          channels = ["fedora-buildsys"];
         };
       };
     };
-
   };
   services = {
     nginx = {
@@ -38,7 +41,7 @@
       upstreams = {
         "znc" = {
           servers = {
-            "[::1]:58457" = { };
+            "[::1]:58457" = {};
           };
         };
       };
@@ -52,25 +55,23 @@
           };
         };
       };
-      streamConfig =
-        let
-          cert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/fullchain.pem";
-          certKey = config.security.acme.certs."znc.midnightthoughts.space".directory + "/key.pem";
-          trustedCert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/chain.pem";
-        in
-        ''
-          upstream znc {
-            server [::1]:58457;
-          }
-          server {
-            listen 6697 ssl;
-            listen [::]:6697 ssl;
-            ssl_certificate ${cert};
-            ssl_certificate_key ${certKey};
-            ssl_trusted_certificate ${trustedCert};
-            proxy_pass znc;
-          }
-        '';
+      streamConfig = let
+        cert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/fullchain.pem";
+        certKey = config.security.acme.certs."znc.midnightthoughts.space".directory + "/key.pem";
+        trustedCert = config.security.acme.certs."znc.midnightthoughts.space".directory + "/chain.pem";
+      in ''
+        upstream znc {
+          server [::1]:58457;
+        }
+        server {
+          listen 6697 ssl;
+          listen [::]:6697 ssl;
+          ssl_certificate ${cert};
+          ssl_certificate_key ${certKey};
+          ssl_trusted_certificate ${trustedCert};
+          proxy_pass znc;
+        }
+      '';
     };
   };
   networking.firewall.allowedTCPPorts = [

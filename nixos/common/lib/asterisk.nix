@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -93,7 +97,7 @@
         same => n,Verbose(0, Failed to call 6001. Hanging up)
         same => n,Playback(/var/lib/asterisk/sounds/en/cannot-complete-as-dialed)
         same => n,Hangup()
-    
+
         [unauthorized]
       '';
 

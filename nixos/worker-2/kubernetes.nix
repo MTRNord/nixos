@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/kubernetes/"
@@ -46,11 +50,10 @@
     51871
   ];
 
-
   services.kubernetes = {
     apiserverAddress = "https://[2a01:4f9:4a:451c:2::5]:6443";
     masterAddress = "[2a01:4f9:4a:451c:2::5]";
-    roles = [ "node" ];
+    roles = ["node"];
     proxy.enable = false;
     addons.dns.enable = true;
     easyCerts = false;
@@ -75,5 +78,5 @@
     };
   };
   services.kubernetes.flannel.enable = false;
-  services.kubernetes.kubelet.cni.packages = lib.mkForce [ pkgs.cni-plugins ];
+  services.kubernetes.kubelet.cni.packages = lib.mkForce [pkgs.cni-plugins];
 }

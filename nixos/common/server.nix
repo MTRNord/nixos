@@ -1,5 +1,10 @@
-{ inputs, lib, pkgs, config, ... }:
 {
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   systemd = {
     network.enable = true;
     # Given that our systems are headless, emergency mode is useless.
@@ -40,8 +45,8 @@
     tmp.cleanOnBoot = true;
     # btrfs boot
     kernelPackages = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.linuxPackages_latest;
-    supportedFilesystems = [ "btrfs" ];
-    initrd.supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = ["btrfs"];
+    initrd.supportedFilesystems = ["btrfs"];
   };
 
   hardware.enableAllFirmware = true;

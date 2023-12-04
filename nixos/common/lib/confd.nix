@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   services.confd = {
     enable = true;
     nodes = [
@@ -74,7 +78,7 @@
   system.activationScripts = {
     postgresqlMkdir = {
       text = "mkdir -p /etc/pgbouncer && chown pgbouncer:pgbouncer -R /etc/pgbouncer && chmod o+w /etc/pgbouncer";
-      deps = [ ];
+      deps = [];
     };
   };
 }

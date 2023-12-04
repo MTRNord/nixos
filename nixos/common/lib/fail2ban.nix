@@ -1,10 +1,14 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   services = {
     fail2ban = {
       enable = true;
 
-      extraPackages = [ pkgs.ipset ];
+      extraPackages = [pkgs.ipset];
       banaction = "iptables-ipset-proto6-allports";
       ignoreIP = [
         "148.251.63.154"

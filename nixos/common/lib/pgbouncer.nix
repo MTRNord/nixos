@@ -1,27 +1,31 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     pgbouncer
     util-linux
   ];
   users = {
-    groups.pgbouncer = { };
+    groups.pgbouncer = {};
     users = {
       pgbouncer = {
         isSystemUser = true;
         description = "PgBouncer User";
         group = "pgbouncer";
-        extraGroups = [ "patroni" ];
+        extraGroups = ["patroni"];
       };
     };
   };
 
   systemd.services.pgbouncer = {
     enable = true;
-    after = [ "network-online.target" ];
-    requires = [ "network-online.target" ];
+    after = ["network-online.target"];
+    requires = ["network-online.target"];
     description = "PgBouncer - PostgreSQL connection pooler";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       LimitNOFILE = 8192;
       ExecStart = "${pkgs.pgbouncer}/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini";
@@ -37,7 +41,6 @@
 
   environment.etc = {
     "pgbouncer/pg_hba.conf" = {
-
       user = config.users.users.pgbouncer.name;
       group = config.users.users.pgbouncer.group;
       text = ''

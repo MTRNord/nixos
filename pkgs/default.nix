@@ -1,9 +1,9 @@
 # Custom packages, that can be defined similarly to ones from nixpkgs
 # You can build them using 'nix build .#example' or (legacy) 'nix-build -A example'
-
-{ pkgs ? (import ../nixpkgs.nix) { } }: {
+{pkgs ? (import ../nixpkgs.nix) {}}: {
   # example = pkgs.callPackage ./example { };
-  discourse-footnote = pkgs.discourse.mkDiscoursePlugin
+  discourse-footnote =
+    pkgs.discourse.mkDiscoursePlugin
     {
       name = "discourse-footnote";
       src = pkgs.fetchFromGitHub {
@@ -13,7 +13,8 @@
         sha256 = "sha256-jF7FzFjMcy5YNdfd5W7gvkzl755UbEmlHUl9j67/DvE=";
       };
     };
-  discourse-cakeday = pkgs.discourse.mkDiscoursePlugin
+  discourse-cakeday =
+    pkgs.discourse.mkDiscoursePlugin
     {
       name = "discourse-cakeday";
       src = pkgs.fetchFromGitHub {
@@ -23,7 +24,8 @@
         sha256 = "sha256-1OtI+or47XBwq3mdRfOIg3OGCfVzNcK4hseJs7H+Vm8";
       };
     };
-  discourse-templates = pkgs.discourse.mkDiscoursePlugin
+  discourse-templates =
+    pkgs.discourse.mkDiscoursePlugin
     {
       name = "discourse-templates";
       src = pkgs.fetchFromGitHub {
@@ -33,7 +35,8 @@
         sha256 = "sha256-rhkwAZGq9WPqVBuLc5eZJz+ve8x1nk6pVoYNEfDmPwI=";
       };
     };
-  discourse-gamification = pkgs.discourse.mkDiscoursePlugin
+  discourse-gamification =
+    pkgs.discourse.mkDiscoursePlugin
     {
       name = "discourse-gamification";
       src = pkgs.fetchFromGitHub {
@@ -43,7 +46,8 @@
         sha256 = "sha256-urmCt3FCIU0YSbkEJgDOzN/2dYjyYnPstjWCGOp/Vbs=";
       };
     };
-  discourse-locations = pkgs.discourse.mkDiscoursePlugin
+  discourse-locations =
+    pkgs.discourse.mkDiscoursePlugin
     {
       name = "discourse-locations";
       src = pkgs.fetchFromGitHub {

@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   # Darling Erasure
   environment.persistence."/persist" = {
     directories = [

@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     pgcat
     util-linux
@@ -20,10 +24,10 @@
 
   systemd.services.pgcat = {
     enable = true;
-    after = [ "network-online.target" ];
-    requires = [ "network-online.target" ];
+    after = ["network-online.target"];
+    requires = ["network-online.target"];
     description = "PgCat - PostgreSQL connection pooler";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       LimitNOFILE = 65536;
       Environment = "RUST_LOG=info";

@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     patroni
     etcd_3_4
@@ -26,8 +30,8 @@
     etcd = {
       enable = true;
       initialClusterState = "existing";
-      listenClientUrls = [ "http://10.100.0.1:2379" ];
-      listenPeerUrls = [ "http://10.100.0.1:2380" ];
+      listenClientUrls = ["http://10.100.0.1:2379"];
+      listenPeerUrls = ["http://10.100.0.1:2380"];
       initialCluster = [
         "worker-1=http://10.100.0.1:2380"
         "nordgedanken=http://10.100.0.2:2380"
@@ -70,7 +74,7 @@
             max_wal_senders = "10";
             synchronous_commit = "on";
 
-            # Checkpointing: 
+            # Checkpointing:
             checkpoint_timeout = "15 min";
             checkpoint_completion_target = "0.9";
             max_wal_size = "1024 MB";
@@ -87,21 +91,20 @@
             wal_writer_flush_after = "1MB";
             wal_keep_size = "3650 MB";
 
-
             # Background writer
             bgwriter_delay = "200ms";
             bgwriter_lru_maxpages = "100";
             bgwriter_lru_multiplier = "2.0";
             bgwriter_flush_after = "0";
 
-            # Parallel queries: 
+            # Parallel queries:
             max_worker_processes = "14";
             max_parallel_workers_per_gather = "7";
             max_parallel_maintenance_workers = "7";
             max_parallel_workers = "14";
             parallel_leader_participation = "on";
 
-            # Advanced features 
+            # Advanced features
             enable_partitionwise_join = "on";
             enable_partitionwise_aggregate = "on";
             jit = "on";
@@ -140,7 +143,7 @@
   system.activationScripts = {
     postgresqlMkdir = {
       text = "mkdir -p /run/postgresql && chmod o+w /run/postgresql";
-      deps = [ ];
+      deps = [];
     };
   };
 
