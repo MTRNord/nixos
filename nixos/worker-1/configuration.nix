@@ -372,7 +372,7 @@ in {
     users = {
       marcel = {
         isNormalUser = true;
-        passwordFile = config.sops.secrets.marcel_initial_password.path;
+        hashedPasswordFile = config.sops.secrets.marcel_initial_password.path;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUzC9NeEc4voBeAO7YuQ1ewRKCS2iar4Bcm4cKoNKUH mtrnord@nordgedanken.dev"
         ];
@@ -380,7 +380,7 @@ in {
         shell = pkgs.zsh;
       };
 
-      "root".passwordFile = config.sops.secrets.root_initial_password.path;
+      "root".hashedPasswordFile = config.sops.secrets.root_initial_password.path;
       "node-yara-rs-runner" = {
         isNormalUser = false;
         isSystemUser = true;
