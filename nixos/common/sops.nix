@@ -134,6 +134,7 @@
         owner = "node-yara-rs-runner";
         group = "node-yara-rs-runner";
       };
+      "meilisearchKey" = {};
     };
   };
 }

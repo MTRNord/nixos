@@ -39,6 +39,7 @@ in {
     ../common/lib/podman.nix
     ../common/lib/pdns.nix
     ../common/lib/personal_discourse.nix
+    ../common/lib/meilisearch.nix
     ./kubernetes.nix
   ];
 
@@ -391,6 +392,18 @@ in {
   security.acme.defaults.email = "support@nordgedanken.dev";
 
   services = {
+    nginx = {
+      enable = true;
+      virtualHosts = {
+        "search.midnightthoughts.space" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:7700";
+          };
+        };
+      };
+    };
     bird2 = {
       enable = true;
       config = ''
