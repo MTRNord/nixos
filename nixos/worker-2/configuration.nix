@@ -400,6 +400,9 @@ in {
           enableACME = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:7700";
+            extraConfig = ''
+              add_header Access-Control-Allow-Origin *;
+            '';
           };
         };
       };
