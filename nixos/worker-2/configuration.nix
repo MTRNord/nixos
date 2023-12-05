@@ -401,7 +401,7 @@ in {
           locations."/" = {
             proxyPass = "http://127.0.0.1:7700";
             extraConfig = ''
-              add_header Access-Control-Allow-Origin *;
+              add_header Access-Control-Allow-Credentials true;
             '';
           };
         };
