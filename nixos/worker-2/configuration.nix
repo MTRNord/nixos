@@ -402,6 +402,7 @@ in {
             proxyPass = "http://127.0.0.1:7700";
             extraConfig = ''
               add_header Access-Control-Allow-Credentials true;
+              client_max_body_size 0;
             '';
           };
         };
