@@ -10,6 +10,7 @@
       noAnalytics = true;
       environment = "production";
       masterKeyEnvironmentFile = config.sops.secrets."meilisearchKey".path;
+      payloadSizeLimit = "1.0Gb";
     };
   };
 }
