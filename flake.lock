@@ -134,22 +134,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-discourse": {
-      "locked": {
-        "lastModified": 1695661530,
-        "narHash": "sha256-wUa6Ptl0lhrzVIcHT0LmeuHfa7Vy8hWig1VW0mLsOmY=",
-        "owner": "MTRNord",
-        "repo": "nixpkgs",
-        "rev": "beee2842bdc9281c94c95ea9c89f20b3da53ffd3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MTRNord",
-        "repo": "nixpkgs",
-        "rev": "beee2842bdc9281c94c95ea9c89f20b3da53ffd3",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1701568804,
@@ -239,7 +223,6 @@
         "impermanence": "impermanence",
         "kubenix": "kubenix",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-discourse": "nixpkgs-discourse",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix"
       }
