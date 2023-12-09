@@ -5,7 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     #nixpkgs.url = "github:nixos/nixpkgs/672430223ef43060b460321b50a2e17628c7d8cd";
-    nixpkgs-discourse.url = "github:MTRNord/nixpkgs/beee2842bdc9281c94c95ea9c89f20b3da53ffd3";
+    #nixpkgs-discourse.url = "github:MTRNord/nixpkgs/beee2842bdc9281c94c95ea9c89f20b3da53ffd3";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -37,7 +37,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    nixpkgs-discourse,
+    #nixpkgs-discourse,
     home-manager,
     sops-nix,
     docker-utils,
