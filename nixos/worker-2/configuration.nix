@@ -423,8 +423,8 @@ in {
       localDomain = "nordgedanken.dev";
       extraConfig = {
         WEB_DOMAIN = "mastodon.nordgedanken.dev";
-        AUTHORIZED_FETCH = true;
-        SINGLE_USER_MODE = true;
+        AUTHORIZED_FETCH = "true";
+        SINGLE_USER_MODE = "true";
       };
       otpSecretFile = config.sops.secrets."mastodon_otp_secret".path;
       secretKeyBaseFile = config.sops.secrets."mastodon_secret_key".path;
