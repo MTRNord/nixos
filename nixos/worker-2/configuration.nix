@@ -391,6 +391,12 @@ in {
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "support@nordgedanken.dev";
 
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/mastodon"
+    ];
+  };
+
   services = {
     nginx = {
       enable = true;
@@ -408,6 +414,43 @@ in {
         };
       };
     };
+
+    mastodon = {
+      enable = true;
+      webProcesses = 8;
+      webThreads = 8;
+      localDomain = "nordgedanken.dev";
+      extraConfig = {
+        WEB_DOMAIN = "mastodon.nordgedanken.dev";
+        AUTHORIZED_FETCH = true;
+        SINGLE_USER_MODE = true;
+      };
+      otpSecretFile = config.sops.secrets."mastodon_otp_secret".path;
+      secretKeyBaseFile = config.sops.secrets."mastodon_secret_key".path;
+      vapidPrivateKeyFile = config.sops.secrets."mastodon_vapid_private_key".path;
+      vapidPublicKeyFile = config.sops.secrets."mastodon_vapid_public_key".path;
+      smtp = {
+        createLocally = false;
+        user = "postmaster@mail.nordgedanken.dev";
+        port = 587;
+        host = "mail.nordgedanken.dev";
+        fromAddress = "Mastodon <postmaster@mail.nordgedanken.dev>";
+        authenticate = true;
+        passwordFile = config.sops.secrets."mastodon_smtp_password".path;
+      };
+      database = {
+        createLocally = false;
+        user = "mastodon";
+        port = 5000;
+        name = "mastodon_production";
+        host = "postgres.internal.midnightthoughts.space";
+        passwordFile = config.sops.secrets."mastodon_db_password".path;
+      };
+      mediaAutoRemove = {
+        enable = true;
+      };
+    };
+
     bird2 = {
       enable = true;
       config = ''

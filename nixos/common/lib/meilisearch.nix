@@ -4,6 +4,11 @@
   config,
   ...
 }: {
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/meilisearch"
+    ];
+  };
   services = {
     meilisearch = {
       enable = true;
