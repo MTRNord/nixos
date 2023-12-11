@@ -400,6 +400,18 @@ in {
   services = {
     nginx = {
       enable = true;
+      recommendedProxySettings = true;
+      upstreams.mastodon-streaming = {
+        extraConfig = ''
+          least_conn;
+        '';
+        servers =
+          builtins.listToAttrs
+          (map (i: {
+            name = "unix:/run/mastodon-streaming/streaming-${toString i}.socket";
+            value = {};
+          }) (lib.range 1 services.mastodon.streamingProcesses));
+      };
       virtualHosts = {
         "search.midnightthoughts.space" = {
           forceSSL = true;
@@ -410,6 +422,26 @@ in {
               add_header Access-Control-Allow-Credentials true;
               client_max_body_size 0;
             '';
+          };
+        };
+        "mastodon.nordgedanken.dev" = {
+          root = "${services.mastodon.package}/public/";
+          forceSSL = true;
+          enableACME = true;
+          locations."/system/".alias = "/var/lib/mastodon/public-system/";
+
+          locations."/" = {
+            tryFiles = "$uri @proxy";
+          };
+
+          locations."@proxy" = {
+            proxyPass = "http://unix:/run/mastodon-web/web.socket";
+            proxyWebsockets = true;
+          };
+
+          locations."/api/v1/streaming/" = {
+            proxyPass = "http://mastodon-streaming";
+            proxyWebsockets = true;
           };
         };
       };
