@@ -416,7 +416,7 @@ in {
     };
 
     mastodon = {
-      enable = false;
+      enable = true;
       webProcesses = 8;
       webThreads = 8;
       streamingProcesses = 8;
