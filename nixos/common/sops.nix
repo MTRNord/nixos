@@ -65,54 +65,67 @@
       forgejo_runner_token = {};
       #  sops.secrets.forgejo_runner_token.owner = config.users."gitea-runner".name;
       "asterisk/pjsip_conf" = {
+        restartUnits = ["asterisk.service"];
         mode = "0777";
         path = "/etc/asterisk/pjsip.conf";
       };
       "asterisk/prometheus_conf" = {
+        restartUnits = ["asterisk.service"];
         mode = "0777";
         path = "/etc/asterisk/prometheus.conf";
       };
       "asterisk/cel_pgsql_conf" = {
+        restartUnits = ["asterisk.service"];
         mode = "0777";
         path = "/etc/asterisk/cel_pgsql.conf";
       };
       "asterisk/cdr_pgsql_conf" = {
+        restartUnits = ["asterisk.service"];
         mode = "0777";
         path = "/etc/asterisk/cdr_pgsql.conf";
       };
       "patroni/replication_username" = {
+        restartUnits = ["patroni.service"];
         owner = "patroni";
         group = "patroni";
       };
       "patroni/replication_password" = {
+        restartUnits = ["patroni.service"];
         owner = "patroni";
         group = "patroni";
       };
       "patroni/replication_superuser_username" = {
+        restartUnits = ["patroni.service"];
         owner = "patroni";
         group = "patroni";
       };
       "patroni/replication_superuser_password" = {
+        restartUnits = ["patroni.service"];
         owner = "patroni";
         group = "patroni";
       };
       "discourse/db_password" = {
+        restartUnits = ["discourse.service"];
         owner = "discourse";
         group = "discourse";
       };
       "discourse/secret_key_base" = {
+        restartUnits = ["discourse.service"];
         owner = "discourse";
         group = "discourse";
       };
       "discourse/admin_password" = {
+        restartUnits = ["discourse.service"];
         owner = "discourse";
         group = "discourse";
       };
       "discourse/mail_password" = {
+        restartUnits = ["discourse.service"];
         owner = "discourse";
         group = "discourse";
       };
       "discourse/redis_password" = {
+        restartUnits = ["discourse.service"];
         owner = "discourse";
         group = "discourse";
       };
@@ -121,6 +134,7 @@
       #   group = "pgadmin";
       # };
       pgbouncer_auth_file = {
+        restartUnits = ["pgbouncer.service"];
         owner = "pgbouncer";
         group = "pgbouncer";
       };
@@ -136,26 +150,32 @@
       };
       "meilisearchKey" = {};
       "mastodon/otp_secret" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
       "mastodon/secret_key" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
       "mastodon/vapid_private_key" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
       "mastodon/vapid_public_key" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
       "mastodon/smtp_password" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
       "mastodon/db_password" = {
+        restartUnits = ["mastodon.service"];
         owner = "mastodon";
         group = "mastodon";
       };
