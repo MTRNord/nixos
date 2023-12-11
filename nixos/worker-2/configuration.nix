@@ -419,6 +419,7 @@ in {
       enable = true;
       webProcesses = 8;
       webThreads = 8;
+      streamingProcesses = 8;
       localDomain = "nordgedanken.dev";
       extraConfig = {
         WEB_DOMAIN = "mastodon.nordgedanken.dev";
