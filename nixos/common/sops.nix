@@ -135,27 +135,27 @@
         group = "node-yara-rs-runner";
       };
       "meilisearchKey" = {};
-      mastodon_otp_secret = {
+      "mastodon/otp_secret" = {
         owner = "mastodon";
         group = "mastodon";
       };
-      mastodon_secret_key = {
+      "mastodon/secret_key" = {
         owner = "mastodon";
         group = "mastodon";
       };
-      mastodon_vapid_private_key = {
+      "mastodon/vapid_private_key" = {
         owner = "mastodon";
         group = "mastodon";
       };
-      mastodon_vapid_public_key = {
+      "mastodon/vapid_public_key" = {
         owner = "mastodon";
         group = "mastodon";
       };
-      mastodon_smtp_password = {
+      "mastodon/smtp_password" = {
         owner = "mastodon";
         group = "mastodon";
       };
-      mastodon_db_password = {
+      "mastodon/db_password" = {
         owner = "mastodon";
         group = "mastodon";
       };

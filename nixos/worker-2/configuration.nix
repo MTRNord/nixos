@@ -429,10 +429,10 @@ in {
       redis = {
         port = 31638;
       };
-      otpSecretFile = config.sops.secrets."mastodon_otp_secret".path;
-      secretKeyBaseFile = config.sops.secrets."mastodon_secret_key".path;
-      vapidPrivateKeyFile = config.sops.secrets."mastodon_vapid_private_key".path;
-      vapidPublicKeyFile = config.sops.secrets."mastodon_vapid_public_key".path;
+      otpSecretFile = config.sops.secrets."mastodon/otp_secret".path;
+      secretKeyBaseFile = config.sops.secrets."mastodon/secret_key".path;
+      vapidPrivateKeyFile = config.sops.secrets."mastodon/vapid_private_key".path;
+      vapidPublicKeyFile = config.sops.secrets."mastodon/vapid_public_key".path;
       smtp = {
         createLocally = false;
         user = "postmaster@mail.nordgedanken.dev";
@@ -440,7 +440,7 @@ in {
         host = "mail.nordgedanken.dev";
         fromAddress = "Mastodon <postmaster@mail.nordgedanken.dev>";
         authenticate = true;
-        passwordFile = config.sops.secrets."mastodon_smtp_password".path;
+        passwordFile = config.sops.secrets."mastodon/smtp_password".path;
       };
       database = {
         createLocally = false;
@@ -448,7 +448,7 @@ in {
         port = 5000;
         name = "mastodon_production";
         host = "postgres.internal.midnightthoughts.space";
-        passwordFile = config.sops.secrets."mastodon_db_password".path;
+        passwordFile = config.sops.secrets."mastodon/db_password".path;
       };
       mediaAutoRemove = {
         enable = true;
