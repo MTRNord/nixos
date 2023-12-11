@@ -29,7 +29,7 @@
       contactEmailAddress = "support@miki.community";
     };
     redis = {
-      host = "127.0.0.1";
+      host = "localhost";
     };
     hostname = "forum.miki.community";
     plugins = with config.services.discourse.package.plugins; [

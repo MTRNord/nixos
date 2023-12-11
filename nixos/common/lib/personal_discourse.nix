@@ -30,7 +30,7 @@
       contactEmailAddress = "support@miki.community";
     };
     redis = {
-      host = "127.0.0.1";
+      host = "localhost";
     };
     hostname = "personal.midnightthoughts.space";
     plugins = with config.services.discourse.package.plugins; [
