@@ -410,7 +410,7 @@ in {
           (map (i: {
             name = "unix:/run/mastodon-streaming/streaming-${toString i}.socket";
             value = {};
-          }) (lib.range 1 services.mastodon.streamingProcesses));
+          }) (lib.range 1 config.services.mastodon.streamingProcesses));
       };
       virtualHosts = {
         "search.midnightthoughts.space" = {
@@ -425,7 +425,7 @@ in {
           };
         };
         "mastodon.nordgedanken.dev" = {
-          root = "${services.mastodon.package}/public/";
+          root = "${config.services.mastodon.package}/public/";
           forceSSL = true;
           enableACME = true;
           locations."/system/".alias = "/var/lib/mastodon/public-system/";
