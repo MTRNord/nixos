@@ -426,6 +426,9 @@ in {
         AUTHORIZED_FETCH = "true";
         SINGLE_USER_MODE = "true";
       };
+      redis = {
+        port = 31638;
+      };
       otpSecretFile = config.sops.secrets."mastodon_otp_secret".path;
       secretKeyBaseFile = config.sops.secrets."mastodon_secret_key".path;
       vapidPrivateKeyFile = config.sops.secrets."mastodon_vapid_private_key".path;
