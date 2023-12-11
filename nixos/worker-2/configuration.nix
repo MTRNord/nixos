@@ -365,7 +365,7 @@ in {
     groups.patroni = {};
     groups.pgbouncer = {};
     groups.node-yara-rs-runner = {};
-    groups.mastodon.members = config.services.nginx.user;
+    groups.mastodon.members = [config.services.nginx.user];
   };
 
   # Restic Backup
