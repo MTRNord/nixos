@@ -387,6 +387,8 @@ in {
         group = "node-yara-rs-runner";
       };
     };
+    users.mastodon = {};
+    groups.mastodon = {};
     groups.node-yara-rs-runner = {};
   };
 
