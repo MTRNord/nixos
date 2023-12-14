@@ -323,6 +323,111 @@ in {
     };
   };
 
+  sops.secrets = {
+    "mastodon/otp_secret" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+    "mastodon/secret_key" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+    "mastodon/vapid_private_key" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+    "mastodon/vapid_public_key" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+    "mastodon/smtp_password" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+    "mastodon/db_password" = {
+      restartUnits = [
+        "mastodon-sidekiq-all.service"
+        "mastodon-streaming-1.service"
+        "mastodon-streaming-2.service"
+        "mastodon-streaming-3.service"
+        "mastodon-streaming-4.service"
+        "mastodon-streaming-5.service"
+        "mastodon-streaming-6.service"
+        "mastodon-streaming-7.service"
+        "mastodon-streaming-8.service"
+        "mastodon-web.service"
+        "redis-mastodon.service"
+      ];
+      owner = "mastodon";
+      group = "mastodon";
+    };
+  };
+
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
     #mutableUsers = false;

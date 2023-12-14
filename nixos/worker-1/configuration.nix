@@ -386,12 +386,7 @@ in {
         isSystemUser = true;
         group = "node-yara-rs-runner";
       };
-      mastodon = {
-        isSystemUser = true;
-        group = "mastodon";
-      };
     };
-    groups.mastodon = {};
     groups.node-yara-rs-runner = {};
   };
 
