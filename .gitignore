@@ -1,3 +1,7 @@
 age.agekey
 id_ed25519
 /result-alejandra
+*.pem
+*.csr
+*.srl
+*.ext

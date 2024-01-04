@@ -39,7 +39,7 @@ in {
     ../common/lib/podman.nix
     ../common/lib/pdns.nix
     ../common/lib/personal_discourse.nix
-    ../common/lib/meilisearch.nix
+    #../common/lib/opensearch.nix
     ./kubernetes.nix
   ];
 
@@ -523,7 +523,7 @@ in {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://127.0.0.1:7700";
+            proxyPass = "http://127.0.0.1:9200";
             extraConfig = ''
               add_header Access-Control-Allow-Credentials true;
               client_max_body_size 0;
