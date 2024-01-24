@@ -322,12 +322,14 @@ in {
         9962
         9100
         9963
+        8473
       ];
       allowedUDPPorts = [
         5060 # SIP
         51820
         51821
         6081
+        8473
         config.services.tailscale.port
       ];
 

@@ -295,11 +295,13 @@ in {
         80
         443
         9963
+        8473
       ];
       allowedUDPPorts = [
         51840
         51841
         6081
+        8473
       ];
 
       extraCommands =
