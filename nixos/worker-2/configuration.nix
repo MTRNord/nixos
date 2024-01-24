@@ -299,6 +299,7 @@ in {
       allowedUDPPorts = [
         51840
         51841
+        6081
       ];
 
       extraCommands =

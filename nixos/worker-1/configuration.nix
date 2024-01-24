@@ -327,6 +327,7 @@ in {
         5060 # SIP
         51820
         51821
+        6081
         config.services.tailscale.port
       ];
 
