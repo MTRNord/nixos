@@ -178,6 +178,7 @@ in {
       nordgedanken = {
         address = ["10.100.0.3/24" "fe99:13::3/64"];
         listenPort = 51840;
+        mtu = 1420;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg0/private_key".path;
         table = "off";
         preUp = ''
@@ -205,6 +206,7 @@ in {
       worker1 = {
         address = ["10.100.0.3/24" "fe99:13::3/64"];
         listenPort = 51841;
+        mtu = 1420;
         privateKeyFile = config.sops.secrets."wireguard/worker-2/wg1/private_key".path;
         table = "off";
         preUp = ''
