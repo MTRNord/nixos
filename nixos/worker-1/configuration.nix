@@ -327,6 +327,7 @@ in {
         9963
         4244
         8473
+        4000
       ];
       allowedUDPPorts = [
         5060 # SIP
