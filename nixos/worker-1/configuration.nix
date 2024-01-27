@@ -425,7 +425,7 @@ in {
     };
 
     bird2 = {
-      enable = true;
+      enable = false;
       config = ''
         router id 10.0.1.1;
         debug protocols all;
@@ -493,14 +493,52 @@ in {
       '';
     };
 
+    gobgpd = {
+      enable = true;
+      settings = {
+        global = {
+          config = {
+            as = 64513;
+            router-id = "10.0.2.1";
+          };
+        };
+        neighbors = [
+          {
+            config = {
+              neighbor-address = "10.0.1.2";
+              peer-as = 64512;
+            };
+            ebgp-multihop = {
+              config = {
+                enabled = true;
+                multihop-ttl = 3;
+              };
+            };
+          }
+          {
+            config = {
+              neighbor-address = "10.0.2.2";
+              peer-as = 64514;
+            };
+            ebgp-multihop = {
+              config = {
+                enabled = true;
+                multihop-ttl = 3;
+              };
+            };
+          }
+        ];
+      };
+    };
+
     bird-lg = {
       proxy = {
-        enable = true;
+        enable = false;
         allowedIPs = ["10.0.2.1" "fe99:13::1"];
         listenAddress = "10.0.2.1:8000";
       };
       frontend = {
-        enable = true;
+        enable = false;
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";

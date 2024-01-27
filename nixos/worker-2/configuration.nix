@@ -541,8 +541,46 @@ in {
       };
     };
 
-    bird2 = {
+    gobgpd = {
       enable = true;
+      settings = {
+        global = {
+          config = {
+            as = 64514;
+            router-id = "10.0.2.2";
+          };
+        };
+        neighbors = [
+          {
+            config = {
+              neighbor-address = "10.0.1.2";
+              peer-as = 64512;
+            };
+            ebgp-multihop = {
+              config = {
+                enabled = true;
+                multihop-ttl = 3;
+              };
+            };
+          }
+          {
+            config = {
+              neighbor-address = "10.0.1.2";
+              peer-as = 64513;
+            };
+            ebgp-multihop = {
+              config = {
+                enabled = true;
+                multihop-ttl = 3;
+              };
+            };
+          }
+        ];
+      };
+    };
+
+    bird2 = {
+      enable = false;
       config = ''
         router id 10.0.2.2;
         debug protocols all;
@@ -605,7 +643,7 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = true;
+        enable = false;
         allowedIPs = ["10.0.2.1"];
         listenAddress = "10.0.2.2:8000";
       };
