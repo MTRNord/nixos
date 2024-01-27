@@ -611,6 +611,11 @@ in {
                 route-server-client = true;
               };
             };
+            afi-safis = {
+              config = {
+                afi-safi-name = "rtc";
+              };
+            };
           }
           {
             config = {
@@ -631,6 +636,11 @@ in {
             route-server = {
               config = {
                 route-server-client = true;
+              };
+            };
+            afi-safis = {
+              config = {
+                afi-safi-name = "rtc";
               };
             };
           }
