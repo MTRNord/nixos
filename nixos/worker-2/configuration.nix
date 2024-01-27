@@ -553,6 +553,11 @@ in {
           if net = 10.100.12.1/32 then accept;
         }
 
+        protocol device {
+          scan time 10;
+          interface "enp7s0";
+        }
+
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
             import filter allowed_ips;
