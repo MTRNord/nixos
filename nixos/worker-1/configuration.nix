@@ -642,6 +642,10 @@ in {
           extraConfig = ''
             advert_int 1
           '';
+          trackInterfaces = [
+            "enp7s0"
+            "floating1"
+          ];
           unicastSrcIp = "10.0.2.1";
           unicastPeers = ["10.0.1.2"];
           virtualIps = [
