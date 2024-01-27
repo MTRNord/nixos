@@ -548,7 +548,7 @@ in {
           unicastPeers = ["10.0.1.2"];
           virtualIps = [
             {
-              addr = "10.0.2.25/24";
+              addr = "10.0.2.25/32";
               dev = "enp7s0";
             }
           ];
