@@ -545,10 +545,9 @@ in {
           };
           area 0.0.0.0 {
             networks {
-              10.100.0.1/32;
-              10.100.0.0/24;
+              10.100.12.1/32;
             };
-            interface "nordgedanken", "worker2", "floating1", "enp7s0" {
+            interface "floating1", "enp7s0" {
               type ptp; # VPN tunnels should be point-to-point
             };
           };
