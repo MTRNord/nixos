@@ -149,6 +149,10 @@ in {
         };
       };
       "20-v6" = {
+        tunnel = [
+          "gre_nordgedanken"
+          "gre_worker1"
+        ];
         matchConfig = {
           MACAddress = "96:00:02:97:a7:51";
         };
