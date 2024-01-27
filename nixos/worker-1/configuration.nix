@@ -117,7 +117,7 @@ in {
       gre_nordgedanken = {
         enable = true;
         netdevConfig = {
-          Kind = "gre";
+          Kind = "gretap";
           Name = "gre_nordgedanken";
         };
         tunnelConfig = {
@@ -128,7 +128,7 @@ in {
       gre_worker2 = {
         enable = true;
         netdevConfig = {
-          Kind = "gre";
+          Kind = "gretap";
           Name = "gre_worker2";
         };
         tunnelConfig = {
