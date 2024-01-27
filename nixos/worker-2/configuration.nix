@@ -107,7 +107,45 @@ in {
   # Broken
   systemd.network.wait-online.enable = false;
   systemd.network = {
+    netdevs = {
+      gre_nordgedanken = {
+        enable = true;
+        netdevConfig = {
+          Kind = "gre";
+        };
+        tunnelConfig = {
+          Local = "10.0.2.2";
+          Remote = "10.0.1.2";
+        };
+      };
+      gre_worker1 = {
+        enable = true;
+        netdevConfig = {
+          Kind = "gre";
+        };
+        tunnelConfig = {
+          Local = "10.0.2.2";
+          Remote = "10.0.2.1";
+        };
+      };
+    };
     networks = {
+      gre_nordgedanken = {
+        matchConfig = {
+          Name = "gre_nordgedanken";
+          address = [
+            "10.0.3.3/24"
+          ];
+        };
+      };
+      gre_worker1 = {
+        matchConfig = {
+          Name = "gre_worker1";
+          address = [
+            "10.0.3.3/24"
+          ];
+        };
+      };
       "20-v6" = {
         matchConfig = {
           MACAddress = "96:00:02:97:a7:51";

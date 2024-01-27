@@ -114,6 +114,26 @@ in {
   systemd.network.wait-online.enable = false;
   systemd.network = {
     netdevs = {
+      gre_nordgedanken = {
+        enable = true;
+        netdevConfig = {
+          Kind = "gre";
+        };
+        tunnelConfig = {
+          Local = "10.0.2.2";
+          Remote = "10.0.1.2";
+        };
+      };
+      gre_worker2 = {
+        enable = true;
+        netdevConfig = {
+          Kind = "gre";
+        };
+        tunnelConfig = {
+          Local = "10.0.2.1";
+          Remote = "10.0.2.2";
+        };
+      };
       floating1 = {
         enable = true;
         netdevConfig = {
@@ -123,6 +143,22 @@ in {
       };
     };
     networks = {
+      gre_nordgedanken = {
+        matchConfig = {
+          Name = "gre_nordgedanken";
+          address = [
+            "10.0.3.4/24"
+          ];
+        };
+      };
+      gre_worker2 = {
+        matchConfig = {
+          Name = "gre_worker2";
+          address = [
+            "10.0.3.4/24"
+          ];
+        };
+      };
       floating1 = {
         enable = true;
         name = "floating1";
