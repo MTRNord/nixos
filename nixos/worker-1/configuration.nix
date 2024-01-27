@@ -249,7 +249,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["tailscale0" "floating1" "worker2" "nordgedanken" "enp7s0"];
+      trustedInterfaces = ["tailscale0" "floating1" "enp7s0"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -521,7 +521,7 @@ in {
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "nordgedanken";
+          interface = "enp7s0";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
