@@ -551,6 +551,7 @@ in {
 
         filter allowed_ips {
           if net = 10.100.12.0/24 then accept;
+          reject;
         }
 
         protocol static {
@@ -558,7 +559,7 @@ in {
         }
 
         protocol bfd {
-          interface "*" {
+          interface "floating1", "enp7s0" {
             interval 50 ms;
           };
         }
@@ -570,7 +571,7 @@ in {
 
         protocol device {
           scan time 10;
-          interface "enp7s0";
+          interface "floating1", "enp7s0";
         }
 
         protocol kernel {

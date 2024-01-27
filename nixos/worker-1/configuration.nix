@@ -451,10 +451,11 @@ in {
 
         filter allowed_ips {
           if net = 10.100.12.0/24 then accept;
+          reject;
         }
 
         protocol bfd {
-          interface "*" {
+          interface "floating1", "enp7s0" {
             interval 50 ms;
           };
         }
