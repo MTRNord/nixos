@@ -20,7 +20,9 @@
       };
       authentication = ''
         host    all             all             10.100.12.1/32          md5
+        host    all             all             10.0.0.0/16             md5
         host    replication     all             10.100.12.1/32          md5
+        host    replication     all             10.0.0.0/16             md5
         host    all             all             10.100.0.0/10  	      	md5
         host    replication     all             10.100.0.0/10           md5
         host    all             all             10.244.0.0/10           md5
@@ -51,7 +53,7 @@
 
       settings = {
         postgresql = {
-          listen = lib.mkForce "127.0.0.1,10.100.0.1:5432,10.0.2.1:5432";
+          listen = lib.mkForce "127.0.0.1,10.0.2.1:5432";
           parameters = {
             max_connections = "300";
             superuser_reserved_connections = "3";

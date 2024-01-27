@@ -627,8 +627,8 @@ in {
           extraConfig = ''
             advert_int 1
           '';
-          unicastSrcIp = "10.100.0.1";
-          unicastPeers = ["10.0.2.1"];
+          unicastSrcIp = "10.0.2.1";
+          unicastPeers = ["10.0.1.2"];
           virtualIps = [
             {
               addr = "10.100.12.1/24";
