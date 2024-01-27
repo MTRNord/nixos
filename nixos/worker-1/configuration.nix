@@ -146,19 +146,19 @@ in {
     };
     networks = {
       gre_nordgedanken = {
+        address = [
+          "10.0.3.4/24"
+        ];
         matchConfig = {
           Name = "gre_nordgedanken";
-          address = [
-            "10.0.3.4/24"
-          ];
         };
       };
       gre_worker2 = {
+        address = [
+          "10.0.3.4/24"
+        ];
         matchConfig = {
           Name = "gre_worker2";
-          address = [
-            "10.0.3.4/24"
-          ];
         };
       };
       floating1 = {
@@ -169,11 +169,16 @@ in {
           Name = "floating1";
         };
       };
-      "20-v6" = {
+      "vlan" = {
         tunnel = [
           "gre_nordgedanken"
           "gre_worker2"
         ];
+        matchConfig = {
+          Name = "enp7s0";
+        };
+      };
+      "20-v6" = {
         matchConfig = {
           MACAddress = "96:00:02:44:cf:52";
         };

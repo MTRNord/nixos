@@ -133,33 +133,38 @@ in {
     };
     networks = {
       gre_nordgedanken = {
+        address = [
+          "10.0.3.3/24"
+        ];
         matchConfig = {
           Name = "gre_nordgedanken";
-          address = [
-            "10.0.3.3/24"
-          ];
         };
       };
       gre_worker1 = {
+        address = [
+          "10.0.3.3/24"
+        ];
         matchConfig = {
           Name = "gre_worker1";
-          address = [
-            "10.0.3.3/24"
-          ];
         };
       };
-      "20-v6" = {
+      "vlan" = {
         tunnel = [
           "gre_nordgedanken"
           "gre_worker1"
         ];
         matchConfig = {
-          MACAddress = "96:00:02:97:a7:51";
+          Name = "enp7s0";
         };
+      };
+      "20-v6" = {
         address = [
           "37.27.5.79/32"
           "2a01:4f9:c012:54d3::/64"
         ];
+        matchConfig = {
+          MACAddress = "96:00:02:97:a7:51";
+        };
         routes = [
           {routeConfig.Gateway = "fe80::1";}
           {
