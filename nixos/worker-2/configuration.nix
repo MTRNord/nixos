@@ -583,29 +583,17 @@ in {
             import all;
           };
         }
-        protocol kernel {
-          ipv6 { export all; };
-        }
 
         protocol bgp worker1 {
           local 10.0.2.2 as 64514;        # Use a private AS number
           neighbor 10.0.2.1 as 64513;    # Our neighbor ...
-          #direct;
           graceful restart on;
           multihop 2;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
+            next hop self;
           };
-          ipv6 {
-            import all;
-            export none;
-          };
-          ipv4 multicast {
-            import all;
-            export none;
-          };
-          next hop self;
         }
 
         protocol bgp nordgedanken {
@@ -617,14 +605,6 @@ in {
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
-          };
-          ipv6 {
-            import all;
-            export none;
-          };
-          ipv4 multicast {
-            import all;
-            export none;
           };
         }
       '';
