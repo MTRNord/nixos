@@ -268,7 +268,13 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["lxc*" "cilium*" "enp7s0" "gre_worker1" "gre_nordgedanken"];
+      trustedInterfaces = [
+        "lxc*"
+        "cilium*"
+        "enp7s0"
+        "gre_worker1"
+        #"gre_nordgedanken"
+      ];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -298,6 +304,7 @@ in {
         + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -A INPUT -s ${ip} -j DROP") blockedV6)
         + "\n"
         + ''
+          iptables -A nixos-fw -p 47 -i enp7s0 -j nixos-fw-accept
           iptables -A nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
           ip6tables -A nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
         '';
@@ -308,6 +315,7 @@ in {
         + builtins.concatStringsSep "\n" (builtins.map (ip: "ip6tables -D INPUT -s ${ip} -j DROP") blockedV6)
         + "\n"
         + ''
+          iptables -D nixos-fw -p 47 -i enp7s0 -j nixos-fw-accept
           iptables -D nixos-fw -p tcp --source 10.245.0.0/16 -j nixos-fw-accept
           ip6tables -D nixos-fw -p tcp --source fd00::/104 -j nixos-fw-accept
         '';
