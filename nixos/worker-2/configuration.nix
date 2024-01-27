@@ -566,7 +566,7 @@ in {
           name = "pd1";
           statements = {
             name = "statement1";
-            coditions = {
+            conditions = {
               match-prefix-set = {
                 prefix-set = "ps1";
                 match-set-options = "any";
