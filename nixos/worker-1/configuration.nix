@@ -450,7 +450,7 @@ in {
         log syslog all;
 
         filter allowed_ips {
-          if net = 10.100.12.1/32 then accept;
+          if net = 10.100.12.0/24 then accept;
         }
 
         protocol device {
