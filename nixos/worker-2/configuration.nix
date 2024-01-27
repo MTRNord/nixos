@@ -553,6 +553,10 @@ in {
           if net = 10.100.12.0/24 then accept;
         }
 
+        protocol static {
+          ipv4;
+        }
+
         protocol bfd {
           interface "*" {
             interval 50 ms;
@@ -585,7 +589,7 @@ in {
           local 10.0.2.2 as 64514;        # Use a private AS number
           neighbor 10.0.2.1 as 64513;    # Our neighbor ...
           #direct;
-          multihop;                            # ... which is connected indirectly
+          multihop 2;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;

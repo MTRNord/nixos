@@ -459,6 +459,10 @@ in {
           };
         }
 
+        protocol static {
+          ipv4;
+        }
+
         protocol direct direct1 {
           ipv4;
           interface "floating1";
@@ -485,7 +489,7 @@ in {
           local 10.0.2.1 as 64513;        # Use a private AS number
           neighbor 10.0.2.2 as 64514;    # Our neighbor ...
           #direct;
-          multihop;                            # ... which is connected indirectly
+          multihop 2;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
