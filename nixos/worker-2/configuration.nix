@@ -148,7 +148,7 @@ in {
           Name = "gre_worker1";
         };
       };
-      "vlan_dummy" = {
+      "enp7s0" = {
         address = [
           "10.0.2.2/32"
         ];
@@ -160,7 +160,7 @@ in {
           MACAddress = "86:00:00:5f:5b:d8";
         };
       };
-      "20-v6" = {
+      "enp1s0" = {
         address = [
           "37.27.5.79/32"
           "2a01:4f9:c012:54d3::/64"

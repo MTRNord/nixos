@@ -169,7 +169,7 @@ in {
           Name = "floating1";
         };
       };
-      "vlan_dummy" = {
+      "enp7s0" = {
         address = [
           "10.0.2.1/32"
         ];
@@ -181,7 +181,7 @@ in {
           MACAddress = "86:00:00:4b:a5:12";
         };
       };
-      "20-v6" = {
+      "enp1s0" = {
         matchConfig = {
           MACAddress = "96:00:02:44:cf:52";
         };
