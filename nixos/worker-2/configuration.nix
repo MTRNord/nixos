@@ -559,19 +559,14 @@ in {
         }
 
         protocol bfd {
-          interface "floating1", "enp7s0" {
+          interface "enp7s0" {
             interval 50 ms;
           };
         }
 
-        protocol direct direct1 {
-          ipv4;
-          interface "floating1";
-        }
-
         protocol device {
           scan time 10;
-          interface "floating1", "enp7s0";
+          interface "enp7s0";
         }
 
         protocol kernel {
