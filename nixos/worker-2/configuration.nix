@@ -679,7 +679,8 @@ in {
           };
         }
         protocol ospf MyOSPF {
-          ecmp no;
+          ecmp yes;
+          bfd;
           ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
           ipv4 {
             export filter {
@@ -695,7 +696,7 @@ in {
               10.0.3.0/24;
             };
             interface "enp7s0" {
-              type ptp; # VPN tunnels should be point-to-point
+              #type ptp; # VPN tunnels should be point-to-point
             };
           };
         }
