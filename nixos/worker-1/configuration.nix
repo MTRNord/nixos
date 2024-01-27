@@ -477,14 +477,21 @@ in {
             export filter allowed_ips;
             import filter allowed_ips;
             next hop self;
+            igp table igptable4; # IGP table for routes with IPv4 nexthops
+            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv6 {
             import all;
             export none;
+            missing lladdr self;
+            igp table igptable4; # IGP table for routes with IPv4 nexthops
+            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv4 multicast {
             import all;
             export none;
+            table multicasttable4; # Another IPv4 table, dedicated for multicast
+            igp table igptable4;
           };
         }
 
@@ -496,14 +503,21 @@ in {
             export filter allowed_ips;
             import filter allowed_ips;
             next hop self;
+            igp table igptable4; # IGP table for routes with IPv4 nexthops
+            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv6 {
             import all;
             export none;
+            missing lladdr self;
+            igp table igptable4; # IGP table for routes with IPv4 nexthops
+            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv4 multicast {
             import all;
             export none;
+            table multicasttable4; # Another IPv4 table, dedicated for multicast
+            igp table igptable4;
           };
         }
       '';
