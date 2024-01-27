@@ -458,6 +458,11 @@ in {
           interface "floating1";
         }
 
+        protocol direct direct2 {
+          ipv4;
+          interface "enp7s0";
+        }
+
         protocol device {
           scan time 10;
           interface "floating1";
@@ -467,6 +472,7 @@ in {
           ipv4 {                  # Connect protocol to IPv4 table by channel
             export filter {
               if proto = "direct1" then reject;
+              if proto = "direct2" then reject;
               accept;
             };
             import all;

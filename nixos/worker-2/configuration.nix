@@ -664,13 +664,20 @@ in {
           ipv4;
         }
 
+        protocol direct direct2 {
+          ipv4;
+          interface "enp7s0";
+        }
+
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
-            export all;
+            export filter {
+              if proto = "direct2" then reject;
+              accept;
+            };
             import all;
           };
         }
-
         protocol ospf MyOSPF {
           ecmp no;
           ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
