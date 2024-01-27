@@ -550,6 +550,37 @@ in {
             router-id = "10.0.2.2";
           };
         };
+        defined-sets = {
+          prefix-sets = {
+            prefix-set-name = "ps1";
+            prefix-list = {
+              ip-prefix = "10.0.2.25/32";
+            };
+          };
+          neighbor-sets = {
+            neighbor-set-name = "ns1";
+            neighbor-info-list = ["10.0.1.2" "10.0.2.1"];
+          };
+        };
+        policy-definitions = {
+          name = "pd1";
+          statements = {
+            name = "statement1";
+            coditions = {
+              match-prefix-set = {
+                prefix-set = "ps1";
+                match-set-options = "any";
+              };
+              match-neighbor-set = {
+                prefix-set = "ns1";
+                match-set-options = "any";
+              };
+              actions = {
+                route-disposition = "accept-route";
+              };
+            };
+          };
+        };
         neighbors = [
           {
             config = {
@@ -562,6 +593,16 @@ in {
                 multihop-ttl = 3;
               };
             };
+            apply-policy = {
+              config = {
+                import-policy-list = ["pd1"];
+              };
+            };
+            route-server = {
+              config = {
+                route-server-client = true;
+              };
+            };
           }
           {
             config = {
@@ -572,6 +613,16 @@ in {
               config = {
                 enabled = true;
                 multihop-ttl = 3;
+              };
+            };
+            apply-policy = {
+              config = {
+                import-policy-list = ["pd1"];
+              };
+            };
+            route-server = {
+              config = {
+                route-server-client = true;
               };
             };
           }
