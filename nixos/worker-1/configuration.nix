@@ -118,6 +118,7 @@ in {
         enable = true;
         netdevConfig = {
           Kind = "gre";
+          Name = "gre_nordgedanken";
         };
         tunnelConfig = {
           Local = "10.0.2.2";
@@ -128,6 +129,7 @@ in {
         enable = true;
         netdevConfig = {
           Kind = "gre";
+          Name = "gre_worker2";
         };
         tunnelConfig = {
           Local = "10.0.2.1";
