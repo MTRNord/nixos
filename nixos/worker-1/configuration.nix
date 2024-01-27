@@ -178,7 +178,7 @@ in {
           "gre_nordgedanken"
         ];
         matchConfig = {
-          Name = "enp7s0";
+          MACAddress = "86:00:00:4b:a5:12";
         };
       };
       "20-v6" = {

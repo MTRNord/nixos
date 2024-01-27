@@ -157,7 +157,7 @@ in {
           "gre_worker1"
         ];
         matchConfig = {
-          Name = "enp7s0";
+          MACAddress = "86:00:00:5f:5b:d8";
         };
       };
       "20-v6" = {
