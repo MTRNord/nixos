@@ -235,13 +235,6 @@ in {
     useDHCP = true;
     # networkmanager.enable = true;
 
-    nat = {
-      enable = true;
-      enableIPv6 = true;
-      externalInterface = "enp1s0";
-      internalInterfaces = ["wg0"];
-    };
-
     nameservers = ["8.8.8.8" "8.8.4.4"];
 
     firewall = let
@@ -296,7 +289,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["lxc*" "cilium*" "floating1" "enp7s0"];
+      trustedInterfaces = ["lxc*" "cilium*" "floating1" "enp7s0" "gre_nordgedanken" "gre_worker2"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
