@@ -448,25 +448,19 @@ in {
         debug protocols all;
         ## Boilerplate from distro
         log syslog all;
-        protocol device {
+
+        filter allowed_ips {
+          if net = 10.100.12.1/32 then accept;
         }
-        protocol direct {
-          disabled;               # Disable by default
-          ipv4;                   # Connect to default IPv4 table
-          ipv6;                   # ... and to default IPv6 table
-        }
+
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
-            export all;	# Export to protocol. default is export none
+            import filter allowed_ips;
           };
           persist;
         }
         protocol kernel {
           ipv6 { export all; };
-        }
-
-        filter allowed_ips {
-          if net = 10.100.12.1/32 then accept;
         }
 
         protocol bgp worker2 {

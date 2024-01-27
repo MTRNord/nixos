@@ -549,18 +549,18 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
+        filter allowed_ips {
+          if net = 10.100.12.1/32 then accept;
+        }
+
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
-            export all;	# Export to protocol. default is export none
+            import filter allowed_ips;
           };
           persist;
         }
         protocol kernel {
           ipv6 { export all; };
-        }
-
-        filter allowed_ips {
-          if net = 10.100.12.1/32 then accept;
         }
 
         protocol bgp worker1 {
