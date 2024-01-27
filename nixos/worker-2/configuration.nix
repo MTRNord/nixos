@@ -275,7 +275,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["enp7s0"];
+      trustedInterfaces = ["lxc*" "cilium*" "enp7s0"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [

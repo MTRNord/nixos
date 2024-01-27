@@ -296,7 +296,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["floating1" "enp7s0"];
+      trustedInterfaces = ["lxc*" "cilium*" "floating1" "enp7s0"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -466,7 +466,7 @@ in {
     };
 
     tailscale = {
-      enable = true;
+      enable = false;
       useRoutingFeatures = "both";
     };
     headscale = {
