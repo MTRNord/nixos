@@ -121,7 +121,7 @@ in {
           Name = "gre_nordgedanken";
         };
         tunnelConfig = {
-          Local = "10.0.2.2";
+          Local = "10.0.2.1";
           Remote = "10.0.1.2";
         };
       };
