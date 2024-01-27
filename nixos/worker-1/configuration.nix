@@ -444,7 +444,7 @@ in {
     bird2 = {
       enable = true;
       config = ''
-        router id 10.100.0.1;
+        router id 10.0.1.1;
         debug protocols all;
         ## Boilerplate from distro
         log syslog all;
@@ -464,30 +464,44 @@ in {
         protocol kernel {
           ipv6 { export all; };
         }
-        protocol static {
-          ipv4;                   # Again, IPv4 channel with default options
+
+        filter allowed_ips {
+          if net = 10.100.12.1/32 then accept;
         }
 
-        ## Sauce
-        protocol ospf MyOSPF {
-          ecmp no;
-          ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
+        protocol bgp worker2 {
+          local 10.0.2.1 as 64496;        # Use a private AS number
+          neighbor 10.0.2.2 as 65000;    # Our neighbor ...
+          multihop;                            # ... which is connected indirectly
           ipv4 {
-            export filter {
-              if source = RTS_BGP then {
-                ospf_metric1 = 100;
-                accept;
-              }
-              reject;
-            };
+            export filter allowed_ips;
+            import filter allowed_ips;
           };
-          area 0.0.0.0 {
-            networks {
-              10.100.12.1/32;
-            };
-            interface "floating1", "enp7s0" {
-              type ptp; # VPN tunnels should be point-to-point
-            };
+          ipv6 {
+            import all;
+            export none;
+          };
+          ipv4 multicast {
+            import all;
+            export none;
+          };
+        }
+
+        protocol bgp nordgedanken {
+          local 10.0.2.1 as 64496;        # Use a private AS number
+          neighbor 10.0.1.2 as 64495;    # Our neighbor ...
+          multihop;                            # ... which is connected indirectly
+          ipv4 {
+            export filter allowed_ips;
+            import filter allowed_ips;
+          };
+          ipv6 {
+            import all;
+            export none;
+          };
+          ipv4 multicast {
+            import all;
+            export none;
           };
         }
       '';
