@@ -273,6 +273,7 @@ in {
         51821
         6081
         8473
+        6696
         config.services.tailscale.port
       ];
 
@@ -471,6 +472,7 @@ in {
         }
 
         protocol babel {
+          randomize router id yes;
           interface "enp7s0" {
             type wired;
           };

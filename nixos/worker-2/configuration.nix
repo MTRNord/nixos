@@ -247,6 +247,7 @@ in {
         51841
         6081
         8473
+        6696
       ];
 
       extraCommands =
@@ -676,6 +677,7 @@ in {
           learn yes;
         }
         protocol babel {
+          randomize router id yes;
           interface "enp7s0" {
             type wired;
           };
