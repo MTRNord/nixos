@@ -660,10 +660,6 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
-        protocol static {
-          ipv4;
-        }
-
         protocol direct direct2 {
           ipv4;
           interface "enp7s0";
@@ -677,16 +673,19 @@ in {
             };
             import all;
           };
+          learn yes;
         }
         protocol babel {
           interface "enp7s0" {
             type wired;
           };
           ipv4 {
-            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
+            import all;
+            export all;
           };
           ipv6 {
-            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
+            import all;
+            export all;
           };
         }
       '';

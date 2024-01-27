@@ -449,10 +449,6 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
-        protocol static {
-          ipv4;
-        }
-
         protocol direct direct2 {
           ipv4;
           interface "enp7s0";
@@ -460,7 +456,7 @@ in {
 
         protocol device {
           scan time 10;
-          interface "floating1";
+          interface "enp7s0", "floating1";
         }
 
         protocol kernel {
@@ -471,6 +467,7 @@ in {
             };
             import all;
           };
+          learn yes;
         }
 
         protocol babel {
@@ -478,10 +475,12 @@ in {
             type wired;
           };
           ipv4 {
-            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
+            import all;
+            export all;
           };
           ipv6 {
-            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
+            import all;
+            export all;
           };
         }
       '';
