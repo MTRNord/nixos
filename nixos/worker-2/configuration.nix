@@ -580,6 +580,7 @@ in {
               if proto = "direct1" then reject;
               accept;
             };
+            import all;
           };
         }
         protocol kernel {
