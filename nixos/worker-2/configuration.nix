@@ -565,7 +565,7 @@ in {
           }
           {
             config = {
-              neighbor-address = "10.0.1.2";
+              neighbor-address = "10.0.2.1";
               peer-as = 64513;
             };
             ebgp-multihop = {
