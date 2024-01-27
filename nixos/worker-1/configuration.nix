@@ -455,7 +455,7 @@ in {
 
         protocol device {
           scan time 10;
-          interface "enp7s0";
+          interface "enp7s0" "floating1";
         }
 
         protocol kernel {
