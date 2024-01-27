@@ -502,7 +502,6 @@ in {
             router-id = "10.0.2.1";
           };
         };
-
         defined-sets = {
           prefix-sets = [
             {
@@ -534,9 +533,9 @@ in {
                     prefix-set = "ns1";
                     match-set-options = "any";
                   };
-                  actions = {
-                    route-disposition = "accept-route";
-                  };
+                };
+                actions = {
+                  route-disposition = "accept-route";
                 };
               }
             ];

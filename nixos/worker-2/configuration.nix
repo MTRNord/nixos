@@ -581,9 +581,9 @@ in {
                     prefix-set = "ns1";
                     match-set-options = "any";
                   };
-                  actions = {
-                    route-disposition = "accept-route";
-                  };
+                };
+                actions = {
+                  route-disposition = "accept-route";
                 };
               }
             ];
