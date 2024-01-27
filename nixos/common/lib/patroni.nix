@@ -33,7 +33,7 @@
       enable = true;
       initialClusterState = "existing";
       listenClientUrls = ["http://10.0.2.1:2379"];
-      listenPeerUrls = ["http://10.0.2.1:2380"];
+      listenPeerUrls = ["http://10.100.0.1:2380" "http://10.0.2.1:2380"];
       initialCluster = [
         "worker-1=http://10.0.2.1:2380"
         "nordgedanken=http://10.0.1.2:2380"
