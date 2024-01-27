@@ -685,7 +685,7 @@ in {
           };
           area 0.0.0.0 {
             networks {
-              10.0.2.25/32;
+              10.0.3.0/24;
             };
             interface "enp7s0" {
               type ptp; # VPN tunnels should be point-to-point
