@@ -425,7 +425,7 @@ in {
     };
 
     bird2 = {
-      enable = false;
+      enable = true;
       config = ''
         router id 10.0.1.1;
         debug protocols all;
@@ -466,35 +466,32 @@ in {
             import all;
           };
         }
-        protocol bgp worker2 {
-          local 10.0.2.1 as 64513;        # Use a private AS number
-          neighbor 10.0.2.2 as 64514;    # Our neighbor ...
-          graceful restart on;
-          multihop;                            # ... which is connected indirectly
+        protocol ospf MyOSPF {
+          ecmp no;
+          ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
           ipv4 {
-            gateway recursive;
-            export filter allowed_ips;
-            import filter allowed_ips;
+            export filter {
+              if source = RTS_BGP then {
+                ospf_metric1 = 100;
+                accept;
+              }
+              reject;
+            };
           };
-        }
-
-        protocol bgp nordgedanken {
-          local 10.0.2.1 as 64513;        # Use a private AS number
-          neighbor 10.0.1.2 as 64512;    # Our neighbor ...
-          #direct;
-          graceful restart on;
-          multihop;                            # ... which is connected indirectly
-          ipv4 {
-            gateway recursive;
-            export filter allowed_ips;
-            import filter allowed_ips;
+          area 0.0.0.0 {
+            networks {
+              10.0.2.25/32;
+            };
+            interface "enp7s0" {
+              type ptp; # VPN tunnels should be point-to-point
+            };
           };
         }
       '';
     };
 
     gobgpd = {
-      enable = true;
+      enable = false;
       settings = {
         global = {
           config = {
@@ -606,12 +603,12 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = false;
+        enable = true;
         allowedIPs = ["10.0.2.1" "fe99:13::1"];
         listenAddress = "10.0.2.1:8000";
       };
       frontend = {
-        enable = false;
+        enable = true;
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";
