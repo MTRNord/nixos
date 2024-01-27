@@ -199,7 +199,7 @@ in {
               "224.0.0.0/4"
             ];
             persistentKeepalive = 25;
-            endpoint = "95.217.202.35:51830";
+            endpoint = "10.0.1.2:51830";
           }
         ];
       };
