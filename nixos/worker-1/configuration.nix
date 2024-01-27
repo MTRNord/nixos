@@ -476,6 +476,7 @@ in {
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
+            next hop self;
           };
           ipv6 {
             import all;
@@ -494,6 +495,7 @@ in {
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
+            next hop self;
           };
           ipv6 {
             import all;
