@@ -453,11 +453,6 @@ in {
           ipv4;
         }
 
-        protocol direct direct1 {
-          ipv4;
-          interface "floating1";
-        }
-
         protocol direct direct2 {
           ipv4;
           interface "enp7s0";
@@ -471,7 +466,6 @@ in {
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
             export filter {
-              if proto = "direct1" then reject;
               if proto = "direct2" then reject;
               accept;
             };
