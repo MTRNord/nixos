@@ -660,24 +660,8 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
-        filter allowed_ips {
-          if net = 10.0.2.25/32 then accept;
-          reject;
-        }
-
         protocol static {
           ipv4;
-        }
-
-        protocol bfd {
-          interface "enp7s0" {
-            interval 50 ms;
-          };
-        }
-
-        protocol device {
-          scan time 10;
-          interface "enp7s0";
         }
 
         protocol kernel {

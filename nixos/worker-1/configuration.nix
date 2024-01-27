@@ -113,7 +113,24 @@ in {
   # Broken
   systemd.network.wait-online.enable = false;
   systemd.network = {
+    netdevs = {
+      floating1 = {
+        enable = true;
+        netdevConfig = {
+          Kind = "dummy";
+          Name = "floating1";
+        };
+      };
+    };
     networks = {
+      floating1 = {
+        enable = true;
+        name = "floating1";
+        address = [];
+        matchConfig = {
+          Name = "floating1";
+        };
+      };
       "20-v6" = {
         matchConfig = {
           MACAddress = "96:00:02:44:cf:52";
@@ -232,7 +249,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["enp7s0"];
+      trustedInterfaces = ["floating1" "enp7s0"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -432,24 +449,13 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
-        filter allowed_ips {
-          if net = 10.0.2.25/32 then accept;
-          reject;
-        }
-
-        protocol bfd {
-          interface "enp7s0" {
-            interval 50 ms;
-          };
-        }
-
         protocol static {
           ipv4;
         }
 
         protocol direct direct1 {
           ipv4;
-          interface "enp7s0";
+          interface "floating1";
         }
 
         protocol device {
@@ -480,7 +486,7 @@ in {
           };
           area 0.0.0.0 {
             networks {
-              10.0.2.25/32;
+              10.0.3.0/24;
             };
             interface "enp7s0" {
               type ptp; # VPN tunnels should be point-to-point
@@ -639,8 +645,8 @@ in {
           unicastPeers = ["10.0.1.2"];
           virtualIps = [
             {
-              addr = "10.0.2.25/32";
-              dev = "enp7s0";
+              addr = "10.0.3.1/24";
+              dev = "floating1";
             }
           ];
         };
