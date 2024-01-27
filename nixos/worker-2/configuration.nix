@@ -226,7 +226,7 @@ in {
       ];
     in {
       checkReversePath = "loose";
-      trustedInterfaces = ["floating1" "enp7s0"];
+      trustedInterfaces = ["enp7s0"];
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -550,7 +550,7 @@ in {
         log syslog all;
 
         filter allowed_ips {
-          if net = 10.0.2.0/24 then accept;
+          if net = 10.0.2.25/32 then accept;
           reject;
         }
 
