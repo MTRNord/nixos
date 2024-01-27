@@ -550,7 +550,7 @@ in {
         log syslog all;
 
         filter allowed_ips {
-          if net = 10.100.12.0/24 then accept;
+          if net = 10.0.12.0/24 then accept;
           reject;
         }
 

@@ -450,7 +450,7 @@ in {
         log syslog all;
 
         filter allowed_ips {
-          if net = 10.100.12.0/24 then accept;
+          if net = 10.0.12.0/24 then accept;
           reject;
         }
 
@@ -548,7 +548,7 @@ in {
           unicastPeers = ["10.0.1.2"];
           virtualIps = [
             {
-              addr = "10.100.12.1/24";
+              addr = "10.0.12.1/24";
               dev = "enp7s0";
             }
           ];
