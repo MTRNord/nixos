@@ -456,6 +456,7 @@ in {
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
             import filter allowed_ips;
+            export filter allowed_ips;
           };
           persist;
         }
