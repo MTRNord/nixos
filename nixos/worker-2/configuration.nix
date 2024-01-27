@@ -685,10 +685,6 @@ in {
             import all;
             export all;
           };
-          ipv6 {
-            import all;
-            export all;
-          };
         }
       '';
     };
