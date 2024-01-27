@@ -553,6 +553,17 @@ in {
           if net = 10.100.12.0/24 then accept;
         }
 
+        protocol bfd {
+          interface "*" {
+            interval 50 ms;
+          };
+        }
+
+        protocol direct direct1 {
+          ipv4;
+          interface "floating1";
+        }
+
         protocol device {
           scan time 10;
           interface "enp7s0";
@@ -560,10 +571,11 @@ in {
 
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
-            import filter allowed_ips;
-            export filter allowed_ips;
+            export filter {
+              if proto = "direct1" then reject;
+              accept;
+            };
           };
-          persist;
         }
         protocol kernel {
           ipv6 { export all; };
