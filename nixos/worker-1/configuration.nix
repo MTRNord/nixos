@@ -147,7 +147,7 @@ in {
     networks = {
       gre_nordgedanken = {
         address = [
-          "10.0.3.5/24"
+          "10.0.3.4/24"
         ];
         matchConfig = {
           Name = "gre_nordgedanken";
@@ -169,10 +169,13 @@ in {
           Name = "floating1";
         };
       };
-      "vlan" = {
+      "vlan_dummy" = {
+        address = [
+          "10.0.2.1/32"
+        ];
         tunnel = [
-          "gre_nordgedanken"
           "gre_worker2"
+          "gre_nordgedanken"
         ];
         matchConfig = {
           Name = "enp7s0";

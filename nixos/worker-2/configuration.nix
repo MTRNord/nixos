@@ -148,7 +148,10 @@ in {
           Name = "gre_worker1";
         };
       };
-      "vlan" = {
+      "vlan_dummy" = {
+        address = [
+          "10.0.2.2/32"
+        ];
         tunnel = [
           "gre_nordgedanken"
           "gre_worker1"
