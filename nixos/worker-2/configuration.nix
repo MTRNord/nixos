@@ -712,7 +712,7 @@ in {
 
         protocol direct direct2 {
           ipv4;
-          interface "enp7s0";
+          interface "gre_*";
         }
 
         protocol kernel {
@@ -727,7 +727,7 @@ in {
         }
         protocol babel {
           randomize router id yes;
-          interface "enp7s0" {
+          interface "gre_*" {
             type wired;
           };
           ipv4 {

@@ -499,12 +499,12 @@ in {
 
         protocol direct direct2 {
           ipv4;
-          interface "enp7s0";
+          interface "gre_*";
         }
 
         protocol device {
           scan time 10;
-          interface "enp7s0", "floating1";
+          interface "gre_*", "floating1";
         }
 
         protocol kernel {
@@ -520,7 +520,7 @@ in {
 
         protocol babel {
           randomize router id yes;
-          interface "enp7s0" {
+          interface "gre_*" {
             type wired;
           };
           ipv4 {
@@ -670,14 +670,14 @@ in {
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "enp7s0";
+          interface = "gre_nordgedanken";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
             advert_int 1
           '';
           trackInterfaces = [
-            "enp7s0"
+            "gre_nordgedanken"
             "floating1"
           ];
           unicastSrcIp = "10.0.2.1";
