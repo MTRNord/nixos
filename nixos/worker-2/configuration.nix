@@ -571,10 +571,7 @@ in {
 
         protocol kernel {
           ipv4 {                  # Connect protocol to IPv4 table by channel
-            export filter {
-              if proto = "direct1" then reject;
-              accept;
-            };
+            export all;
             import all;
           };
         }
