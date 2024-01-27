@@ -147,7 +147,7 @@ in {
     networks = {
       gre_nordgedanken = {
         address = [
-          "10.0.3.4/24"
+          "10.0.3.5/24"
         ];
         matchConfig = {
           Name = "gre_nordgedanken";
