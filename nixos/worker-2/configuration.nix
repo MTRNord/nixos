@@ -578,7 +578,7 @@ in {
                     match-set-options = "any";
                   };
                   match-neighbor-set = {
-                    prefix-set = "ns1";
+                    neighbor-set = "ns1";
                     match-set-options = "any";
                   };
                 };
