@@ -678,26 +678,15 @@ in {
             import all;
           };
         }
-        protocol ospf MyOSPF {
-          ecmp yes;
-          ## Boilerplate taken from Bird's example docs https://bird.network.cz/?get_doc&v=20&f=bird-6.html#ss6.8
-          ipv4 {
-            export filter {
-              if source = RTS_BGP then {
-                ospf_metric1 = 100;
-                accept;
-              }
-              reject;
-            };
+        protocol babel {
+          interface "enp7s0" {
+            type wired;
           };
-          area 0.0.0.0 {
-            networks {
-              10.0.3.0/24;
-            };
-            interface "enp7s0" {
-              bfd;
-              #type ptp; # VPN tunnels should be point-to-point
-            };
+          ipv4 {
+            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
+          };
+          ipv6 {
+            export where (source = RTS_DEVICE) || (source = RTS_BABEL);
           };
         }
       '';
