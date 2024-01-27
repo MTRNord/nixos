@@ -34,7 +34,7 @@
       listenPeerUrls = ["http://10.100.0.1:2380"];
       initialCluster = [
         "worker-1=http://10.100.0.1:2380"
-        "nordgedanken=http://10.100.0.2:2380"
+        "nordgedanken=http://10.0.1.2:2380"
       ];
       extraConf = {
         "UNSUPPORTED_ARCH" = "arm64";
@@ -51,7 +51,7 @@
 
       settings = {
         postgresql = {
-          listen = lib.mkForce "127.0.0.1,10.100.0.1:5432";
+          listen = lib.mkForce "127.0.0.1,10.100.0.1:5432,10.0.2.1:5432";
           parameters = {
             max_connections = "300";
             superuser_reserved_connections = "3";
@@ -115,7 +115,7 @@
         etcd = {
           hosts = [
             "10.100.0.1:2379"
-            "10.100.0.2:2379"
+            "10.0.1.2:2379"
           ];
         };
         tags = {

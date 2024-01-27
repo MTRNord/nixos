@@ -548,7 +548,7 @@ in {
               10.100.0.1/32;
               10.100.0.0/24;
             };
-            interface "nordgedanken", "worker2", "floating1" {
+            interface "nordgedanken", "worker2", "floating1" "enp7s0" {
               type ptp; # VPN tunnels should be point-to-point
             };
           };
@@ -629,7 +629,7 @@ in {
             advert_int 1
           '';
           unicastSrcIp = "10.100.0.1";
-          unicastPeers = ["10.100.0.2"];
+          unicastPeers = ["10.0.2.1"];
           virtualIps = [
             {
               addr = "10.100.12.1/24";

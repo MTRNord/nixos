@@ -8,7 +8,7 @@
     enable = true;
     nodes = [
       "http://10.100.0.1:2379"
-      "http://10.100.0.2:2379"
+      "http://10.0.1.2:2379"
     ];
     prefix = "/service/cluster-1";
   };
