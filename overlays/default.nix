@@ -27,9 +27,6 @@
       '';
       buildInputs = old.buildInputs ++ [pkgs.postgresql];
     });
-    # envoy = prev.envoy.overrideAttrs (old: {
-    #   bazelBuildFlags = old.bazelBuildFlags ++ [ "--//contrib/postgres_proxy/filters/network/source:enabled" ];
-    # });
     pgbouncer = prev.pgbouncer.overrideAttrs (old: {
       src = pkgs.fetchFromGitHub {
         owner = "pgbouncer";

@@ -38,8 +38,6 @@ in {
     ../common/lib/patroni.nix
     ../common/lib/confd.nix
     ../common/lib/pgbouncer.nix
-    #../common/lib/pgadmin.nix
-    ../common/lib/envoy.nix
     ../common/lib/fail2ban.nix
     ../common/lib/podman.nix
     ../common/lib/asterisk.nix
@@ -198,66 +196,6 @@ in {
     };
 
     nameservers = ["8.8.8.8" "8.8.4.4"];
-
-    wg-quick.interfaces = {
-      nordgedanken = {
-        address = ["10.100.0.1/24" "fe99:13::1/64"];
-        listenPort = 51820;
-        mtu = 1420;
-        privateKeyFile = config.sops.secrets."wireguard/worker-1/wg0/private_key".path;
-        table = "off";
-        preUp = ''
-          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-        '';
-        postUp = ''
-          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-          ip link set nordgedanken multicast on
-        '';
-
-        peers = [
-          # big one
-          {
-            publicKey = "M+OpQ/umgERHB+K6JJkszVChrRPqqYvMstbr28HRrSE=";
-            allowedIPs = [
-              "0.0.0.0/0"
-              "ff00::/8"
-              "224.0.0.0/4"
-            ];
-            persistentKeepalive = 25;
-            endpoint = "10.0.1.2:51831";
-          }
-        ];
-      };
-      worker2 = {
-        address = ["10.100.0.1/24" "fe99:13::1/64"];
-        listenPort = 51821;
-        mtu = 1420;
-        privateKeyFile = config.sops.secrets."wireguard/worker-1/wg1/private_key".path;
-        table = "off";
-        preUp = ''
-          iptables -t mangle -A FORWARD -o worker2 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-        '';
-        postUp = ''
-          iptables -t mangle -A FORWARD -o worker2 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-          ip link set worker2 multicast on
-        '';
-
-        peers = [
-          # worker-2
-          {
-            publicKey = "bVSjGeOiIO5XXPVkGLrYD4wTV52BFBOLSuCeSD97MUs=";
-            allowedIPs = [
-              "0.0.0.0/0"
-              "ff00::/8"
-              "224.0.0.0/4"
-              "fe99:13::1/64"
-            ];
-            persistentKeepalive = 25;
-            endpoint = "10.0.2.2:51841";
-          }
-        ];
-      };
-    };
 
     firewall = let
       blockedV4 = [
@@ -558,8 +496,8 @@ in {
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = ["10.100.0.1" "fe99:13::1"];
-        listenAddress = "10.100.0.1:8000";
+        allowedIPs = ["10.0.2.1" "fe99:13::1"];
+        listenAddress = "10.0.2.1:8000";
       };
       frontend = {
         enable = true;
@@ -580,44 +518,6 @@ in {
       extraGlobalDefs = ''
         lvs_id LVS_BACK
       '';
-      # extraConfig = ''
-      #   # Virtual Servers definitions
-      #   virtual_server 10.100.12.1 5000 {
-      #     delay_loop 10
-
-      #     lb_algo wrr
-      #     lb_kind DS
-
-      #     persistence_timeout 10
-      #     protocol TCP
-      #     real_server 100.64.0.3 5432 {
-      #         weight 1
-      #         HTTP_GET {
-      #           url {
-      #             path /
-      #           }
-
-      #           connect_port 8008
-      #           connect_timeout 3
-      #           retry 3
-      #           delay_before_retry 2
-      #         }
-      #     }
-      #     real_server 100.64.0.1 5432 {
-      #         weight 1
-      #         HTTP_GET {
-      #           url {
-      #             path /
-      #           }
-
-      #           connect_port 8008
-      #           connect_timeout 3
-      #           retry 3
-      #           delay_before_retry 2
-      #         }
-      #     }
-      #   }
-      # '';
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";

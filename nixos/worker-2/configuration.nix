@@ -174,66 +174,6 @@ in {
 
     nameservers = ["8.8.8.8" "8.8.4.4"];
 
-    wg-quick.interfaces = {
-      nordgedanken = {
-        address = ["10.100.0.3/24" "fe99:13::3/64"];
-        listenPort = 51840;
-        mtu = 1420;
-        privateKeyFile = config.sops.secrets."wireguard/worker-2/wg0/private_key".path;
-        table = "off";
-        preUp = ''
-          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-        '';
-        postUp = ''
-          iptables -t mangle -A FORWARD -o nordgedanken -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-          ip link set nordgedanken multicast on
-        '';
-
-        peers = [
-          # big one
-          {
-            publicKey = "oBqOZGvt83/u8QETTGxRi8wXqXih9IPDl+T5Snqx9yA=";
-            allowedIPs = [
-              "0.0.0.0/0"
-              "ff00::/8"
-              "224.0.0.0/4"
-            ];
-            persistentKeepalive = 25;
-            endpoint = "10.0.1.2:51830";
-          }
-        ];
-      };
-      worker1 = {
-        address = ["10.100.0.3/24" "fe99:13::3/64"];
-        listenPort = 51841;
-        mtu = 1420;
-        privateKeyFile = config.sops.secrets."wireguard/worker-2/wg1/private_key".path;
-        table = "off";
-        preUp = ''
-          iptables -t mangle -A FORWARD -o worker1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-        '';
-        postUp = ''
-          iptables -t mangle -A FORWARD -o worker1 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-          ip link set worker1 multicast on
-        '';
-
-        peers = [
-          # worker-1
-          {
-            publicKey = "gVNmams9FSNMrtZYVKEjr04NyEha8I7nxf6GPmdN0FQ=";
-            allowedIPs = [
-              "0.0.0.0/0"
-              "ff00::/8"
-              "224.0.0.0/4"
-              "fe99:13::1/64"
-            ];
-            persistentKeepalive = 25;
-            endpoint = "10.0.2.1:51821";
-          }
-        ];
-      };
-    };
-
     firewall = let
       blockedV4 = [
         "158.101.19.243" # full-text search scraper https://macaw.social/@angilly/109597402157254670
@@ -656,8 +596,8 @@ in {
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = ["10.100.0.1"];
-        listenAddress = "10.100.0.3:8000";
+        allowedIPs = ["10.0.2.1"];
+        listenAddress = "10.0.2.2:8000";
       };
     };
   };
