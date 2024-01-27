@@ -472,52 +472,36 @@ in {
         protocol bgp worker2 {
           local 10.0.2.1 as 64513;        # Use a private AS number
           neighbor 10.0.2.2 as 64514;    # Our neighbor ...
-          multihop;                            # ... which is connected indirectly
+          #multihop;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
-            next hop self;
-            igp table igptable4; # IGP table for routes with IPv4 nexthops
-            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv6 {
             import all;
             export none;
-            missing lladdr self;
-            igp table igptable4; # IGP table for routes with IPv4 nexthops
-            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv4 multicast {
             import all;
             export none;
-            table multicasttable4; # Another IPv4 table, dedicated for multicast
-            igp table igptable4;
           };
         }
 
         protocol bgp nordgedanken {
           local 10.0.2.1 as 64513;        # Use a private AS number
           neighbor 10.0.1.2 as 64512;    # Our neighbor ...
-          multihop;                            # ... which is connected indirectly
+          #multihop;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
             import filter allowed_ips;
-            next hop self;
-            igp table igptable4; # IGP table for routes with IPv4 nexthops
-            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv6 {
             import all;
             export none;
-            missing lladdr self;
-            igp table igptable4; # IGP table for routes with IPv4 nexthops
-            igp table igptable6; # IGP table for routes with IPv6 nexthops
           };
           ipv4 multicast {
             import all;
             export none;
-            table multicasttable4; # Another IPv4 table, dedicated for multicast
-            igp table igptable4;
           };
         }
       '';
