@@ -567,6 +567,7 @@ in {
         protocol bgp worker1 {
           local 10.0.2.2 as 64514;        # Use a private AS number
           neighbor 10.0.2.1 as 64513;    # Our neighbor ...
+          direct;
           #multihop;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
@@ -585,6 +586,7 @@ in {
         protocol bgp nordgedanken {
           local 10.0.2.2 as 64514;        # Use a private AS number
           neighbor 10.0.1.2 as 64512;    # Our neighbor ...
+          direct;
           #multihop;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
