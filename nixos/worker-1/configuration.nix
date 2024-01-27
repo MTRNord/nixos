@@ -455,7 +455,7 @@ in {
         }
 
         protocol bfd {
-          interface "floating1", "enp7s0" {
+          interface "enp7s0" {
             interval 50 ms;
           };
         }
@@ -466,12 +466,12 @@ in {
 
         protocol direct direct1 {
           ipv4;
-          interface "floating1";
+          interface "enp7s0";
         }
 
         protocol device {
           scan time 10;
-          interface "enp7s0", "floating1";
+          interface "enp7s0";
         }
 
         protocol kernel {
@@ -549,7 +549,7 @@ in {
           virtualIps = [
             {
               addr = "10.100.12.1/24";
-              dev = "floating1";
+              dev = "enp7s0";
             }
           ];
         };
