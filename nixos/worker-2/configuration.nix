@@ -591,7 +591,7 @@ in {
           local 10.0.2.2 as 64514;        # Use a private AS number
           neighbor 10.0.2.1 as 64513;    # Our neighbor ...
           #direct;
-          next hop self;
+          nexthop self;
           multihop 2;                            # ... which is connected indirectly
           ipv4 {
             export filter allowed_ips;
