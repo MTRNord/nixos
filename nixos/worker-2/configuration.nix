@@ -107,48 +107,17 @@ in {
   # Broken
   systemd.network.wait-online.enable = false;
   systemd.network = {
-    netdevs = {
-      gre_nord = {
-        enable = true;
-        netdevConfig = {
-          Kind = "geneve";
-          Name = "gre_nord";
-        };
-        extraConfig = ''
-          [GENEVE]
-          Id=2
-          Remote=10.0.1.2
-        '';
-      };
-      gre_worker1 = {
-        enable = true;
-        netdevConfig = {
-          Kind = "geneve";
-          Name = "gre_worker1";
-        };
-        extraConfig = ''
-          [GENEVE]
-          Id=3
-          Remote=10.0.2.1
-        '';
-      };
-    };
     networks = {
-      gre_nord = {
-        address = [
-          "10.0.3.3/24"
-        ];
+      "99-enp7s0" = {
         matchConfig = {
-          Name = "gre_nord";
+          Name = "enp7s0";
         };
-      };
-      gre_worker1 = {
         address = [
-          "10.0.3.3/24"
+          "10.0.0.3/24"
         ];
-        matchConfig = {
-          Name = "gre_worker1";
-        };
+        gateway = [
+          "10.0.0.2"
+        ];
       };
       "20-v6" = {
         matchConfig = {
