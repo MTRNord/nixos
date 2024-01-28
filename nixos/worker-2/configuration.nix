@@ -711,8 +711,8 @@ in {
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = ["10.0.2.2"];
-        listenAddress = "10.0.2.3:8000";
+        allowedIPs = ["10.0.2.3"];
+        listenAddress = "10.0.2.2:8000";
       };
     };
   };
