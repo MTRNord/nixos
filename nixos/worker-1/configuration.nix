@@ -455,7 +455,7 @@ in {
     };
 
     bird2 = {
-      enable = false;
+      enable = true;
       config = ''
         router id 10.0.2.3;
         debug protocols all;
