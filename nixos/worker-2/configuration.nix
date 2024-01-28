@@ -115,9 +115,9 @@ in {
         address = [
           "10.0.0.3/24"
         ];
-        gateway = [
-          "10.0.0.1"
-        ];
+        # gateway = [
+        #   "10.0.0.1"
+        # ];
         routes = [
           {
             routeConfig = {
