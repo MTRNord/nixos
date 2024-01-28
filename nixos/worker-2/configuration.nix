@@ -234,8 +234,6 @@ in {
         "lxc*"
         "cilium*"
         "enp7s0"
-        "gre_worker1"
-        "gre_nord"
       ];
       enable = true;
       allowPing = true;
@@ -666,7 +664,7 @@ in {
     };
 
     bird2 = {
-      enable = true;
+      enable = false;
       config = ''
         router id 10.0.2.2;
         debug protocols all;
@@ -712,7 +710,7 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = true;
+        enable = false;
         allowedIPs = ["10.0.2.1"];
         listenAddress = "10.0.2.2:8000";
       };
