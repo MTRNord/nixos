@@ -118,6 +118,7 @@ in {
         # gateway = [
         #   "10.0.0.1"
         # ];
+        DHCP = "yes";
         routes = [
           {
             routeConfig = {
