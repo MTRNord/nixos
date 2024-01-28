@@ -696,15 +696,13 @@ in {
           };
           learn yes;
         }
-        protocol ospf OSPF {
-          area 0.0.0.0 {
-            interface "enp7s0" {
-              type broadcast;
-            };
-          };
+        protocol bgp {
+          local 10.0.2.2 as 64514;
+          neighbor 10.0.2.1 as 64512;
+          multihop;
           ipv4 {
-            import all;
             export all;
+            import all;
           };
         }
       '';

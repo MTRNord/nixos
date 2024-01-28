@@ -487,15 +487,13 @@ in {
           learn yes;
         }
 
-        protocol ospf OSPF {
-          area 0.0.0.0 {
-            interface "enp7s0" {
-              type broadcast;
-            };
-          };
+        protocol bgp {
+          local 10.0.2.3 as 64513;
+          neighbor 10.0.2.1 as 64512;
+          multihop;
           ipv4 {
-            import all;
             export all;
+            import all;
           };
         }
       '';
@@ -504,7 +502,7 @@ in {
     bird-lg = {
       proxy = {
         enable = true;
-        allowedIPs = ["10.0.2.2" "fe99:13::1"];
+        allowedIPs = ["10.0.2.3" "fe99:13::1"];
         listenAddress = "10.0.2.3:8000";
       };
       frontend = {
