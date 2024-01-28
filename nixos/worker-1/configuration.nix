@@ -114,30 +114,6 @@ in {
   systemd.network.wait-online.enable = false;
   systemd.network = {
     netdevs = {
-      gre_nord = {
-        enable = true;
-        netdevConfig = {
-          Kind = "geneve";
-          Name = "gre_nord";
-        };
-        extraConfig = ''
-          [GENEVE]
-          Id=1
-          Remote=10.0.1.2
-        '';
-      };
-      gre_worker2 = {
-        enable = true;
-        netdevConfig = {
-          Kind = "geneve";
-          Name = "gre_worker2";
-        };
-        extraConfig = ''
-          [GENEVE]
-          Id=3
-          Remote=10.0.2.2
-        '';
-      };
       floating1 = {
         enable = true;
         netdevConfig = {
@@ -147,21 +123,17 @@ in {
       };
     };
     networks = {
-      gre_nord = {
-        address = [
-          "10.0.3.4/24"
-        ];
+      "99-enp7s0" = {
         matchConfig = {
-          Name = "gre_nord";
+          Name = "enp7s0";
         };
-      };
-      gre_worker2 = {
         address = [
-          "10.0.3.4/24"
+          "10.0.2.3/32"
         ];
-        matchConfig = {
-          Name = "gre_worker2";
-        };
+        gateway = [
+          "10.0.0.1"
+        ];
+        DHCP = "yes";
       };
       floating1 = {
         enable = true;
@@ -287,8 +259,6 @@ in {
         "cilium*"
         "floating1"
         "enp7s0"
-        "gre_nord"
-        "gre_worker2"
       ];
       enable = true;
       allowPing = true;
@@ -485,7 +455,7 @@ in {
     };
 
     bird2 = {
-      enable = true;
+      enable = false;
       config = ''
         router id 10.0.1.1;
         debug protocols all;
@@ -643,12 +613,12 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = true;
+        enable = false;
         allowedIPs = ["10.0.2.1" "fe99:13::1"];
         listenAddress = "10.0.2.1:8000";
       };
       frontend = {
-        enable = true;
+        enable = false;
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";
@@ -679,7 +649,7 @@ in {
             "enp7s0"
             "floating1"
           ];
-          unicastSrcIp = "10.0.2.1";
+          unicastSrcIp = "10.0.2.3";
           unicastPeers = ["10.0.1.2"];
           virtualIps = [
             {
