@@ -471,7 +471,7 @@ in {
           ipv4 {                  # Connect protocol to IPv4 table by channel
             export filter {
               if proto = "direct2" then reject;
-              if net !~ "10.0.3.0/24" then reject;
+              if net ~ 0.0.0.0/0 then reject;
               accept;
             };
             import all;
