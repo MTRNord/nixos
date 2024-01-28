@@ -169,7 +169,7 @@ in {
           Name = "floating1";
         };
       };
-      "enp7s0" = {
+      "99-enp7s0" = {
         address = [
           "10.0.2.1/32"
         ];
@@ -178,12 +178,13 @@ in {
           "gre_nordgedanken"
         ];
         matchConfig = {
-          MACAddress = "86:00:00:4b:a5:12";
+          Name = "enp7s0";
         };
       };
-      "enp1s0" = {
+      "99-enp1s0" = {
         matchConfig = {
-          MACAddress = "96:00:02:44:cf:52";
+          #MACAddress = "96:00:02:44:cf:52";
+          Name = "enp1s0";
         };
         address = [
           "49.13.24.105/32"

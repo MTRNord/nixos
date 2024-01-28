@@ -148,7 +148,7 @@ in {
           Name = "gre_worker1";
         };
       };
-      "enp7s0" = {
+      "99-enp7s0" = {
         address = [
           "10.0.2.2/32"
         ];
@@ -157,16 +157,17 @@ in {
           "gre_worker1"
         ];
         matchConfig = {
-          MACAddress = "86:00:00:5f:5b:d8";
+          Name = "enp7s0";
         };
       };
-      "enp1s0" = {
+      "99-enp1s0" = {
         address = [
           "37.27.5.79/32"
           "2a01:4f9:c012:54d3::/64"
         ];
         matchConfig = {
-          MACAddress = "96:00:02:97:a7:51";
+          #MACAddress = "96:00:02:97:a7:51";
+          Name = "enp1s0";
         };
         routes = [
           {routeConfig.Gateway = "fe80::1";}
