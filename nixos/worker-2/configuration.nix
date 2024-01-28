@@ -241,7 +241,7 @@ in {
         "cilium*"
         "enp7s0"
         "gre_worker1"
-        #"gre_nordgedanken"
+        "gre_nord"
       ];
       enable = true;
       allowPing = true;

@@ -262,7 +262,7 @@ in {
         "cilium*"
         "floating1"
         "enp7s0"
-        #"gre_nordgedanken"
+        "gre_nord"
         "gre_worker2"
       ];
       enable = true;
@@ -640,14 +640,14 @@ in {
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "gre_nordgedanken";
+          interface = "gre_nord";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
             advert_int 1
           '';
           trackInterfaces = [
-            "gre_nordgedanken"
+            "gre_nord"
             "floating1"
           ];
           unicastSrcIp = "10.0.2.1";
