@@ -170,20 +170,6 @@ in {
         };
       };
       "99-enp7s0" = {
-        address = [
-          "10.0.2.1/32"
-        ];
-        gateway = [
-          "10.0.0.1"
-        ];
-        routes = [
-          {
-            routeConfig = {
-              Gateway = "10.0.0.1";
-              Destination = "10.0.0.0/16";
-            };
-          }
-        ];
         tunnel = [
           "gre_worker2"
           "gre_nordgedanken"
@@ -191,45 +177,9 @@ in {
         matchConfig = {
           Name = "enp7s0";
         };
-      };
-      "99-enp1s0" = {
-        matchConfig = {
-          #MACAddress = "96:00:02:44:cf:52";
-          Name = "enp1s0";
+        networkConfig = {
+          DHCP = "yes";
         };
-        address = [
-          "49.13.24.105/32"
-          "2a01:4f8:c012:492::1/64"
-        ];
-        gateway = [
-          "fe80::1"
-        ];
-        routes = [
-          {routeConfig.Gateway = "fe80::1";}
-          {
-            routeConfig = {
-              Gateway = "172.31.1.1";
-              GatewayOnLink = true;
-            };
-          }
-
-          # prevent some local traffic Hetzner doesn't like
-          #{ routeConfig = { Destination = "172.16.0.0/12"; Type = "unreachable"; }; }
-          {
-            routeConfig = {
-              Destination = "192.168.0.0/16";
-              Type = "unreachable";
-            };
-          }
-
-          # { routeConfig = { Destination = "10.0.0.0/8"; Type = "unreachable"; }; }
-          {
-            routeConfig = {
-              Destination = "fc00::/7";
-              Type = "unreachable";
-            };
-          }
-        ];
       };
     };
   };
