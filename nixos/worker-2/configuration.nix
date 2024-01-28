@@ -671,6 +671,7 @@ in {
 
         protocol device {
           scan time 10;
+          interface "gre_*";
         }
 
         protocol direct direct2 {
