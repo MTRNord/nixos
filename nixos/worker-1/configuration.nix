@@ -474,7 +474,10 @@ in {
               if net ~ 0.0.0.0/0 then reject;
               accept;
             };
-            import all;
+            import filter {
+              if net ~ 0.0.0.0/0 then reject;
+              accept;
+            };
           };
           learn yes;
         }
