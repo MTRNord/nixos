@@ -669,6 +669,10 @@ in {
         ## Boilerplate from distro
         log syslog all;
 
+        protocol device {
+          scan time 10;
+        }
+
         protocol direct direct2 {
           ipv4;
           interface "gre_*";
