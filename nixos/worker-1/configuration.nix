@@ -457,19 +457,19 @@ in {
     bird2 = {
       enable = false;
       config = ''
-        router id 10.0.1.1;
+        router id 10.0.2.3;
         debug protocols all;
         ## Boilerplate from distro
         log syslog all;
 
         protocol direct direct2 {
           ipv4;
-          interface "gre_*";
+          interface "enp7s0";
         }
 
         protocol device {
           scan time 10;
-          interface "gre_*", "floating1";
+          interface "enp7s0", "floating1";
         }
 
         protocol kernel {
@@ -488,9 +488,10 @@ in {
         }
 
         protocol babel {
-          randomize router id yes;
-          interface "gre_*" {
-            type wired;
+          area 0.0.0.0 {
+            interface "enp7s0" {
+              type broadcast;
+            };
           };
           ipv4 {
             import all;
@@ -502,12 +503,12 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = false;
-        allowedIPs = ["10.0.2.1" "fe99:13::1"];
-        listenAddress = "10.0.2.1:8000";
+        enable = true;
+        allowedIPs = ["10.0.2.2" "fe99:13::1"];
+        listenAddress = "10.0.2.3:8000";
       };
       frontend = {
-        enable = false;
+        enable = true;
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";

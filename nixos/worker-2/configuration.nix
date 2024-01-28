@@ -665,7 +665,7 @@ in {
     };
 
     bird2 = {
-      enable = false;
+      enable = true;
       config = ''
         router id 10.0.2.2;
         debug protocols all;
@@ -674,12 +674,12 @@ in {
 
         protocol device {
           scan time 10;
-          interface "gre_*";
+          interface "enp7s0";
         }
 
         protocol direct direct2 {
           ipv4;
-          interface "gre_*";
+          interface "enp7s0";
         }
 
         protocol kernel {
@@ -696,10 +696,11 @@ in {
           };
           learn yes;
         }
-        protocol babel {
-          randomize router id yes;
-          interface "gre_*" {
-            type wired;
+        protocol ospf OSPF {
+          area 0.0.0.0 {
+            interface "enp7s0" {
+              type broadcast;
+            };
           };
           ipv4 {
             import all;
@@ -711,9 +712,9 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = false;
-        allowedIPs = ["10.0.2.1"];
-        listenAddress = "10.0.2.2:8000";
+        enable = true;
+        allowedIPs = ["10.0.2.2"];
+        listenAddress = "10.0.2.3:8000";
       };
     };
   };
