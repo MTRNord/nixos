@@ -118,11 +118,13 @@ in {
         routes = [
           {
             routeConfig = {
+              Destination = "10.0.0.2/32";
               Gateway = "10.0.0.1";
             };
           }
           {
             routeConfig = {
+              Destination = "10.0.0.0/16";
               Gateway = "10.0.0.2";
               GatewayOnLink = true;
             };
