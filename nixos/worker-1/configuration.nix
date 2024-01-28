@@ -115,7 +115,7 @@ in {
   systemd.network = {
     netdevs = {
       gre_nord = {
-        enable = true;
+        enable = false;
         netdevConfig = {
           Kind = "geneve";
           Name = "gre_nord";
@@ -127,7 +127,7 @@ in {
         '';
       };
       gre_worker2 = {
-        enable = true;
+        enable = false;
         netdevConfig = {
           Kind = "geneve";
           Name = "gre_worker2";
@@ -287,8 +287,8 @@ in {
         "cilium*"
         "floating1"
         "enp7s0"
-        "gre_nord"
-        "gre_worker2"
+        #"gre_nord"
+        #"gre_worker2"
       ];
       enable = true;
       allowPing = true;
@@ -669,14 +669,14 @@ in {
       vrrpInstances = {
         VI_1 = {
           state = "BACKUP";
-          interface = "gre_nord";
+          interface = "enp7s0";
           virtualRouterId = 230;
           priority = 101;
           extraConfig = ''
             advert_int 1
           '';
           trackInterfaces = [
-            "gre_nord"
+            "enp7s0"
             "floating1"
           ];
           unicastSrcIp = "10.0.2.1";

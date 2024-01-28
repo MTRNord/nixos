@@ -109,7 +109,7 @@ in {
   systemd.network = {
     netdevs = {
       gre_nord = {
-        enable = true;
+        enable = false;
         netdevConfig = {
           Kind = "geneve";
           Name = "gre_nord";
@@ -121,7 +121,7 @@ in {
         '';
       };
       gre_worker1 = {
-        enable = true;
+        enable = false;
         netdevConfig = {
           Kind = "geneve";
           Name = "gre_worker1";
@@ -265,8 +265,8 @@ in {
         "lxc*"
         "cilium*"
         "enp7s0"
-        "gre_worker1"
-        "gre_nord"
+        #"gre_worker1"
+        #"gre_nord"
       ];
       enable = true;
       allowPing = true;
