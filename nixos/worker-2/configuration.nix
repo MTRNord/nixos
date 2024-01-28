@@ -112,7 +112,7 @@ in {
         enable = true;
         netdevConfig = {
           Kind = "gretap";
-          Name = "gre_nordgedanken";
+          Name = "gre_nord";
         };
         tunnelConfig = {
           Local = "10.0.2.2";

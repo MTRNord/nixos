@@ -150,7 +150,7 @@ in {
           "10.0.3.4/24"
         ];
         matchConfig = {
-          Name = "gre_nordgedanken";
+          Name = "gre_nord";
         };
       };
       gre_worker2 = {
