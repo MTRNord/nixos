@@ -152,6 +152,9 @@ in {
         address = [
           "10.0.2.2/32"
         ];
+        routes = [
+          {routeConfig.Gateway = "10.0.0.1";}
+        ];
         tunnel = [
           "gre_nordgedanken"
           "gre_worker1"
