@@ -27,10 +27,10 @@
     etcd = {
       enable = true;
       initialClusterState = "new";
-      listenClientUrls = ["http://10.0.2.1:2379"];
-      listenPeerUrls = ["http://10.0.2.1:2380"];
+      listenClientUrls = ["http://10.0.2.3:2379"];
+      listenPeerUrls = ["http://10.0.2.3:2380"];
       initialCluster = [
-        "worker-1=http://10.0.2.1:2380"
+        "worker-1=http://10.0.2.3:2380"
         "nordgedanken=http://10.0.1.2:2380"
       ];
       extraConf = {
@@ -41,14 +41,14 @@
 
     patroni = {
       enable = true;
-      nodeIp = "10.0.2.1";
+      nodeIp = "10.0.2.3";
       name = "worker-1";
       scope = "cluster-1";
       postgresqlPackage = pkgs.postgresql_14;
 
       settings = {
         postgresql = {
-          listen = lib.mkForce "127.0.0.1,10.0.2.1:5432";
+          listen = lib.mkForce "127.0.0.1,10.0.2.3:5432";
           parameters = {
             max_connections = "300";
             superuser_reserved_connections = "3";
@@ -111,7 +111,7 @@
         };
         etcd = {
           hosts = [
-            "10.0.2.1:2379"
+            "10.0.2.3:2379"
             "10.0.1.2:2379"
           ];
         };
