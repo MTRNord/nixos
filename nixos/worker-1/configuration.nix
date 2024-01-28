@@ -117,24 +117,26 @@ in {
       gre_nord = {
         enable = true;
         netdevConfig = {
-          Kind = "gre";
+          Kind = "geneve";
           Name = "gre_nord";
         };
-        tunnelConfig = {
-          Local = "10.0.2.1";
-          Remote = "10.0.1.2";
-        };
+        extraConfig = ''
+          [GENEVE]
+          Id=1
+          Remote=10.0.1.2
+        '';
       };
       gre_worker2 = {
         enable = true;
         netdevConfig = {
-          Kind = "gre";
+          Kind = "geneve";
           Name = "gre_worker2";
         };
-        tunnelConfig = {
-          Local = "10.0.2.1";
-          Remote = "10.0.2.2";
-        };
+        extraConfig = ''
+          [GENEVE]
+          Id=1
+          Remote=10.0.2.2
+        '';
       };
       floating1 = {
         enable = true;
