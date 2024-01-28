@@ -114,11 +114,11 @@ in {
   systemd.network.wait-online.enable = false;
   systemd.network = {
     netdevs = {
-      gre_nordgedanken = {
+      gre_nord = {
         enable = true;
         netdevConfig = {
           Kind = "gretap";
-          Name = "gre_nordgedanken";
+          Name = "gre_nord";
         };
         tunnelConfig = {
           Local = "10.0.2.1";
@@ -145,7 +145,7 @@ in {
       };
     };
     networks = {
-      gre_nordgedanken = {
+      gre_nord = {
         address = [
           "10.0.3.4/24"
         ];
@@ -172,7 +172,7 @@ in {
       "99-enp7s0" = {
         tunnel = [
           "gre_worker2"
-          "gre_nordgedanken"
+          "gre_nord"
         ];
         matchConfig = {
           Name = "enp7s0";
