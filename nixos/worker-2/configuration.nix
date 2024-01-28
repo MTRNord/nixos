@@ -152,6 +152,9 @@ in {
         address = [
           "10.0.2.2/32"
         ];
+        gateway = [
+          "10.0.0.1"
+        ];
         routes = [
           {
             routeConfig = {
@@ -177,6 +180,9 @@ in {
           #MACAddress = "96:00:02:97:a7:51";
           Name = "enp1s0";
         };
+        gateway = [
+          "fe80::1"
+        ];
         routes = [
           {
             routeConfig = {

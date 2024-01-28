@@ -173,6 +173,9 @@ in {
         address = [
           "10.0.2.1/32"
         ];
+        gateway = [
+          "10.0.0.1"
+        ];
         routes = [
           {
             routeConfig = {
@@ -197,6 +200,9 @@ in {
         address = [
           "49.13.24.105/32"
           "2a01:4f8:c012:492::1/64"
+        ];
+        gateway = [
+          "fe80::1"
         ];
         routes = [
           {routeConfig.Gateway = "fe80::1";}
