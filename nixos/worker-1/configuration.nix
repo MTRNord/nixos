@@ -501,12 +501,12 @@ in {
 
     bird-lg = {
       proxy = {
-        enable = true;
+        enable = false;
         allowedIPs = ["10.0.2.3" "fe99:13::1"];
         listenAddress = "10.0.2.3:8000";
       };
       frontend = {
-        enable = true;
+        enable = false;
         titleBrand = "Midnightthoughts infra";
         navbar.brand = "Midnightthoughts infra";
         listenAddress = "127.0.0.1:5001";
