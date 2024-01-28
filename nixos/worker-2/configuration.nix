@@ -115,8 +115,18 @@ in {
         address = [
           "10.0.0.3/24"
         ];
-        gateway = [
-          "10.0.0.2"
+        routes = [
+          {
+            routeConfig = {
+              Gateway = "10.0.0.1";
+            };
+          }
+          {
+            routeConfig = {
+              Gateway = "10.0.0.2";
+              GatewayOnLink = true;
+            };
+          }
         ];
       };
       "20-v6" = {
