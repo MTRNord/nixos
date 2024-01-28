@@ -487,7 +487,7 @@ in {
           learn yes;
         }
 
-        protocol babel {
+        protocol ospf OSPF {
           area 0.0.0.0 {
             interface "enp7s0" {
               type broadcast;
