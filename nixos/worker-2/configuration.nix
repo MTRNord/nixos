@@ -177,7 +177,7 @@ in {
     useDHCP = true;
     # networkmanager.enable = true;
 
-    nameservers = ["8.8.8.8" "8.8.4.4"];
+    nameservers = ["10.0.2.1"];
 
     firewall = let
       blockedV4 = [
