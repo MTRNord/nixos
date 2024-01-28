@@ -171,6 +171,41 @@ in {
           Name = "floating1";
         };
       };
+      "20-v6" = {
+        matchConfig = {
+          MACAddress = "96:00:02:44:cf:52";
+        };
+        address = [
+          "49.13.24.105/32"
+          "2a01:4f8:c012:492::1/64"
+        ];
+        routes = [
+          {routeConfig.Gateway = "fe80::1";}
+          {
+            routeConfig = {
+              Gateway = "172.31.1.1";
+              GatewayOnLink = true;
+            };
+          }
+
+          # prevent some local traffic Hetzner doesn't like
+          #{ routeConfig = { Destination = "172.16.0.0/12"; Type = "unreachable"; }; }
+          {
+            routeConfig = {
+              Destination = "192.168.0.0/16";
+              Type = "unreachable";
+            };
+          }
+
+          # { routeConfig = { Destination = "10.0.0.0/8"; Type = "unreachable"; }; }
+          {
+            routeConfig = {
+              Destination = "fc00::/7";
+              Type = "unreachable";
+            };
+          }
+        ];
+      };
     };
   };
 
