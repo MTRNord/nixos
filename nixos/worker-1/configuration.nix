@@ -174,7 +174,12 @@ in {
           "10.0.2.1/32"
         ];
         routes = [
-          {routeConfig.Gateway = "10.0.0.1";}
+          {
+            routeConfig = {
+              Gateway = "10.0.0.1";
+              Destination = "10.0.0.0/16";
+            };
+          }
         ];
         tunnel = [
           "gre_worker2"

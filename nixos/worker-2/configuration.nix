@@ -153,7 +153,12 @@ in {
           "10.0.2.2/32"
         ];
         routes = [
-          {routeConfig.Gateway = "10.0.0.1";}
+          {
+            routeConfig = {
+              Gateway = "10.0.0.1";
+              Destination = "10.0.0.0/16";
+            };
+          }
         ];
         tunnel = [
           "gre_nordgedanken"
@@ -173,7 +178,11 @@ in {
           Name = "enp1s0";
         };
         routes = [
-          {routeConfig.Gateway = "fe80::1";}
+          {
+            routeConfig = {
+              Gateway = "fe80::1";
+            };
+          }
           {
             routeConfig = {
               Gateway = "172.31.1.1";
