@@ -171,18 +171,6 @@ in {
           Name = "floating1";
         };
       };
-      "99-enp7s0" = {
-        tunnel = [
-          "gre_worker2"
-          "gre_nord"
-        ];
-        matchConfig = {
-          Name = "enp7s0";
-        };
-        networkConfig = {
-          DHCP = "yes";
-        };
-      };
     };
   };
 

@@ -150,18 +150,6 @@ in {
           Name = "gre_worker1";
         };
       };
-      "99-enp7s0" = {
-        tunnel = [
-          "gre_nord"
-          "gre_worker1"
-        ];
-        matchConfig = {
-          Name = "enp7s0";
-        };
-        networkConfig = {
-          DHCP = "yes";
-        };
-      };
     };
   };
 
