@@ -56,7 +56,7 @@
         listen_addr = *
         listen_port = 5000
 
-        ignore_startup_parameters = extra_float_digits
+        ignore_startup_parameters = extra_float_digits,search_path
         max_prepared_statements = 20000
 
         auth_type = md5
