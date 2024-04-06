@@ -41,6 +41,8 @@ in {
     ../common/lib/personal_discourse.nix
     #../common/lib/opensearch.nix
     ./kubernetes.nix
+    "${unstable}/services/networking/soju.nix"
+    ./soju.nix
   ];
 
   nixpkgs = {
@@ -455,8 +457,10 @@ in {
     };
   };
 
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "support@nordgedanken.dev";
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "support@nordgedanken.dev";
+  };
 
   environment.persistence."/persist" = {
     directories = [
