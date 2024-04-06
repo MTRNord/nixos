@@ -46,7 +46,7 @@ in {
     ../common/lib/pdns.nix
 
     ./kubernetes.nix
-    ./znc.nix
+    #./znc.nix
   ];
 
   nixpkgs = {
