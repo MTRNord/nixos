@@ -6,7 +6,7 @@
 }: {
   environment.persistence."/persist" = {
     directories = [
-      "/var/lib/soju"
+      #"/var/lib/soju"
       "/var/lib/acme"
     ];
   };
@@ -19,7 +19,6 @@
   };
 
   security.acme.certs."soju.midnightthoughts.space" = {
-    group = "soju";
     reloadServices = ["soju"];
     listenHTTP = ":1360";
   };
