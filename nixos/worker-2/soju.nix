@@ -62,6 +62,8 @@
       Group = "soju";
     };
   };
+
+  environment.systemPackages = [inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.soju];
   networking.firewall.allowedTCPPorts = [
     6697
   ];
