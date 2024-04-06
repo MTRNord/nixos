@@ -19,7 +19,7 @@
   };
 
   security.acme.certs."soju.midnightthoughts.space" = {
-    group = services.soju.group;
+    group = "soju";
     reloadServices = ["soju"];
     listenHTTP = ":1360";
   };
