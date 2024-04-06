@@ -20,7 +20,20 @@
 
   security.acme.certs."soju.midnightthoughts.space" = {
     reloadServices = ["soju"];
+    webroot = "/var/lib/acme/.challenges";
     listenHTTP = ":1360";
+  };
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      "soju.midnightthoughts.space" = {
+        # Catchall vhost, will redirect users to HTTPS for all vhosts
+        serverAliases = ["*.midnightthoughts.space"];
+        locations."/.well-known/acme-challenge" = {
+          root = "/var/lib/acme/.challenges";
+        };
+      };
+    };
   };
   networking.firewall.allowedTCPPorts = [
     6697
