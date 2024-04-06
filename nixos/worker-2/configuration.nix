@@ -41,7 +41,7 @@ in {
     ../common/lib/personal_discourse.nix
     #../common/lib/opensearch.nix
     ./kubernetes.nix
-    "${inputs.nixpkgs-unstable}/services/networking/soju.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/networking/soju.nix"
     ./soju.nix
   ];
 
