@@ -415,6 +415,12 @@ in {
         group = "discourse";
       };
 
+      "soju" = {
+        isNormalUser = false;
+        isSystemUser = true;
+        group = "soju";
+      };
+
       "pgbouncer" = {
         isNormalUser = false;
         isSystemUser = true;
