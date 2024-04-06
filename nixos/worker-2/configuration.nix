@@ -11,9 +11,6 @@
   github_metadata_file = builtins.readFile inputs.github_meta;
   github_metadata_json = builtins.fromJSON github_metadata_file;
 in {
-  disabledModules = [
-    "services/networking/soju.nix"
-  ];
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -44,7 +41,6 @@ in {
     ../common/lib/personal_discourse.nix
     #../common/lib/opensearch.nix
     ./kubernetes.nix
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/networking/soju.nix"
     ./soju.nix
   ];
 
