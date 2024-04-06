@@ -439,6 +439,7 @@ in {
       };
     };
     groups.discourse = {};
+    groups.soju = {};
     groups.patroni = {};
     groups.pgbouncer = {};
     groups.node-yara-rs-runner = {};

@@ -21,8 +21,9 @@
   security.acme.certs."soju.midnightthoughts.space" = {
     reloadServices = ["soju"];
     webroot = "/var/lib/acme/.challenges";
-    listenHTTP = ":1360";
+    group = "soju";
   };
+  users.users.nginx.extraGroups = ["acme"];
   services.nginx = {
     enable = true;
     virtualHosts = {
