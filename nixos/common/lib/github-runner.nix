@@ -15,7 +15,7 @@
   services.github-runners = {
     "node-yara-rs" = {
       url = "https://github.com/MTRNord/node-yara-rs";
-      enable = true;
+      enable = false;
       extraLabels = ["arm64"];
       ephemeral = true;
       replace = true;
