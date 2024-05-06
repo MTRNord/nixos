@@ -390,6 +390,7 @@ in {
     };
   };
 
+  services.openssh.settings.PermitRootLogin = "yes";
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
     #mutableUsers = false;
