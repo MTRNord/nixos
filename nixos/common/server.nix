@@ -58,7 +58,7 @@
     settings = {
       PermitRootLogin = "yes";
       # Use keys only. Remove if you want to SSH using password (not recommended)
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       X11Forwarding = false;
       KbdInteractiveAuthentication = false;
       UseDns = false;
